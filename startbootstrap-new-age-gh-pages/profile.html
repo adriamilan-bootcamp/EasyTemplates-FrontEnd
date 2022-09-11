@@ -21,12 +21,13 @@
     <link href="css/styles.css" rel="stylesheet" />
 </head>
 
-<body>
+<body id="page-top">
     <!--HEADER DASHBOAR USER ->model dashboar_user-->
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
         <div class="container px-5">
             <img src="assets/img/EasyTemplates.png" style="width: 250px">
+
             <button style="background-color: #f25e5e; border-color: #e85c5c;"
                 class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#log_out">
                 <span class="d-flex align-items-center">
@@ -50,7 +51,6 @@
     </header>
 
 
-
     <br>
     <nav class="navbar navbar-expand-lg bg-gradient-primary-to-secondary">
         <div style="margin-left: 2%;">
@@ -63,7 +63,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                        <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person-circle"></i> My profile</a></li>
+                        <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person-circle"></i> My
+                                profile</a></li>
                         <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-house-door-fill"></i>
                                 Home</a></li>
                         <li><a class="dropdown-item" href="templates.html"><i class="bi bi-file-code"></i> Templates</a>
@@ -79,50 +80,66 @@
     </nav>
     <br>
 
-
     <div class="container">
-        <div class="row">
-            <div class="col-4" >
-                <div class="card" id="card_components">
-                    <div class="card-body">
-                        <div class="card-title"><h5>Components</h5></div>
-                        <ul>
-                            <li>title</li>
-                            <li>subtitle</li>
-                            <li>input</li>
-                            <li>label</li>
-                            <li>separator invisible</li>
-                            <li>separator line</li>
-                            <li>image container</li>
-                            <li>row</li>
-                            <li>column</li>
-                            <li>list</li>
 
+        <h3>My Profile</h3>
 
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <br>
+                <div class="card-title">
+                    <h3>Name User</h3>
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Name input-->
+                            <label for="name" class="form-label">Username</label>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="name" type="text" placeholder="Enter your name..."
+                                    data-sb-validations="required" value="info de la db" />
 
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-8">
-                <div class="card">
-                    <div class="card-body" style="background-color:#99b8cc ;">
-                        <div class="card">
-                            <div class="card-body" style="width:400px ; height:800px;">
-
+                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                             </div>
+                            <!-- Email address input-->
+                            <label for="email" class="form-label">Email address</label>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="email" type="email" placeholder="name@example.com"
+                                    data-sb-validations="required,email" value="info de la db" />
+
+                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.
+                                </div>
+                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                            </div>
+
+                            <label for="password" class="form-label">Password</label>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="password" type="password" placeholder=""
+                                    data-sb-validations="required" value="info de la db" />
+                                <div class="invalid-feedback" data-sb-feedback="password:required">A password is
+                                    required.</div>
+                            </div>
+
+                            <label for="password" class="form-label">Confirm Password</label>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="password" type="password" placeholder=""
+                                    data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="password:required">A password is
+                                    required.</div>
+                            </div>
+                            <br>
+                            <button class="btn btn-primary rounded-pill" data-bs-toggle="modal"
+                                data-bs-target="#modify_profile">
+                                Modify </button>
                         </div>
-                        <br>
-                        <button class="btn btn-success rounded-pill">Save</button>
                     </div>
+
                 </div>
+                <br>
+
             </div>
         </div>
 
     </div>
-
     <br>
     <footer class="bg-black text-center py-5">
         <div class="container px-5">
