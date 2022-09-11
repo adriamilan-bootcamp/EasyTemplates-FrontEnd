@@ -11623,3 +11623,9 @@ footer a:hover, footer a:active, footer a:focus {
     max-width: 17rem;
   }
 }
+
+#card_components{
+  position: -webkit-sticky; 
+    position: sticky;
+    top: 15%;
+}
