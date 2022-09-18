@@ -1,0 +1,54 @@
+<app-top-beginning></app-top-beginning>
+<app-nav-beginning></app-nav-beginning>
+<div class="container">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-gradient-primary-to-secondary p-4">
+        <h5 class="modal-title font-alt text-white" id="registerModelLabel">Register</h5>
+        <button class="btn-close btn-close-white" type="button" routerLink="/home" aria-label="Close"></button>
+      </div>
+      <div class="modal-body border-0 p-4">
+        <!-- Name input-->
+        <div class="form-floating mb-3">
+          <input class="form-control" id="name" type="text" placeholder="Enter your name..."
+            data-sb-validations="required" />
+          <label for="name">Name</label>
+          <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+        </div>
+        <!-- Email address input-->
+        <div class="form-floating mb-3">
+          <input class="form-control" id="email" type="email" placeholder="name@example.com"
+            data-sb-validations="required,email" />
+          <label for="email">Email address</label>
+          <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+          <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+        </div>
+        <div class="form-floating mb-3">
+          <input class="form-control" id="password" type="password" placeholder="" data-sb-validations="required" />
+          <label for="password">Password</label>
+          <div class="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
+        </div>
+        <div class="form-floating mb-3">
+          <input class="form-control" id="passwordRepet" type="password" placeholder="" data-sb-validations="required" />
+          <label for="password">Confirm password</label>
+          <div class="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+          <label class="form-check-label" for="flexCheckDefault">
+            Accept coockies!
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+          <label class="form-check-label" for="flexCheckChecked">
+            Accept terms privacy!
+          </label>
+        </div>
+        <br>
+        <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg" id="submitButton"
+            type="submit">Submit</button></div>
+      </div>
+    </div>
+  </div>
+</div>
