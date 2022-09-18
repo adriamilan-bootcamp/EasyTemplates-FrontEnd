@@ -16,7 +16,9 @@ import { TopContactComponent } from './top-contact/top-contact.component';
 import { ContainerContactComponent } from './container-contact/container-contact.component';
 import { NavContactComponent } from './nav-contact/nav-contact.component';
 import { LogOutComponent } from './log-out/log-out.component';
+import { AuthInterceptor } from './_security/security-interceptor';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { LogOutComponent } from './log-out/log-out.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
