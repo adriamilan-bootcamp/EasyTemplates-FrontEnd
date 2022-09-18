@@ -9,22 +9,39 @@
         routerLink="/home" aria-label="Close"></button>
       </div>
       <div class="modal-body border-0 p-4">
-        <form id="contactForm">
-          <div class="form-floating mb-3">
-            <input class="form-control" id="email" type="email" placeholder="name@example.com"
-              data-sb-validations="required,email" />
-            <label for="email">Email address</label>
-            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+        <div class="modal-body text-left">
+          <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <p class="mb-0 mt-2">Email</p>
+            <div class="form-group">
+              <input type="text" name="email" class="form-control" [(ngModel)]="form.email" required #email="ngModel"> <br>
+              <div class="alert alert-danger" role="alert" *ngIf="email.errors && f.submitted">
+                Email is required!
+              </div>
+            </div>
+            <p class="mb-0 mt-2">Password</p>
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" [(ngModel)]="form.password" required minlength="4" #password="ngModel"> <br>
+              <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+                <div *ngIf="password.errors['required']">Password is required!</div>
+                <div *ngIf="password.errors['minlength']">Password must be at least 6 characters!</div>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" >Login</button>
+            </div>
+  
+            <div class="form-group">
+              <div class="alert alert-danger" role="alert" *ngIf="form.submitted && isLoginFailed">
+                Login failed: {{ errorMessage }}
+              </div>
+            </div>
+          </form>
+          <br>
+          <div class="alert alert-success" *ngIf="isLoggedInView">
+            Logged in as {{ usernameView }}<br>
+            Redirecting in 2 seconds
           </div>
-          <div class="form-floating mb-3">
-            <input class="form-control" id="password" type="password" placeholder="" data-sb-validations="required" />
-            <label for="password">Password</label>
-            <div class="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
-          </div>
-          <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg enabled" id="submitButton"
-              type="submit">Login</button></div>
-        </form>
       </div>
     </div>
   </div>

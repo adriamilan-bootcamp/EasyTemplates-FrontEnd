@@ -18,7 +18,8 @@ import { NavContactComponent } from './nav-contact/nav-contact.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { AuthInterceptor } from './_security/security-interceptor';
 
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

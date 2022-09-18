@@ -31,7 +31,7 @@ export class SecurityService {
 
   public saveUser(user: any): void {
     window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    window.sessionStorage.setItem(USER_KEY, user);
     this.setRoles();
   }
 
@@ -39,7 +39,7 @@ export class SecurityService {
     const user = window.sessionStorage.getItem(USER_KEY);
 
     if (user) {
-      return JSON.parse(user);
+      return user;
     }
 
     return {};
@@ -47,17 +47,16 @@ export class SecurityService {
 
     public setRoles() {
       
-      const user = this.getUser().replace(/['"]+/g, '');
-
-      /*this.authService.findRole(user).subscribe(
+      this.authService.findRole().subscribe(
         data => {
+          console.log(data["roles"]);
           window.sessionStorage.removeItem(ROLES_KEY);
-          window.sessionStorage.setItem(ROLES_KEY, JSON.stringify(data["role"]));
+          window.sessionStorage.setItem(ROLES_KEY, data["roles"]);
         },
         err => {
           console.log("Couldn't find role information")
         }
-      )*/
+      )
     }
 
     public getRoles() {

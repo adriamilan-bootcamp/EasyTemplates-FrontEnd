@@ -18,17 +18,21 @@ export class AuthService {
     
     this.user = null;
 
+    console.log("Login:\nEmail: " + email + "\nPassword: " + password + "\n");
+
     this.user = {
       "email": email,
       "password": password
     };
 
+    console.log("Login:\nFinal login JSON Object (HTTP Req. Body): " + JSON.stringify(this.user) + "\n");
+
     return this.http.post(AUTH_API + 'login', JSON.stringify(this.user), { headers: { 'Content-Type': 'application/json'}});
   }
 
-  /*findRole(username: string): Observable<any> {
-    return this.http.get(AUTH_API + "users/" + username);
-  }*/
+  findRole(): Observable<any> {
+    return this.http.get(AUTH_API + "roles");
+  }
 
 
   /*register(username: string, email: string, password: string): Observable<any> {
