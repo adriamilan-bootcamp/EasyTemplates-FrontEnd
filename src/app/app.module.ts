@@ -27,6 +27,8 @@ import { TemplateUserComponent } from './template-user/template-user.component';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { PdfUserComponent } from './pdf-user/pdf-user.component';
 import { ImgUserComponent } from './img-user/img-user.component';
+import { NewTemplateComponent } from './new-template/new-template.component';
+import { UseTemplateComponent } from './use-template/use-template.component';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { ImgUserComponent } from './img-user/img-user.component';
     TemplateUserComponent,
     ProfileUserComponent,
     PdfUserComponent,
-    ImgUserComponent
+    ImgUserComponent,
+    NewTemplateComponent,
+    UseTemplateComponent
   ],
   imports: [
     BrowserModule,

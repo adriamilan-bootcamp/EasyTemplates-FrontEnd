@@ -8,10 +8,12 @@ import { ImgUserComponent } from './img-user/img-user.component';
 import { LenguageComponent } from './lenguage/lenguage.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { LoginComponent } from './login/login.component';
+import { NewTemplateComponent } from './new-template/new-template.component';
 import { PdfUserComponent } from './pdf-user/pdf-user.component';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { RegisterComponent } from './register/register.component';
 import { TemplateUserComponent } from './template-user/template-user.component';
+import { UseTemplateComponent } from './use-template/use-template.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
@@ -66,6 +68,14 @@ const routes: Routes = [
   {
     path:"profile-user",
     component:ProfileUserComponent
+  },
+  {
+    path:"new-template",
+    component:NewTemplateComponent
+  },
+  {
+    path:"use-template",
+    component:UseTemplateComponent
   },
   {
     path: '', redirectTo: 'home', pathMatch: 'full',
