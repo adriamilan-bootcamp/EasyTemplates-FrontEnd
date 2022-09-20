@@ -30,6 +30,11 @@ import { ImgUserComponent } from './img-user/img-user.component';
 import { NewTemplateComponent } from './new-template/new-template.component';
 import { UseTemplateComponent } from './use-template/use-template.component';
 
+import { AuthInterceptor } from './_security/security-interceptor';
+
+
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -63,9 +68,13 @@ import { UseTemplateComponent } from './use-template/use-template.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
