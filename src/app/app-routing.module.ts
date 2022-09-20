@@ -38,7 +38,7 @@ const routes: Routes = [
     component:LogOutComponent
   },
   {
-    path: "lenguatge",
+    path: "lenguage",
     component: LenguageComponent
   },
   {

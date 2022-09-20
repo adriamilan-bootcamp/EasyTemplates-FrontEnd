@@ -7,7 +7,7 @@
                 <li class="nav-item"> <a class="flex-sm-fill text-sm-center nav-link " data-bs-toggle="tab"
                         href="#users">Users</a></li>
                 <li class="nav-item"> <a class="flex-sm-fill text-sm-center nav-link " data-bs-toggle="tab"
-                        href="#groups">Groups</a></li>
+                        href="#pdf">Pdf</a></li>
                 <li class="nav-item"> <a class="flex-sm-fill text-sm-center nav-link " data-bs-toggle="tab"
                         href="#templates">Templates</a></li>
                 <li class="nav-item"> <a class="flex-sm-fill text-sm-center nav-link " data-bs-toggle="tab"
@@ -53,7 +53,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row"></th>
                                 <td>Mark</td>
                                 <td>Otto</td>
                                 <td>@mdo</td>
@@ -63,28 +63,7 @@
 
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-warning">Update</button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry the Bird</td>
-                                <td>@twitter</td>
-                                <td>@twitter</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-warning">Update</button>
-
-                                </td>
-                            </tr>
+                          
                         </tbody>
                     </table>
                     <!--paginación -> la hacemos con module de angular,pero por ahora para la vista, pongo esta-->
@@ -106,18 +85,18 @@
 
 
             <!--body card tab groups-->
-            <div class="tab-pane fade" id="groups">
+            <div class="tab-pane fade" id="pdf">
                 <div class="card-body">
                     <br>
-                    <h5 class="card-title">Groups</h5>
+                    <h5 class="card-title">PDF</h5>
                     <br>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Name Group"
+                        <input type="text" class="form-control" placeholder="Title"
                             aria-label="Recipient's username" aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Group ID"
+                        <input type="text" class="form-control" placeholder="PDF ID"
                             aria-label="Recipient's username" aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
@@ -126,19 +105,15 @@
                             aria-label="Recipient's username" aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Admin ID"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
+                   
                     <br><br>
                     <table class="table table-striped table-bordered border-primary " id="tb">
                         <thead>
                             <tr style="background-color: rgb(173, 205, 234);">
                                 <th scope="col">ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Admin</th>
-                                <th scope="col">User</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Src</th>
+                                <th scope="col">Title</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
