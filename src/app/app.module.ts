@@ -31,10 +31,11 @@ import { NewTemplateComponent } from './new-template/new-template.component';
 import { UseTemplateComponent } from './use-template/use-template.component';
 
 import { AuthInterceptor } from './_security/security-interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { FormsModule }   from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { FormsModule }   from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
