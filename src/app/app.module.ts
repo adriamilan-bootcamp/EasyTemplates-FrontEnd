@@ -35,6 +35,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TabPdfComponent } from './tab-pdf/tab-pdf.component';
+import { TabUsersComponent } from './tab-users/tab-users.component';
+import { TabTemplatesComponent } from './tab-templates/tab-templates.component';
+import { TabImagesComponent } from './tab-images/tab-images.component';
 
 
 @NgModule({
@@ -65,7 +69,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     PdfUserComponent,
     ImgUserComponent,
     NewTemplateComponent,
-    UseTemplateComponent
+    UseTemplateComponent,
+    TabPdfComponent,
+    TabUsersComponent,
+    TabTemplatesComponent,
+    TabImagesComponent
   ],
   imports: [
     BrowserModule,
