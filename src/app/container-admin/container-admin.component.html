@@ -25,21 +25,26 @@
                 <div class="card-body">
                     <h5 class="card-title">Users</h5>
                     <br><br>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Usename"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+                    <div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Selection
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">User ID</a></li>
+                                <li><a class="dropdown-item" href="#">Username</a></li>
+                                <li><a class="dropdown-item" href="#">User Email</a></li>
+                            </ul>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Usename"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="User ID"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Group ID"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
+                  
+
                     <br><br>
                     <table class="table table-striped table-bordered border-primary " id="tb">
                         <thead>
@@ -48,22 +53,25 @@
                                 <th scope="col">Username</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Password</th>
+                                <th scope="col">Role</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row"></th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                            <tr *ngFor="let u of users">
+                                <th scope="row">{{u.id}}</th>
+                                <td>{{u.username}}</td>
+                                <td>{{u.email}}</td>
+                                <td>{{u.password}}</td>
+                                <td>aqui va el rol?</td>
                                 <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
+                                    <button type="button" class="btn btn-danger"><i
+                                            class="bi bi-trash-fill"></i></button>
                                     <button type="button" class="btn btn-warning">Update</button>
 
                                 </td>
                             </tr>
-                          
+
                         </tbody>
                     </table>
                     <!--paginación -> la hacemos con module de angular,pero por ahora para la vista, pongo esta-->
@@ -91,21 +99,21 @@
                     <h5 class="card-title">PDF</h5>
                     <br>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Title"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="Title" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="PDF ID"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="PDF ID" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="User ID"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="User ID" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
-                   
+
                     <br><br>
                     <table class="table table-striped table-bordered border-primary " id="tb">
                         <thead>
@@ -179,8 +187,8 @@
                     <h5 class="card-title">Templates</h5>
                     <br>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Title"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="Title" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
                     <div class="input-group mb-3">
@@ -189,13 +197,13 @@
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="User ID"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="User ID" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Group ID"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="Group ID" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
                     <br><br>
@@ -269,18 +277,18 @@
                     <h5 class="card-title">Images</h5>
                     <br>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="User ID"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="User ID" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Group ID"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="Group ID" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Image ID"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="Image ID" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
                     <br><br>
@@ -353,4 +361,3 @@
     <br> <br>
 
 </div>
-

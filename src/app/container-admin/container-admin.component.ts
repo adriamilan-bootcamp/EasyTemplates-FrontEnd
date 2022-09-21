@@ -19,7 +19,7 @@ export class ContainerAdminComponent implements OnInit {
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-  
+  this.seeAllUsers();
   }
 
   seeAllUsers(): void {
