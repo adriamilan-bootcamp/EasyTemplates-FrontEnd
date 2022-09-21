@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
 
   roles: string | undefined;
 
-
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
@@ -46,15 +45,11 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.authService.login(this.form.email, this.form.password).subscribe(
       data => {
-        console.log("Data: " + data);
-        this.usernameView = this.form.email;
         this.isLoggedInView = true;
-
+        this.usernameView = this.form.email;
         
-
           this.tokenStorageService.saveToken(data["token"]);
           this.tokenStorageService.saveUser(this.form.email);
-  
 
           setTimeout(() => 
           {
@@ -63,7 +58,7 @@ export class LoginComponent implements OnInit {
             this.isLoginFailed = false;
             this.isLoggedIn = true;
 
-            this.router.navigate(['/home']);
+            this.router.navigate(['/user-dashboard']);
           },
           2000);
 

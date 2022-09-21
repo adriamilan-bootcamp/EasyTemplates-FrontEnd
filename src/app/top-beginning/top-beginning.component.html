@@ -11,7 +11,7 @@
         <li class="nav-item"><a class="nav-link me-lg-3" href="#features"></a></li>
         <li class="nav-item"><a class="nav-link me-lg-3" href="#download"></a></li>
       </ul>
-      <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#loginModel"
+      <button *ngIf="!isLoggedIn" class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#loginModel"
         routerLink="/login">
         <span class="d-flex align-items-center">
           <i class="bi bi-person me-2"></i>
@@ -19,7 +19,7 @@
         </span>
       </button>
       <ul></ul>
-      <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal"
+      <button *ngIf="!isLoggedIn" class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal"
         data-bs-target="#registerModel" routerLink="/register">
         <span class="d-flex align-items-center">
           <i class="bi bi-person me-2"></i>
@@ -32,7 +32,7 @@
         routerLink="lenguage">
         <span class="d-flex align-items-center">
           <i class="bi bi-person me-2"></i>
-          <span class="small">Lenguage</span>
+          <span class="small">Language</span>
         </span>
       </button>
     </div>
