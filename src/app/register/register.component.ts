@@ -54,14 +54,10 @@ export class RegisterComponent implements OnInit {
         data => {
 
           this.isRegisteredInView = true;
-          this.usernameView = this.form.email;
-
           setTimeout(() => {
-            this.usernameView = this.form.email;
-
             this.isRegisterFailed = false;;
 
-            this.router.navigate(["/user-dashboard"]);
+            this.router.navigate(["/home"]);
           }, 3000);
         },
         err => {
