@@ -10,33 +10,18 @@
 
     </div>
     <br>
-    <div class="card">
+    <div class="card" >
         <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <div class="card">
+            <div class="row  row-cols-1 row-cols-md-4 g-4" >
+                <div class="col" *ngFor="let i of imgs">
+                    <div class="card" >
 
                         <div class="card-body" style="background-color:#99b8cc ;">
-                            <img src="assets/img/joel.jpeg" class="img-fluid rounded-start" alt="...">
+                            <img src="{{i.src}}" class="img-fluid rounded-start" alt="...">
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card">
 
-                        <div class="card-body" style="background-color:#99b8cc ;">
-                            <img src="assets/img/joel.jpeg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-
-                        <div class="card-body" style="background-color:#99b8cc ;">
-                            <img src="assets/img/joel.jpeg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
