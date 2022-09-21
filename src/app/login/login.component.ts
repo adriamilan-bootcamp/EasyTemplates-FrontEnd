@@ -70,11 +70,5 @@ export class LoginComponent implements OnInit {
     )
   }
   
-  logout(): void {
-    this.tokenStorageService.signOut();
-    this.isLoggedIn = false;
-    this.roles = '';
-    this.router.navigate(['/home']);
-  }
 
 }
