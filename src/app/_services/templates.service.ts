@@ -17,24 +17,29 @@ export class TemplatesService {
   }
 
   getTemplateByID(id: any): Observable<Template> {
-    return this.http.get<Template>(url + "api/plantillas/" + id);
+    return this.http.get<Template>(url + "api/plantilla/" + id);
   }
 
-  getTemplateByUserId(id: any): Observable<Template> {
-    return this.http.get<Template>(url + "api/usuarios_plantillas/" + id);
+  getTemplateByUserId(id: any): Observable<Template[]> {
+    return this.http.get<Template[]>(url + "api/usuarios_plantillas/" + id);
   }
 
+  getTemplateByTitle(title: any): Observable<Template[]> {
+    return this.http.get<Template[]>(url + "api/usuarios_plantillas/" + title);
+  }
 
   createTemplate() {
     // post api/plantilla
-   }
+  }
 
   updateTemplate() {
     //put  api/plantilla/{id} ?? o put api/usuarios_plantillas/{id} ??
-   }
+  }
 
-  deleteUser(id: any): Observable<Template> {
-    return this.http.delete<Template>(url + "api/palantilla/" + id);
+  deleteTemplate(id: any): Observable<Template> {
+    return this.http.delete<Template>(url + "api/plantilla/" + id);
 
   }
+
+
 }
