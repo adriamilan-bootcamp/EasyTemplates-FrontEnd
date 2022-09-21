@@ -31,10 +31,15 @@ import { NewTemplateComponent } from './new-template/new-template.component';
 import { UseTemplateComponent } from './use-template/use-template.component';
 
 import { AuthInterceptor } from './_security/security-interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { FormsModule }   from '@angular/forms';
+import { TabPdfComponent } from './tab-pdf/tab-pdf.component';
+import { TabUsersComponent } from './tab-users/tab-users.component';
+import { TabTemplatesComponent } from './tab-templates/tab-templates.component';
+import { TabImagesComponent } from './tab-images/tab-images.component';
+
 
 @NgModule({
   declarations: [
@@ -64,13 +69,18 @@ import { FormsModule }   from '@angular/forms';
     PdfUserComponent,
     ImgUserComponent,
     NewTemplateComponent,
-    UseTemplateComponent
+    UseTemplateComponent,
+    TabPdfComponent,
+    TabUsersComponent,
+    TabTemplatesComponent,
+    TabImagesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

@@ -5,7 +5,7 @@
 
             <ul class="nav nav-tabs flex-column flex-sm-row">
                 <li class="nav-item"> <a class="flex-sm-fill text-sm-center nav-link " data-bs-toggle="tab"
-                        href="#users">Users</a></li>
+                        href="#users" aria-current="page">Users</a></li>
                 <li class="nav-item"> <a class="flex-sm-fill text-sm-center nav-link " data-bs-toggle="tab"
                         href="#pdf">Pdf</a></li>
                 <li class="nav-item"> <a class="flex-sm-fill text-sm-center nav-link " data-bs-toggle="tab"
@@ -16,346 +16,32 @@
         </div>
 
 
-
         <div class="tab-content">
-
 
             <!-- body card tab users -->
             <div class="tab-pane fade" id="users">
-                <div class="card-body">
-                    <h5 class="card-title">Users</h5>
-                    <br><br>
-                    <div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Selection
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">User ID</a></li>
-                                <li><a class="dropdown-item" href="#">Username</a></li>
-                                <li><a class="dropdown-item" href="#">User Email</a></li>
-                            </ul>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Usename"
-                                    aria-label="Recipient's username" aria-describedby="button-addon2">
-                                <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                            </div>
-                        </div>
-                    </div>
-                  
-
-                    <br><br>
-                    <table class="table table-striped table-bordered border-primary " id="tb">
-                        <thead>
-                            <tr style="background-color: rgb(173, 205, 234);">
-                                <th scope="col">ID</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Password</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let u of users">
-                                <th scope="row">{{u.id}}</th>
-                                <td>{{u.username}}</td>
-                                <td>{{u.email}}</td>
-                                <td>{{u.password}}</td>
-                                <td>aqui va el rol?</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger"><i
-                                            class="bi bi-trash-fill"></i></button>
-                                    <button type="button" class="btn btn-warning">Update</button>
-
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                    <!--paginación -> la hacemos con module de angular,pero por ahora para la vista, pongo esta-->
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-
-
-            <!--body card tab groups-->
-            <div class="tab-pane fade" id="pdf">
-                <div class="card-body">
-                    <br>
-                    <h5 class="card-title">PDF</h5>
-                    <br>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Title" aria-label="Recipient's username"
-                            aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="PDF ID" aria-label="Recipient's username"
-                            aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="User ID" aria-label="Recipient's username"
-                            aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
-
-                    <br><br>
-                    <table class="table table-striped table-bordered border-primary " id="tb">
-                        <thead>
-                            <tr style="background-color: rgb(173, 205, 234);">
-                                <th scope="col">ID</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Src</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-warning">Update</button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-warning">Update</button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry the Bird</td>
-                                <td>@twitter</td>
-                                <td>@twitter</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-warning">Update</button>
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!--paginación -> la hacemos con module de angular,pero por ahora para la vista, pongo esta-->
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
+                <app-tab-users></app-tab-users>
             </div>
 
 
             <!--body card tab templates-->
             <div class="tab-pane fade" id="templates">
-                <div class="card-body">
-                    <br>
-                    <h5 class="card-title">Templates</h5>
-                    <br>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Title" aria-label="Recipient's username"
-                            aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Template ID"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="User ID" aria-label="Recipient's username"
-                            aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Group ID" aria-label="Recipient's username"
-                            aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
-                    <br><br>
-                    <table class="table table-striped table-bordered border-primary " id="tb">
-                        <thead>
-                            <tr style="background-color: rgb(173, 205, 234);">
-                                <th scope="col">ID</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Src</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-warning">Update</button>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-warning">Update</button>
+                <app-tab-templates></app-tab-templates>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry the Bird</td>
-                                <td>@twitter</td>
-                                <td>@twitter</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-warning">Update</button>
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!--paginación -> la hacemos con module de angular,pero por ahora para la vista, pongo esta-->
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
             </div>
-
             <!--body card tab images-->
             <div class="tab-pane fade" id="images">
-                <div class="card-body">
-                    <br>
-                    <h5 class="card-title">Images</h5>
-                    <br>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="User ID" aria-label="Recipient's username"
-                            aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Group ID" aria-label="Recipient's username"
-                            aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Image ID" aria-label="Recipient's username"
-                            aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                    </div>
-                    <br><br>
-                    <table class="table table-striped table-bordered border-primary " id="tb">
-                        <thead>
-                            <tr style="background-color: rgb(173, 205, 234);">
-                                <th scope="col">ID</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Src</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-warning">Update</button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-warning">Update</button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry the Bird</td>
-                                <td>@twitter</td>
-
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-warning">Update</button>
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!--paginación -> la hacemos con module de angular,pero por ahora para la vista, pongo esta-->
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                <app-tab-images></app-tab-images>
             </div>
+
+
+            <!--body card tab pdf-->
+            <div class="tab-pane fade" id="pdf">
+                <app-tab-pdf></app-tab-pdf>
+            </div>
+
         </div>
-
-
 
     </div>
     <br> <br>
