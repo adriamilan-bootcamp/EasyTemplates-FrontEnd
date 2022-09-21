@@ -2,67 +2,179 @@
     <br>
     <h5 class="card-title">Templates</h5>
     <br>
-    <div class="btn-group w-100">
-        <form [formGroup]="formSearch" #f="ngForm">
-            <select class="form-select form-select-lg mb-3 " [(ngModel)]='default' (change)="onChange(f)"
-                formControlName="options" style="width: 150px; background-color: aliceblue;">
-                <option value="select">Option</option>
-                <option value="all">All Templates</option>
-                <option value="id">ID</option>
-                <option value="title">Title</option>
-                <option value="user">User Id</option>
-            </select>
-        </form>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="{{valuePlaceholder}}" aria-label="Recipient's username"
-                aria-describedby="button-addon2" id="input">
-            <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='id'"
-                (click)="seeAll();">Search</button>
-            <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='title'"
-                (click)="seeAll();">Search</button>
-            <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='user'"
-                (click)="seeAll();">Search</button>
-            <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='all'"
-                (click)="seeAll();">Search</button>
+    <div>
+        <div class="btn-group w-100">
+            <form [formGroup]="formSearch" #f="ngForm">
+                <select class="form-select form-select-lg mb-3 " [(ngModel)]='default' (change)="onChange(f)"
+                    formControlName="options" style="width: 150px; background-color: aliceblue;">
+                    <option value="select">Option</option>
+                    <option value="all">All Templates</option>
+                    <option value="id">ID</option>
+                    <option value="title">Title</option>
+                    <option value="user">User Id</option>
+                </select>
+            </form>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="{{valuePlaceholder}}"
+                    aria-label="Recipient's username" aria-describedby="button-addon2" id="input">
+                <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='id'"
+                    (click)="seeAll();">Search</button>
+                <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='title'"
+                    (click)="seeAll();">Search</button>
+                <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='user'"
+                    (click)="seeAll();">Search</button>
+                <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='all'"
+                    (click)="seeAll();">Search</button>
+            </div>
+
+        </div>
+        <br><br>
+
+        <div style="overflow-x: auto;">
+            <table class="table table-striped table-bordered border-primary " id="tbTemplates">
+                <thead>
+                    <tr style="background-color: rgb(173, 205, 234);">
+                        <th scope="col">ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Src</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of templates">
+                        <th scope="row">{{t.id}}</th>
+                        <td>{{t.date}}</td>
+                        <td>{{t.src}}</td>
+                        <td>{{t.title}}</td>
+                        <td>
+                            <table>
+                                <th> <button type="button" class="btn btn-danger" scope="col"><i
+                                            class="bi bi-trash-fill"></i></button></th>
+                                <th> <button type="button" class="btn btn-warning" scope="col"><i
+                                            class="bi bi-pencil-square"></i></button>
+                                </th>
+                                <th> <button type="button" class="btn btn-success" scope="col"><i
+                                            class="bi bi-eye-fill"></i></button>
+                                </th>
+
+                            </table>
+
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <table class="table table-striped table-bordered border-primary " id="tbID">
+                <thead>
+                    <tr style="background-color: rgb(173, 205, 234);">
+                        <th scope="col">ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Src</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of templates">
+                        <th scope="row">{{t.id}}</th>
+                        <td>{{t.date}}</td>
+                        <td>{{t.src}}</td>
+                        <td>{{t.title}}</td>
+                        <td>
+                            <table>
+                                <th> <button type="button" class="btn btn-danger" scope="col"><i
+                                            class="bi bi-trash-fill"></i></button></th>
+                                <th> <button type="button" class="btn btn-warning" scope="col"><i
+                                            class="bi bi-pencil-square"></i></button>
+                                </th>
+                                <th> <button type="button" class="btn btn-success" scope="col"><i
+                                            class="bi bi-eye-fill"></i></button>
+                                </th>
+
+                            </table>
+
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <table class="table table-striped table-bordered border-primary " id="tbTitle">
+                <thead>
+                    <tr style="background-color: rgb(173, 205, 234);">
+                        <th scope="col">ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Src</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of templates">
+                        <th scope="row">{{t.id}}</th>
+                        <td>{{t.date}}</td>
+                        <td>{{t.src}}</td>
+                        <td>{{t.title}}</td>
+                        <td>
+                            <table>
+                                <th> <button type="button" class="btn btn-danger" scope="col"><i
+                                            class="bi bi-trash-fill"></i></button></th>
+                                <th> <button type="button" class="btn btn-warning" scope="col"><i
+                                            class="bi bi-pencil-square"></i></button>
+                                </th>
+                                <th> <button type="button" class="btn btn-success" scope="col"><i
+                                            class="bi bi-eye-fill"></i></button>
+                                </th>
+
+                            </table>
+
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <table class="table table-striped table-bordered border-primary " id="tbUserId">
+                <thead>
+                    <tr style="background-color: rgb(173, 205, 234);">
+                        <th scope="col">ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Src</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of templates">
+                        <th scope="row">{{t.id}}</th>
+                        <td>{{t.date}}</td>
+                        <td>{{t.src}}</td>
+                        <td>{{t.title}}</td>
+                        <td>
+                            <table>
+                                <th> <button type="button" class="btn btn-danger" scope="col"><i
+                                            class="bi bi-trash-fill"></i></button></th>
+                                <th> <button type="button" class="btn btn-warning" scope="col"><i
+                                            class="bi bi-pencil-square"></i></button>
+                                </th>
+                                <th> <button type="button" class="btn btn-success" scope="col"><i
+                                            class="bi bi-eye-fill"></i></button>
+                                </th>
+
+                            </table>
+
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <!--paginación -> la hacemos con module de angular,pero por ahora para la vista, pongo esta-->
         </div>
 
+
     </div>
-    <br><br>
-    <table class="table table-striped table-bordered border-primary " id="tb">
-        <thead>
-            <tr style="background-color: rgb(173, 205, 234);">
-                <th scope="col">ID</th>
-                <th scope="col">Date</th>
-                <th scope="col">Src</th>
-                <th scope="col">Title</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let t of templates">
-                <th scope="row">{{t.id}}</th>
-                <td>{{t.date}}</td>
-                <td>{{t.src}}</td>
-                <td>{{t.title}}</td>
-                <td>
-                    <table>
-                        <th> <button type="button" class="btn btn-danger" scope="col"><i
-                                    class="bi bi-trash-fill"></i></button></th>
-                        <th> <button type="button" class="btn btn-warning" scope="col"><i
-                                    class="bi bi-pencil-square"></i></button>
-                        </th>
-                        <th> <button type="button" class="btn btn-success" scope="col"><i
-                                    class="bi bi-eye-fill"></i></button>
-                        </th>
-
-                    </table>
-
-                </td>
-            </tr>
-
-
-        </tbody>
-    </table>
-    <!--paginación -> la hacemos con module de angular,pero por ahora para la vista, pongo esta-->
 
 </div>

@@ -39,17 +39,17 @@ export class TabTemplatesComponent implements OnInit {
     this.valuePlaceholder = f.value['options'];
   }
   seeAll(): void {
-   // (<HTMLInputElement>document.getElementById("tbUsers")).style.display = "table";
-   // (<HTMLInputElement>document.getElementById("tbUserByID")).style.display = "none";
-   // (<HTMLInputElement>document.getElementById("tbUserByName")).style.display = "none";
-   // (<HTMLInputElement>document.getElementById("tbUserByEmail")).style.display = "none";
+    (<HTMLInputElement>document.getElementById("tbTemplates")).style.display = "table";
+    (<HTMLInputElement>document.getElementById("tbID")).style.display = "none";
+    (<HTMLInputElement>document.getElementById("tbTitle")).style.display = "none";
+    (<HTMLInputElement>document.getElementById("tbUserId")).style.display = "none";
     this.temService.getAllTemplates()
       .subscribe(
         data => {
           this.templates = data;
           console.log("templates: " + data);
           console.log(data[0].title);
-          
+
 
         },
         error => {
