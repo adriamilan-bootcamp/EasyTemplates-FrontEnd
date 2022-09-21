@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SecurityService } from '../_services/security.service';
+
 @Component({
   selector: 'app-top-beginning',
   templateUrl: './top-beginning.component.html',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBeginningComponent implements OnInit {
 
-  constructor() { }
+  isLoggedIn = false;
+
+  constructor(private tokenStorageService: SecurityService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
   }
 
 }

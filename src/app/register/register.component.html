@@ -1,53 +1,80 @@
 <app-top-beginning></app-top-beginning>
 <app-nav-beginning></app-nav-beginning>
+
 <div class="container">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header bg-gradient-primary-to-secondary p-4">
         <h5 class="modal-title font-alt text-white" id="registerModelLabel">Register</h5>
-        <button class="btn-close btn-close-white" type="button" routerLink="/home" aria-label="Close"></button>
+        <button class="btn-close btn-close-white" type="button"
+        routerLink="/home" aria-label="Close"></button>
       </div>
-      <div class="modal-body border-0 p-4">
-        <!-- Name input-->
-        <div class="form-floating mb-3">
-          <input class="form-control" id="name" type="text" placeholder="Enter your name..."
-            data-sb-validations="required" />
-          <label for="name">Name</label>
-          <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-        </div>
-        <!-- Email address input-->
-        <div class="form-floating mb-3">
-          <input class="form-control" id="email" type="email" placeholder="name@example.com"
-            data-sb-validations="required,email" />
-          <label for="email">Email address</label>
-          <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-          <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-        </div>
-        <div class="form-floating mb-3">
-          <input class="form-control" id="password" type="password" placeholder="" data-sb-validations="required" />
-          <label for="password">Password</label>
-          <div class="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
-        </div>
-        <div class="form-floating mb-3">
-          <input class="form-control" id="passwordRepet" type="password" placeholder="" data-sb-validations="required" />
-          <label for="password">Confirm password</label>
-          <div class="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-          <label class="form-check-label" for="flexCheckDefault">
-            Accept coockies!
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-          <label class="form-check-label" for="flexCheckChecked">
-            Accept terms privacy!
-          </label>
-        </div>
-        <br>
-        <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg" id="submitButton"
-            type="submit">Submit</button></div>
+      <div class="modal-body border-0 p-4 mb-0">
+        <div class="modal-body text-left mb-0">
+          <form name="form" class="mb-0" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <p class="mb-0 mt-2">Name</p>
+            <div class="form-group">
+              <input type="text" name="name" class="form-control" [(ngModel)]="form.name" id="name" required #name="ngModel"> <br>
+              <div class="alert alert-danger" role="alert" *ngIf="name.errors && f.submitted">
+                Name is required!
+              </div>
+            </div>
+            <p class="mb-0 mt-2">Email</p>
+            <div class="form-group">
+              <input type="text" name="email" class="form-control" [(ngModel)]="form.email" id="email" required #email="ngModel"> <br>
+              <div class="alert alert-danger" role="alert" *ngIf="email.errors && f.submitted">
+                Email is required!
+              </div>
+            </div>
+            <p class="mb-0 mt-2">Password</p>
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" [(ngModel)]="form.password" id="password" required minlength="4" #password="ngModel"> <br>
+              <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+                <div *ngIf="password.errors['required']">Password is required!</div>
+                <div *ngIf="password.errors['minlength']">Password must be at least 6 characters!</div>
+              </div>
+            </div>
+            <p class="mb-0 mt-2">Repeat Password</p>
+            <div class="form-group">
+              <input type="password" name="repeatPassword" id="repeatPassword" class="form-control" [(ngModel)]="form.repeatPassword" required minlength="4" #repeatPassword="ngModel"> <br>
+              <div class="alert alert-danger" role="alert" *ngIf="repeatPassword.errors && f.submitted">
+                <div *ngIf="repeatPassword.errors['required']">A matching password is required!</div>
+                <div *ngIf="repeatPassword.errors['minlength']">The matching password must be at least 6 characters!</div>
+              </div>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" #checkBoxCookies required>
+              <label class="form-check-label" for="flexCheckDefault">
+                Accept cookies
+              </label>
+              <div class="alert alert-danger" role="alert" *ngIf="!checkBoxCookies.checked && f.submitted">
+                <div>You must accept the cookies!</div>
+              </div>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" #checkBoxTOS required>
+              <label class="form-check-label" for="flexCheckChecked">
+                Accept terms of service
+              </label>
+              <div class="alert alert-danger" role="alert" *ngIf="!checkBoxTOS.checked && f.submitted">
+                <div>You must accept the terms of service!</div>
+              </div>
+            </div>
+            <br>
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" >Register</button>
+            </div>
+            <div class="form-group mt-3">
+              <div class="alert alert-danger" role="alert" *ngIf="isRegisterFailed">
+                {{ errorMessage }}
+              </div>
+            </div>
+            <div class="alert alert-success mt-3" *ngIf="isRegisteredInView != false">
+              Welcome {{ usernameView }}<br><br>
+              Redirecting in 3 seconds, you can now log in
+            </div>
+          </form>
+          
       </div>
     </div>
   </div>

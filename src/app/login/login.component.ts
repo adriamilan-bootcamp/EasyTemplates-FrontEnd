@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
 
   roles: string | undefined;
 
-
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
@@ -44,17 +43,15 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.isLoginFailed = false;
+
     this.authService.login(this.form.email, this.form.password).subscribe(
       data => {
-        console.log("Data: " + data);
-        this.usernameView = this.form.email;
         this.isLoggedInView = true;
-
+        this.usernameView = this.form.email;
         
-
           this.tokenStorageService.saveToken(data["token"]);
           this.tokenStorageService.saveUser(this.form.email);
-  
 
           setTimeout(() => 
           {
@@ -63,23 +60,33 @@ export class LoginComponent implements OnInit {
             this.isLoginFailed = false;
             this.isLoggedIn = true;
 
-            this.router.navigate(['/home']);
+            if (this.tokenStorageService.getRoles()?.toString().replace(/['"]+/g, '') == "ROLE_ADMIN")
+            {
+              this.router.navigate(['/admin-dashboard']);
+            }
+            else
+            {
+              this.router.navigate(['/user-dashboard']);
+            }
+            
           },
-          2000);
+          3000);
 
         },
       err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
+        switch (err.status) {
+          case 401:      //login
+            this.errorMessage = "Login failed, check credentials";
+             this.isLoginFailed = true;
+            break;
+          
+            default:
+              console.log("Unhandled");
+              break;
+        }
       }
     )
   }
   
-  logout(): void {
-    this.tokenStorageService.signOut();
-    this.isLoggedIn = false;
-    this.roles = '';
-    this.router.navigate(['/home']);
-  }
 
 }
