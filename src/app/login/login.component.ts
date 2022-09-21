@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.isLoginFailed = false;
+
     this.authService.login(this.form.email, this.form.password).subscribe(
       data => {
         this.isLoggedInView = true;
@@ -60,12 +62,20 @@ export class LoginComponent implements OnInit {
 
             this.router.navigate(['/user-dashboard']);
           },
-          2000);
+          3000);
 
         },
       err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
+        switch (err.status) {
+          case 401:      //login
+            this.errorMessage = "Login failed, check credentials";
+             this.isLoginFailed = true;
+            break;
+          
+            default:
+              console.log("Unhandled");
+              break;
+        }
       }
     )
   }
