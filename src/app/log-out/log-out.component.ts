@@ -4,6 +4,7 @@ import { AuthService } from '../_services/auth.service';
 import { SecurityService } from '../_services/security.service';
 
 import { Router } from '@angular/router';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-log-out',
@@ -12,9 +13,13 @@ import { Router } from '@angular/router';
 })
 export class LogOutComponent implements OnInit {
 
-  constructor(private tokenStorageService: SecurityService, public router: Router) { }
+  constructor(private tokenStorageService: SecurityService, public router: Router, private location: Location) { }
 
   ngOnInit(): void {
+  }
+
+  back() {
+    this.location.back()
   }
 
 
