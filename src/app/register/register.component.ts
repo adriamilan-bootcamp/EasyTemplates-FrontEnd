@@ -41,7 +41,10 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     this.isRegisterFailed = false;
 
-    console.log("Password: " + (<HTMLInputElement>document.getElementById("password")).value + "\nConfirm: " + (<HTMLInputElement>document.getElementById("repeatPassword")));
+    if (!(<HTMLInputElement>document.getElementById("flexCheckDefault")).checked || !(<HTMLInputElement>document.getElementById("flexCheckChecked")).checked)
+    {
+      return 
+    }
 
     if ((<HTMLInputElement>document.getElementById("password")).value === (<HTMLInputElement>document.getElementById("repeatPassword")).value) {
       
