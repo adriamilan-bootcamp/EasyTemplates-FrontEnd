@@ -133,7 +133,11 @@ export class TabUsersComponent implements OnInit {
   }
 
   delete(id: any) {
-    this.usersService.deleteUser(id)
+   
+    
+    let c="Are you sure you want to delete?"
+    if(confirm(c)==true){
+      this.usersService.deleteUser(id)
       .subscribe(
         response => {
           console.log("respuesta eliminar user->" + response);
@@ -145,6 +149,10 @@ export class TabUsersComponent implements OnInit {
 
         }
       );
+    }else{
+      window.location.reload();
+    }
+    
   }
 
 }
