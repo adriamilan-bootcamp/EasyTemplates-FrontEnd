@@ -60,7 +60,15 @@ export class LoginComponent implements OnInit {
             this.isLoginFailed = false;
             this.isLoggedIn = true;
 
-            this.router.navigate(['/user-dashboard']);
+            if (this.tokenStorageService.getRoles()?.toString().replace(/['"]+/g, '') == "ROLE_ADMIN")
+            {
+              this.router.navigate(['/admin-dashboard']);
+            }
+            else
+            {
+              this.router.navigate(['/user-dashboard']);
+            }
+            
           },
           3000);
 
