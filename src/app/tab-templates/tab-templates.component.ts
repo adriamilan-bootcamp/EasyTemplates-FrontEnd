@@ -48,14 +48,95 @@ export class TabTemplatesComponent implements OnInit {
         data => {
           this.templates = data;
           console.log("templates: " + data);
-          console.log(data[0].title);
-
-
         },
         error => {
           console.log("error listar templates: " + error);
 
         }
       );
+    (<HTMLInputElement>document.getElementById("input")).value = '';
   }
+
+  seeById() {
+    (<HTMLInputElement>document.getElementById("tbTemplates")).style.display = "none";
+    (<HTMLInputElement>document.getElementById("tbID")).style.display = "table";
+    (<HTMLInputElement>document.getElementById("tbTitle")).style.display = "none";
+    (<HTMLInputElement>document.getElementById("tbUserId")).style.display = "none";
+
+    this.temService.getTemplateByID((<HTMLInputElement>document.getElementById("input")).value)
+      .subscribe(
+        data => {
+          this.template = data;
+          console.log("templates: " + data);
+
+        },
+        error => {
+          console.log("error listar template: " + error);
+
+        }
+      );
+    (<HTMLInputElement>document.getElementById("input")).value = '';
+  }
+
+  seeByTitle() {
+    (<HTMLInputElement>document.getElementById("tbTemplates")).style.display = "none";
+    (<HTMLInputElement>document.getElementById("tbID")).style.display = "none";
+    (<HTMLInputElement>document.getElementById("tbTitle")).style.display = "table";
+    (<HTMLInputElement>document.getElementById("tbUserId")).style.display = "none";
+
+    this.temService.getTemplateByTitle((<HTMLInputElement>document.getElementById("input")).value)
+      .subscribe(
+        data => {
+          this.templates = data;
+          console.log("templates: " + data);
+        },
+        error => {
+          console.log("error listar templates: " + error);
+
+        }
+      );
+    (<HTMLInputElement>document.getElementById("input")).value = '';
+
+  }
+
+  seeByUser() {
+    (<HTMLInputElement>document.getElementById("tbTemplates")).style.display = "none";
+    (<HTMLInputElement>document.getElementById("tbID")).style.display = "none";
+    (<HTMLInputElement>document.getElementById("tbTitle")).style.display = "none";
+    (<HTMLInputElement>document.getElementById("tbUserId")).style.display = "table";
+
+    this.temService.getTemplateByUserId((<HTMLInputElement>document.getElementById("input")).value)
+      .subscribe(
+        data => {
+          this.templates = data;
+          console.log("templates: " + data);
+        },
+        error => {
+          console.log("error listar templates: " + error);
+
+        }
+      );
+    (<HTMLInputElement>document.getElementById("input")).value = '';
+  }
+
+  delete(id: any) {
+    let c = "Are you sure you want to delete?"
+    if (confirm(c) == true) {
+      this.temService.deleteTemplate(id)
+        .subscribe(
+          response => {
+            console.log("respuesta eliminar template->" + response);
+            window.location.reload();
+            alert("Template deleted");
+
+          }, error => {
+            console.log(error);
+
+          }
+        );
+    } else {
+      window.location.reload();
+    }
+  }
+
 }

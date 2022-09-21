@@ -18,11 +18,11 @@
                 <input type="text" class="form-control" placeholder="{{valuePlaceholder}}"
                     aria-label="Recipient's username" aria-describedby="button-addon2" id="input">
                 <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='id'"
-                    (click)="seeAll();">Search</button>
+                    (click)="seeById();">Search</button>
                 <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='title'"
-                    (click)="seeAll();">Search</button>
+                    (click)="seeByTitle();">Search</button>
                 <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='user'"
-                    (click)="seeAll();">Search</button>
+                    (click)="seeByUser();">Search</button>
                 <button class="btn btn-primary" type="button" id="button-addon2" *ngIf="valuePlaceholder=='all'"
                     (click)="seeAll();">Search</button>
             </div>
@@ -49,7 +49,7 @@
                         <td>{{t.title}}</td>
                         <td>
                             <table>
-                                <th> <button type="button" class="btn btn-danger" scope="col"><i
+                                <th> <button type="button" class="btn btn-danger" scope="col" (click)="delete(t.id);"><i
                                             class="bi bi-trash-fill"></i></button></th>
                                 <th> <button type="button" class="btn btn-warning" scope="col"><i
                                             class="bi bi-pencil-square"></i></button>
@@ -77,11 +77,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let t of templates">
-                        <th scope="row">{{t.id}}</th>
-                        <td>{{t.date}}</td>
-                        <td>{{t.src}}</td>
-                        <td>{{t.title}}</td>
+                    <tr >
+                        <th scope="row">{{template?.id}}</th>
+                        <td>{{template?.date}}</td>
+                        <td>{{template?.src}}</td>
+                        <td>{{template?.title}}</td>
                         <td>
                             <table>
                                 <th> <button type="button" class="btn btn-danger" scope="col"><i
