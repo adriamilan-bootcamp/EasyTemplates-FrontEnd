@@ -10,7 +10,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ContainerBeginningComponent } from './container-beginning/container-beginning.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { LenguageComponent } from './lenguage/lenguage.component';
+import { LanguageComponent } from './language/language.component';
 import { NavBeginningComponent } from './nav-beginning/nav-beginning.component';
 import { TopContactComponent } from './top-contact/top-contact.component';
 import { ContainerContactComponent } from './container-contact/container-contact.component';
@@ -54,7 +54,7 @@ import { CreateNewTemplateComponent } from './create-new-template/create-new-tem
     ContainerBeginningComponent,
     RegisterComponent,
     LoginComponent,
-    LenguageComponent,
+    LanguageComponent,
     NavBeginningComponent,
     TopContactComponent,
     ContainerContactComponent,

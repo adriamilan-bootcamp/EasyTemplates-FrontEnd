@@ -6,7 +6,7 @@ import { CreateNewTemplateComponent } from './create-new-template/create-new-tem
 import { DashboardBeginningComponent } from './dashboard-beginning/dashboard-beginning.component';
 import { HomeUserComponent } from './home-user/home-user.component';
 import { ImgUserComponent } from './img-user/img-user.component';
-import { LenguageComponent } from './lenguage/lenguage.component';
+import { LanguageComponent } from './language/language.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { LoginComponent } from './login/login.component';
 import { NewTemplateComponent } from './new-template/new-template.component';
@@ -40,8 +40,8 @@ const routes: Routes = [
     component:LogOutComponent
   },
   {
-    path: "lenguage",
-    component: LenguageComponent
+    path: "language",
+    component: LanguageComponent
   },
   {
     path:"admin-dashboard",
@@ -50,42 +50,6 @@ const routes: Routes = [
   {
     path:"user-dashboard",
     component:UserDashboardComponent
-  },
-  {
-    path:"home-user",
-    component:HomeUserComponent
-  },
-  {
-    path:"pdf-user",
-    component:PdfUserComponent
-  },
-  {
-    path:"templates-user",
-    component:TemplateUserComponent
-  },
-  {
-    path:"img-user",
-    component:ImgUserComponent
-  },
-  {
-    path:"profile-user",
-    component:ProfileUserComponent
-  },
-  {
-    path:"new-template",
-    component:NewTemplateComponent
-  },
-  {
-    path:"use-template",
-    component:UseTemplateComponent
-  },
-  {
-    path:"plantilla",
-    component: PlantillaConstructorComponent
-  },
-  {
-    path:"create-new-template",
-    component: CreateNewTemplateComponent
   },
   {
     path: '', redirectTo: 'home', pathMatch: 'full',
