@@ -52,6 +52,42 @@ const routes: Routes = [
     component:UserDashboardComponent
   },
   {
+    path:"home-user",
+    component:HomeUserComponent
+  },
+  {
+    path:"pdf-user",
+    component:PdfUserComponent
+  },
+  {
+    path:"templates-user",
+    component:TemplateUserComponent
+  },
+  {
+    path:"img-user",
+    component:ImgUserComponent
+  },
+  {
+    path:"profile-user",
+    component:ProfileUserComponent
+  },
+  {
+    path:"new-template",
+    component:NewTemplateComponent
+  },
+  {
+    path:"use-template",
+    component:UseTemplateComponent
+  },
+  {
+    path:"plantilla",
+    component: PlantillaConstructorComponent
+  },
+  {
+    path:"create-new-template",
+    component: CreateNewTemplateComponent
+  },
+  {
     path: '', redirectTo: 'home', pathMatch: 'full',
   }
 
