@@ -14,26 +14,28 @@ export class NavUserComponent implements OnInit {
 
   constructor() { }
 
-  item = "home";
+  item = "profile-tab";
+
+  active = 1;
 
   addItem(newItem: string) {
     //this.item = newItem;
     console.log(newItem);
     switch (newItem) {
       case 'user':
-        //($('#myTab a[href="#profile-tab"]')as any).tab('show')
+        this.active = 2;
         break;
 
       case 'templates':
-        //($('#myTab a[href="#templates-tab"]')as any).tab('show')
+        this.active = 3;
         break;
 
       case 'pdfs':
-        //($('#myTab a[href="#pdfs-tab"]')as any).tab('show')
+        this.active = 4;
         break;
 
-      case 'imgs-tab':
-        //($('#myTab a[href="#profile"]')as any).tab('show')
+      case 'images':
+        this.active = 5;
         break;
 
       default:
