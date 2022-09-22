@@ -5,7 +5,7 @@ import { ContactComponent } from './contact/contact.component';
 import { DashboardBeginningComponent } from './dashboard-beginning/dashboard-beginning.component';
 import { HomeUserComponent } from './home-user/home-user.component';
 import { ImgUserComponent } from './img-user/img-user.component';
-import { LenguageComponent } from './lenguage/lenguage.component';
+import { LanguageComponent } from './language/language.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { LoginComponent } from './login/login.component';
 import { NewTemplateComponent } from './new-template/new-template.component';
@@ -40,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: "language",
-    component: LenguageComponent
+    component: LanguageComponent
   },
   {
     path:"admin-dashboard",
