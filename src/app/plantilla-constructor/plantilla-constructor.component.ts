@@ -129,12 +129,7 @@ export class PlantillaConstructorComponent implements OnInit {
   }
 
   deleteItem(id:number) {
-    console.log(id)
-    if (id == 0) {
-      this.items.splice(id--, id)
-    } else {
-      this.items.splice(id, id)
-    }
+    this.items.splice(id, id)
     this.reId()
   }
 
