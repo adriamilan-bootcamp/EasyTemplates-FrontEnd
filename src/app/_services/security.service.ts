@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../_services/auth.service';
 
-const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
-const ROLES_KEY = 'auth-roles';
-const ID_KEY = 'auth-id';
+export const TOKEN_KEY = 'auth-token';
+export const USER_KEY = 'auth-user';
+export const ROLES_KEY = 'auth-roles';
+export const ID_KEY = 'auth-id';
 
 @Injectable({
   providedIn: 'root'
