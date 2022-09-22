@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TemplatesService } from '../_services/templates.service'
 
 interface Item {
   type: string;
@@ -23,7 +24,9 @@ export class PlantillaConstructorComponent implements OnInit {
 
   btnVisibleId: number = 0;
 
-  constructor() { }
+  editorView: boolean = false;
+
+  constructor(private templateService: TemplatesService) { }
 
   itemView() {
     if(this.addItem) {
@@ -39,9 +42,10 @@ export class PlantillaConstructorComponent implements OnInit {
   addTitle() {
     var item = {
       id: this.items.length,
-      btnvisible: false,
+      editvisible: false,
       type: 'h1',
-      text: 'Titulo'
+      text: 'Titulo',
+      content: ''
     }
     this.items.push(item)
     this.index++
@@ -51,9 +55,10 @@ export class PlantillaConstructorComponent implements OnInit {
   addSubtitle() {
     var item = {
       id: this.items.length,
-      btnvisible: false,
+      editvisible: false,
       type: 'h2',
       text: 'Subtitulo',
+      content: ''
     }
     this.items.push(item)
   }
@@ -61,9 +66,10 @@ export class PlantillaConstructorComponent implements OnInit {
   addSubtitle2() {
     var item = {
       id: this.items.length,
-      btnvisible: false,
+      editvisible: false,
       type: 'h3',
       text: 'Subtitulo 2',
+      content: ''
     }
     this.items.push(item)
   }
@@ -71,9 +77,10 @@ export class PlantillaConstructorComponent implements OnInit {
   addText() {
     var item = {
       id: this.items.length,
-      btnvisible: false,
+      editvisible: false,
       type: 'h4',
       text: 'Texto',
+      content: ''
     }
     this.items.push(item)
   }
@@ -81,9 +88,10 @@ export class PlantillaConstructorComponent implements OnInit {
   addImage() {
     var item = {
       id: this.items.length,
-      btnvisible: false,
+      editvisible: false,
       type: 'img',
       text: 'Imagen',
+      content: ''
     }
     this.items.push(item)
   }
@@ -91,9 +99,10 @@ export class PlantillaConstructorComponent implements OnInit {
   addEspacioLinea() {
     var item = {
       id: this.items.length,
-      btnvisible: false,
+      editvisible: false,
       type: 'linea',
       text: 'Espacio con Linea',
+      content: ''
     }
     this.items.push(item)
   }
@@ -101,9 +110,10 @@ export class PlantillaConstructorComponent implements OnInit {
   addEspacioBlanco() {
     var item = {
       id: this.items.length,
-      btnvisible: false,
+      editvisible: false,
       type: 'espacio',
       text: 'Espacio en Blanco',
+      content: ''
     }
     this.items.push(item)
   }
@@ -111,9 +121,10 @@ export class PlantillaConstructorComponent implements OnInit {
   addFirma() {
     var item = {
       id: this.items.length,
-      btnvisible: false,
+      editvisible: false,
       type: 'firma',
       text: 'Firma',
+      content: ''
     }
     this.items.push(item)
   }
@@ -121,9 +132,10 @@ export class PlantillaConstructorComponent implements OnInit {
   addEnlace() {
     var item = {
       id: this.items.length,
-      btnvisible: false,
+      editvisible: false,
       type: 'enlace',
       text: 'Enlace',
+      content: ''
     }
     this.items.push(item)
   }
@@ -158,18 +170,34 @@ export class PlantillaConstructorComponent implements OnInit {
   }
 
   showMethods(id:number) {
-    if (this.items[id]["btnvisible"]) {
-      this.items[id]["btnvisible"] = false
+    if (this.items[id]["editvisible"]) {
+      this.items[id]["editvisible"] = false
     } else {
       if (this.items[this.btnVisibleId]) {
-        this.items[this.btnVisibleId]["btnvisible"] = false
+        this.items[this.btnVisibleId]["editvisible"] = false
         this.btnVisibleId = id; 
-        this.items[id]["btnvisible"] = true
+        this.items[id]["editvisible"] = true
       } else {
         this.btnVisibleId = id; 
-        this.items[id]["btnvisible"] = true
+        this.items[id]["editvisible"] = true
       }
     }
+  }
+
+  saveContent(id: any) {
+    let content = (<HTMLInputElement>document.getElementById("content")).value
+    this.items[id]["text"] = content
+    this.items[id]["content"] = content
+    
+    if((<HTMLInputElement>document.getElementById("enlace")).value != null) {
+      this.items[id]["content"] = (<HTMLInputElement>document.getElementById("enlace")).value
+    }
+  }
+
+  saveTemplate() {
+    console.log("Uploading");
+    let res = this.templateService.createTemplate(this.titulo, this.items)
+    console.log(res);
   }
 
 }
