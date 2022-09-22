@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Location } from '@angular/common'
+
 @Component({
   selector: 'app-language',
   templateUrl: './language.component.html',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LanguageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private location: Location) { }
+
+  return() {
+    this.location.back()
+  }
 
   ngOnInit(): void {
   }
