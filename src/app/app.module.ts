@@ -39,6 +39,7 @@ import { TabPdfComponent } from './tab-pdf/tab-pdf.component';
 import { TabUsersComponent } from './tab-users/tab-users.component';
 import { TabTemplatesComponent } from './tab-templates/tab-templates.component';
 import { TabImagesComponent } from './tab-images/tab-images.component';
+import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla-constructor.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { TabImagesComponent } from './tab-images/tab-images.component';
     TabPdfComponent,
     TabUsersComponent,
     TabTemplatesComponent,
-    TabImagesComponent
+    TabImagesComponent,
+    PlantillaConstructorComponent
   ],
   imports: [
     BrowserModule,

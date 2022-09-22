@@ -10,6 +10,7 @@ import { LogOutComponent } from './log-out/log-out.component';
 import { LoginComponent } from './login/login.component';
 import { NewTemplateComponent } from './new-template/new-template.component';
 import { PdfUserComponent } from './pdf-user/pdf-user.component';
+import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla-constructor.component';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { RegisterComponent } from './register/register.component';
 import { TemplateUserComponent } from './template-user/template-user.component';
@@ -76,6 +77,10 @@ const routes: Routes = [
   {
     path:"use-template",
     component:UseTemplateComponent
+  },
+  {
+    path:"plantilla",
+    component: PlantillaConstructorComponent
   },
   {
     path: '', redirectTo: 'home', pathMatch: 'full',
