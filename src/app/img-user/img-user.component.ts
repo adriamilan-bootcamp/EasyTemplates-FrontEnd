@@ -60,7 +60,7 @@ export class ImgUserComponent implements OnInit {
 
         }
       );
-    (<HTMLInputElement>document.getElementById("inputI")).value = '';
+    //(<HTMLInputElement>document.getElementById("inputI")).value = '';
   }
 
 

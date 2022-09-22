@@ -3,6 +3,6 @@ export class Users {
     email?:any;
     firma?:any;
     password?:any;
-    rol?:any;
+    roles?:any;
     username?:any;
 }

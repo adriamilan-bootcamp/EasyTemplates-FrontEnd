@@ -20,7 +20,7 @@ export class TabUsersComponent implements OnInit {
     email: '',
     firma: '',
     password: '',
-    rol: '',
+    roles: '',
     username: ''
 
 
@@ -52,7 +52,7 @@ export class TabUsersComponent implements OnInit {
       .subscribe(
         data => {
           this.users = data;
-          console.log("usuarios: " + data);
+          console.log("usuarios: " + JSON.stringify(data));
 
         },
         error => {
@@ -78,7 +78,7 @@ export class TabUsersComponent implements OnInit {
       .subscribe(
         data => {
           this.user = data;
-          console.log("usuarios: " + data);
+          console.log("usuarios: " + JSON.stringify(data));
 
         },
         error => {
@@ -99,7 +99,7 @@ export class TabUsersComponent implements OnInit {
       .subscribe(
         data => {
           this.users = data;
-          console.log("usuarios: " + data);
+          console.log("usuarios: " + JSON.stringify(data));
 
         },
         error => {
@@ -120,7 +120,7 @@ export class TabUsersComponent implements OnInit {
       .subscribe(
         data => {
           this.user = data;
-          console.log("usuarios: " + data);
+          console.log("usuarios: " + JSON.stringify(data));
 
         },
         error => {
