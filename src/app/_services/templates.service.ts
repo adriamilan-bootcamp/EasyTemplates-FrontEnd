@@ -41,7 +41,13 @@ export class TemplatesService {
     console.log(JSON.stringify(data));
     
 
-    return this.http.post(url + 'api/plantilla', JSON.stringify(data), { headers: { 'Content-Type': 'application/json'}})
+    return this.http.post(url + 'api/plantilla', JSON.stringify(data), { headers: { 'Content-Type': 'application/json'}}).subscribe(
+      data => {
+        console.log(data);
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
   updateTemplate() {
