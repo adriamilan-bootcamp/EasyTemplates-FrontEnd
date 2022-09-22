@@ -11,6 +11,8 @@ export class NewTemplateComponent implements OnInit {
 
   titleValueOut?: string;
 
+  messageFromParent : string | undefined;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -18,17 +20,17 @@ export class NewTemplateComponent implements OnInit {
 
   title(): any {
     let titleValueIn = '';
-    let $modal = $('#title-template');
-    $modal.on('click', '#paramsOkay', function (e) {//si se a clicado el ok
-      $('#title-template').hide();
+    //let $modal = $('#title-template');
+    //$modal.on('click', '#paramsOkay', function (e) {//si se a clicado el ok
+      //$('#title-template').hide();
       console.log("has clicado el ok");
       titleValueIn = (<HTMLInputElement>document.getElementById("title-tem")).value;
-      this.titleValueOut = '<h1>' + titleValueIn + '</h1>';
+      this.messageFromParent = '<h1>' + titleValueIn + '</h1>';
 
-      $modal.on("hidden.bs.modal", function () {//si se a clicado el cancel
-        console.log("has clicado el cancel");
-      });
-    });
+      //$modal.on("hidden.bs.modal", function () {//si se a clicado el cancel
+       // console.log("has clicado el cancel");
+      //});
+    //});
   }
 
 

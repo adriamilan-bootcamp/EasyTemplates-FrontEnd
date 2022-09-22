@@ -11,6 +11,8 @@ export class CreateNewTemplateComponent implements OnInit {
 
   constructor() { }
 
+  @Input() message: string | undefined;
+
   ngOnInit(): void {
   }
 
