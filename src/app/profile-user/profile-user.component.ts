@@ -14,7 +14,7 @@ import { SecurityService } from '../_services/security.service';
   styleUrls: ['./profile-user.component.css']
 })
 export class ProfileUserComponent implements OnInit {
-  user?: Users = {
+  user?:Users = {
     id: '',
     email: '',
     firma: '',
@@ -58,7 +58,7 @@ export class ProfileUserComponent implements OnInit {
 
   update() {
     let userInfo = {
-      username: (<HTMLInputElement>document.getElementById("name")).value,
+      username: (<HTMLInputElement>document.getElementById("username")).value,
       email: (<HTMLInputElement>document.getElementById("email")).value,
       password: (<HTMLInputElement>document.getElementById("password")).value
 
@@ -71,7 +71,7 @@ export class ProfileUserComponent implements OnInit {
         },
         error => {
           console.log("error update usuario: " + JSON.stringify(error));
-          console.log("name: " + userInfo.username);
+          console.log("username: " + userInfo.username);
           console.log("email: " + userInfo.email);
           console.log("password: " + userInfo.password);
 

@@ -14,9 +14,9 @@ export class TabTemplatesComponent implements OnInit {
   templates?: Template[];
   template?: Template = {
     id: '',
-    date: '',
+    fechaCreacion: '',
     src: '',
-    title: ''
+    titulo: ''
 
 
   };
@@ -47,7 +47,7 @@ export class TabTemplatesComponent implements OnInit {
       .subscribe(
         data => {
           this.templates = data;
-          console.log("templates: " + data);
+          console.log("templates: " + JSON.stringify(data));
         },
         error => {
           console.log("error listar templates: " + error);

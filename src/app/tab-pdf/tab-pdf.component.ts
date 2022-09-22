@@ -15,9 +15,9 @@ export class TabPdfComponent implements OnInit {
   pdfs?: Pdf[];
   pdf?: Pdf = {
     id: '',
-    date: '',
+    fechaCreacion: '',
     src: '',
-    title: ''
+    titulo: ''
 
 
   };

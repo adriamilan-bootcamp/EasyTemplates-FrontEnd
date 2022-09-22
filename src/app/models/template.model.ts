@@ -1,6 +1,6 @@
 export class Template {
     id?:any;
-    date?:any;
+    fechaCreacion?:any;
     src?:any;
-    title?:any;
+    titulo?:any;
 }

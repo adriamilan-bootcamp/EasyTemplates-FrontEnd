@@ -16,7 +16,7 @@ export class ImgUserComponent implements OnInit {
   imgs?: Image[];
   img?: Image = {
     id: '',
-    date: '',
+    fechaCreacion: '',
     src: ''
 
 
