@@ -13,30 +13,53 @@
 
 
 <br>
-<nav ngbNav #nav="ngbNav" class="nav-tabs justify-content-center nav-fill mt-4" [(activeId)]="active">
-  <ng-container [ngbNavItem]="1">
-      <a ngbNavLink class="h5" >Home</a>
-      <ng-template ngbNavContent><app-home-user (newItemEvent)="addItem($event)"></app-home-user></ng-template>
-  </ng-container>
-  <ng-container [ngbNavItem]="2">
-      <a id="profile-tab" class="h5" ngbNavLink>User</a>
-      <ng-template ngbNavContent><app-profile-user></app-profile-user></ng-template>
-  </ng-container>
-  <ng-container [ngbNavItem]="3">
-      <a id="templates-tab" class="h5" ngbNavLink>Templates</a>
-      <ng-template ngbNavContent><app-template-user></app-template-user></ng-template>
-  </ng-container>
-  <ng-container [ngbNavItem]="4">
-      <a id="pdfs-tab" class="h5" ngbNavLink>Pdfs</a>
-      <ng-template ngbNavContent><app-pdf-user></app-pdf-user></ng-template>
-  </ng-container>
-  <ng-container [ngbNavItem]="5">
-      <a id="imgs-tab" class="h5" ngbNavLink>Images</a>
-      <ng-template ngbNavContent><app-img-user></app-img-user></ng-template>
-  </ng-container>
-</nav>
 <br>
+<div class="container">
+    <div class="card" >
+        <div class="card-body">
+            <nav ngbNav #nav="ngbNav" class="nav-tabs justify-content-center nav-fill mt-4" [(activeId)]="active">
+                <ng-container [ngbNavItem]="1">
+                    <a ngbNavLink class="h5">Home</a>
+                    <ng-template ngbNavContent>
+                        <app-home-user (newItemEvent)="addItem($event)"></app-home-user>
+                    </ng-template>
+                </ng-container>
+                <ng-container [ngbNavItem]="2">
+                    <a id="profile-tab" class="h5" ngbNavLink>User</a>
+                    <ng-template ngbNavContent>
+                        <app-profile-user></app-profile-user>
+                    </ng-template>
+                </ng-container>
+                <ng-container [ngbNavItem]="3">
+                    <a id="templates-tab" class="h5" ngbNavLink>Templates</a>
+                    <ng-template ngbNavContent>
+                        <app-template-user></app-template-user>
+                    </ng-template>
+                </ng-container>
+                <ng-container [ngbNavItem]="4">
+                    <a id="pdfs-tab" class="h5" ngbNavLink>Pdfs</a>
+                    <ng-template ngbNavContent>
+                        <app-pdf-user></app-pdf-user>
+                    </ng-template>
+                </ng-container>
+                <ng-container [ngbNavItem]="5">
+                    <a id="imgs-tab" class="h5" ngbNavLink>Images</a>
+                    <ng-template ngbNavContent>
+                        <app-img-user></app-img-user>
+                    </ng-template>
+                </ng-container>
+            </nav>
 
-<body>
-  <div [ngbNavOutlet]="nav"></div>
-</body>
+            <br>
+
+            <body>
+                <div [ngbNavOutlet]="nav"></div>
+            </body>
+        </div>
+
+    </div>
+</div>
+
+
+<br>
+<br>

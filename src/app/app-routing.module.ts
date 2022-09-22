@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ContactComponent } from './contact/contact.component';
+import { CreateNewTemplateComponent } from './create-new-template/create-new-template.component';
 import { DashboardBeginningComponent } from './dashboard-beginning/dashboard-beginning.component';
 import { HomeUserComponent } from './home-user/home-user.component';
 import { ImgUserComponent } from './img-user/img-user.component';

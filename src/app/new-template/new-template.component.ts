@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-new-template',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewTemplateComponent implements OnInit {
 
+  titleValueOut?: string;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  title(): any {
+    let titleValueIn = '';
+    let $modal = $('#title-template');
+    $modal.on('click', '#paramsOkay', function (e) {//si se a clicado el ok
+      $('#title-template').hide();
+      console.log("has clicado el ok");
+      titleValueIn = (<HTMLInputElement>document.getElementById("title-tem")).value;
+      this.titleValueOut = '<h1>' + titleValueIn + '</h1>';
+
+      $modal.on("hidden.bs.modal", function () {//si se a clicado el cancel
+        console.log("has clicado el cancel");
+      });
+    });
+  }
+
+
 
 }
