@@ -7,6 +7,7 @@ import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SecurityService } from '../_services/security.service';
 
+
 @Component({
   selector: 'app-profile-user',
   templateUrl: './profile-user.component.html',
@@ -26,7 +27,7 @@ export class ProfileUserComponent implements OnInit {
   valuePlaceholder: any;
   public formSearch: FormGroup;
   public default = 'select';
-  constructor(private usersService: UsersService, private fb: FormBuilder, private router: Router,private security:SecurityService) { 
+  constructor(private usersService: UsersService, private fb: FormBuilder, private router: Router, private security: SecurityService) {
     this.formSearch = this.fb.group({
       options: '',
 
@@ -38,7 +39,7 @@ export class ProfileUserComponent implements OnInit {
     this.userById();
   }
 
-  userById() { 
+  userById() {
     this.usersService.getUserByID(this.security.getId())
       .subscribe(
         data => {
@@ -51,7 +52,33 @@ export class ProfileUserComponent implements OnInit {
 
         }
       );
-  
+
+  }
+
+
+  update() {
+    let userInfo = {
+      username: (<HTMLInputElement>document.getElementById("name")).value,
+      email: (<HTMLInputElement>document.getElementById("email")).value,
+      password: (<HTMLInputElement>document.getElementById("password")).value
+
+    }
+    this.usersService.updateUser(this.security.getId(), userInfo)
+      .subscribe(
+        data => {
+          console.log("usuario actualizado: " + JSON.stringify(data));
+
+        },
+        error => {
+          console.log("error update usuario: " + JSON.stringify(error));
+          console.log("name: " + userInfo.username);
+          console.log("email: " + userInfo.email);
+          console.log("password: " + userInfo.password);
+
+
+        }
+      );
+
   }
 
 }
