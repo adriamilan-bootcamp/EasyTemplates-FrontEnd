@@ -28,8 +28,20 @@ export class TemplatesService {
     return this.http.get<Template[]>(url + "api/usuarios_plantillas/" + title);
   }
 
-  createTemplate() {
-    // post api/plantilla
+  createTemplate(titulo: any, template: any) {
+
+    let utc = new Date().toISOString().slice(0, 19)
+
+    let data = {
+      fecha_creacion: utc.toString().replace("T", " "),
+      src: JSON.stringify(template),
+      titulo: titulo
+    }
+
+    console.log(JSON.stringify(data));
+    
+
+    return this.http.post(url + 'api/plantilla', JSON.stringify(data), { headers: { 'Content-Type': 'application/json'}})
   }
 
   updateTemplate() {
