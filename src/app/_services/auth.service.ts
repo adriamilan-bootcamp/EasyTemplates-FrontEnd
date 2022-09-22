@@ -45,6 +45,9 @@ export class AuthService {
     return this.http.get(AUTH_API + "roles");
   }
 
+  findId(): Observable<any> {
+    return this.http.get(AUTH_API + "api/usuarios/user_id");
+  }
 
   /*register(username: string, email: string, password: string): Observable<any> {
     return this.http.post(AUTH_API + 'register', {
