@@ -6,14 +6,14 @@
             <br>
             <div class="card-title">
                 <!-- TODO: Change with username {{ fromTypescript }}-->
-                <h3>Name User </h3>
+                <h3>{{user?.username}} </h3>
                 <div class="card">
                     <div class="card-body">
                         <!-- Name input-->
                         <label for="name" class="form-label">Username</label>
                         <div class="form-floating mb-3">
                             <input class="form-control" id="name" type="text" placeholder="Enter your name..."
-                                data-sb-validations="required" value="info de la db" />
+                                data-sb-validations="required" value="{{user?.username}}" />
 
                             <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                         </div>
@@ -21,24 +21,31 @@
                         <label for="email" class="form-label">Email address</label>
                         <div class="form-floating mb-3">
                             <input class="form-control" id="email" type="email" placeholder="name@example.com"
-                                data-sb-validations="required,email" value="info de la db" />
+                                data-sb-validations="required,email" value="{{user?.email}}" />
 
                             <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.
                             </div>
                             <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                         </div>
+                        <label for="rol" class="form-label">Role</label>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="rol" type="text" 
+                                data-sb-validations="required" value="{{user?.roles}}" />
+
+                        </div>
+                       
 
                         <label for="password" class="form-label">Password</label>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="password" type="password" placeholder=""
-                                data-sb-validations="required" value="info de la db" />
+                            <input class="form-control" id="password" type="password" placeholder="New Password"
+                                data-sb-validations="required" />
                             <div class="invalid-feedback" data-sb-feedback="password:required">A password is
                                 required.</div>
                         </div>
 
                         <label for="password" class="form-label">Confirm Password</label>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="password" type="password" placeholder=""
+                            <input class="form-control" id="password" type="password" placeholder="Confirm New Password"
                                 data-sb-validations="required" />
                             <div class="invalid-feedback" data-sb-feedback="password:required">A password is
                                 required.</div>
