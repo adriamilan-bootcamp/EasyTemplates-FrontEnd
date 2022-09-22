@@ -42,6 +42,7 @@ import { TabImagesComponent } from './tab-images/tab-images.component';
 import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla-constructor.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CreateNewTemplateComponent } from './create-new-template/create-new-template.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TabUsersComponent,
     TabTemplatesComponent,
     TabImagesComponent,
-    PlantillaConstructorComponent
+    PlantillaConstructorComponent,
+    CreateNewTemplateComponent
   ],
   imports: [
     BrowserModule,
