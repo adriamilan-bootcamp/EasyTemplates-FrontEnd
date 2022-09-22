@@ -35,7 +35,7 @@ export class ImgUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seeByUser(71); 
+    this.seeByUser(1);
   }
 
 
@@ -47,20 +47,20 @@ export class ImgUserComponent implements OnInit {
 
 
 
-  seeByUser(id:any) {
- 
+  seeByUser(id: any) {
+
     this.imgService.getByUserId(id)
       .subscribe(
         data => {
           this.imgs = data;
-          console.log("templates: " + data);
+          console.log("iamgenes: " + data);
         },
         error => {
-          console.log("error listar templates: " + error);
+          console.log("error listar imagenes: " + error);
 
         }
       );
-    (<HTMLInputElement>document.getElementById("inputI")).value = '';
+
   }
 
 
@@ -85,6 +85,21 @@ export class ImgUserComponent implements OnInit {
       window.location.reload();
     }
 
+  }
+
+
+  add() {
+    this.imgService.addImg((<HTMLInputElement>document.getElementById("file")).value)
+      .subscribe(
+        data => {
+          this.img = data;
+          console.log("img guardada: " + data);
+        },
+        error => {
+          console.log("error guardar img: " + error);
+
+        }
+      );
   }
 
 }

@@ -25,8 +25,16 @@ export class ImageService {
 
 
 
-  addImg() {
-    // post api/imagen
+  addImg(file: any): Observable<Image> {
+    let data = {
+      file: file
+    }
+    console.log("file----"+file);
+    console.log("asdfad"+this.http.post<Image>(url + "api/imagen", JSON.stringify(data), { headers: { 'Content-Type': 'multipart/form-data' } }));
+    
+    return this.http.post<Image>(url + "api/imagen", JSON.stringify(data), { headers: { 'Content-Type': 'multipart/form-data' } });
+
+
   }
 
 

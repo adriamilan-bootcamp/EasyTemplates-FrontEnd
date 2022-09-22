@@ -48,6 +48,7 @@ export class TabImagesComponent implements OnInit {
         data => {
           this.imgs = data;
           console.log("imagenes: " + data);
+          console.log("imagenesdetails: " + data[0].date);
 
         },
         error => {

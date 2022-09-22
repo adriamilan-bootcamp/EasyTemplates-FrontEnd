@@ -5,16 +5,16 @@
         <div class="col">
             <h3>Images</h3>
         </div>
-        <div class="col-2"><a href="#new_image"><button class="btn btn-primary rounded-pill" data-bs-toggle="modal"
+        <div class="col-2"><a ><button class="btn btn-primary rounded-pill" data-bs-toggle="modal"
                     data-bs-target="#new_image"> Add </button></a></div>
 
     </div>
     <br>
-    <div class="card" >
+    <div class="card">
         <div class="card-body">
-            <div class="row  row-cols-1 row-cols-md-4 g-4" >
+            <div class="row  row-cols-1 row-cols-md-4 g-4">
                 <div class="col" *ngFor="let i of imgs">
-                    <div class="card" >
+                    <div class="card">
 
                         <div class="card-body" style="background-color:#99b8cc ;">
                             <img src="{{i.src}}" class="img-fluid rounded-start" alt="...">
@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-
+    <br><br>
     <div class="modal fade" id="new_image" tabindex="-1" aria-labelledby="loginModelLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -40,8 +40,12 @@
                         <br>
                         <form action="/action_page.php">
                             <input type="file" id="myFile" name="filename">
-                            <input type="submit">
+                            <input type="submit" (click)="add();">
                         </form>
+                        <form method='post' action='' enctype="multipart/form-data">
+                            Select file : <input type='file' name='file' id='file' class='form-control' ><br>
+                            <input type='button' class='btn btn-info' value='Upload' id='btn_upload' (click)="add();">
+                          </form>
 
                     </form>
                 </div>
