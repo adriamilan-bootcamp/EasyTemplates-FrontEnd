@@ -13,29 +13,30 @@
 
 
 <br>
-<nav class="navbar navbar-expand-lg bg-gradient-primary-to-secondary">
-    <div style="margin-left: 2%;">
-        <nav class="navbar navbar-expand-lg ">
-            <button class="navbar-toggler mx-auto" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="true"
-                aria-label="Toggle navigation">
-                Menu
-                <i class="bi-list"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                    <li><a class="dropdown-item" routerLink="/profile-user" routerLinkActive="router-link-active" ><i class="bi bi-person-circle"></i> My profile</a></li>
-                    <li><a class="dropdown-item"  routerLink="/home-user" ><i class="bi bi-house-door-fill"></i>
-                            Home</a></li>
-                    <li><a class="dropdown-item" routerLink="/templates-user"><i class="bi bi-file-code"></i> Templates</a>
-                    </li>
-                    <li><a class="dropdown-item" routerLink="/pdf-user"><i class="bi bi-file-earmark-medical "></i> Pdf</a></li>
-                    <li><a class=" dropdown-item" routerLink="/img-user"><i class="bi bi-card-image"></i> Images</a>
-                    </li>
-                   <!-- <li><a class="dropdown-item" href="groups.html"><i class="bi bi-people-fill"></i>Groups</a></li>--> 
-                </ul>
-            </div>
-        </nav>
-    </div>
+<nav ngbNav #nav="ngbNav" class="nav-tabs justify-content-center nav-fill mt-4" [(activeId)]="active">
+  <ng-container [ngbNavItem]="1">
+      <a ngbNavLink class="h5" >Home</a>
+      <ng-template ngbNavContent><app-home-user (newItemEvent)="addItem($event)"></app-home-user></ng-template>
+  </ng-container>
+  <ng-container [ngbNavItem]="2">
+      <a id="profile-tab" class="h5" ngbNavLink>User</a>
+      <ng-template ngbNavContent><app-profile-user></app-profile-user></ng-template>
+  </ng-container>
+  <ng-container [ngbNavItem]="3">
+      <a id="templates-tab" class="h5" ngbNavLink>Templates</a>
+      <ng-template ngbNavContent><app-template-user></app-template-user></ng-template>
+  </ng-container>
+  <ng-container [ngbNavItem]="4">
+      <a id="pdfs-tab" class="h5" ngbNavLink>Pdfs</a>
+      <ng-template ngbNavContent><app-pdf-user></app-pdf-user></ng-template>
+  </ng-container>
+  <ng-container [ngbNavItem]="5">
+      <a id="imgs-tab" class="h5" ngbNavLink>Images</a>
+      <ng-template ngbNavContent><app-img-user></app-img-user></ng-template>
+  </ng-container>
 </nav>
 <br>
+
+<body>
+  <div [ngbNavOutlet]="nav"></div>
+</body>
