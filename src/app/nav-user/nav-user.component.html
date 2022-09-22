@@ -14,25 +14,25 @@
 
 <br>
 <nav class="navbar navbar-expand-lg bg-gradient-primary-to-secondary">
-  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <ul ngbNav id="myTab" #nav="ngbNav" class="nav-tabs">
     <li ngbNavItem>
       <a ngbNavLink>Home</a>
-      <ng-template ngbNavContent><app-home-user></app-home-user></ng-template>
+      <ng-template ngbNavContent><app-home-user (newItemEvent)="addItem($event)"></app-home-user></ng-template>
     </li>
     <li ngbNavItem>
-      <a ngbNavLink>User</a>
+      <a id="profile-tab" ngbNavLink>User</a>
       <ng-template ngbNavContent><app-profile-user></app-profile-user></ng-template>
     </li>
     <li ngbNavItem>
-      <a ngbNavLink>Templates</a>
+      <a id="templates-tab" ngbNavLink>Templates</a>
       <ng-template ngbNavContent><app-template-user></app-template-user></ng-template>
     </li>
     <li ngbNavItem>
-      <a ngbNavLink>Pdfs</a>
+      <a id="pdfs-tab" ngbNavLink>Pdfs</a>
       <ng-template ngbNavContent><app-pdf-user></app-pdf-user></ng-template>
     </li>
     <li ngbNavItem>
-      <a ngbNavLink>Images</a>
+      <a id="imgs-tab" ngbNavLink>Images</a>
       <ng-template ngbNavContent><app-img-user></app-img-user></ng-template>
     </li>
   </ul>
