@@ -41,6 +41,7 @@ import { TabTemplatesComponent } from './tab-templates/tab-templates.component';
 import { TabImagesComponent } from './tab-images/tab-images.component';
 import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla-constructor.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgbModule,
     ReactiveFormsModule
   ],
   providers: [
