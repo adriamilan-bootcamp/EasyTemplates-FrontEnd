@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LogOutComponent } from '../log-out/log-out.component';
 import { Users } from '../models/users.model';
 import { UsersService } from '../_services/users.service';
@@ -15,6 +15,7 @@ export class ContainerAdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

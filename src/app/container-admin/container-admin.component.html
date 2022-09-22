@@ -1,49 +1,31 @@
 <div class="container">
-    <div class="card text-center">
-
-        <div class="card-header">
-
-            <ul class="nav nav-tabs flex-column flex-sm-row">
-                <li class="nav-item"> <a class="flex-sm-fill text-sm-center nav-link " data-bs-toggle="tab"
-                        href="#users" aria-current="page">Users</a></li>
-                <li class="nav-item"> <a class="flex-sm-fill text-sm-center nav-link " data-bs-toggle="tab"
-                        href="#pdf">Pdf</a></li>
-                <li class="nav-item"> <a class="flex-sm-fill text-sm-center nav-link " data-bs-toggle="tab"
-                        href="#templates">Templates</a></li>
-                <li class="nav-item"> <a class="flex-sm-fill text-sm-center nav-link " data-bs-toggle="tab"
-                        href="#images">Images</a></li>
-            </ul>
-        </div>
-
-
-        <div class="tab-content">
-
-            <!-- body card tab users -->
-            <div class="tab-pane fade" id="users">
-                <app-tab-users></app-tab-users>
-            </div>
-
-
-            <!--body card tab templates-->
-            <div class="tab-pane fade" id="templates">
-
-                <app-tab-templates></app-tab-templates>
-
-            </div>
-            <!--body card tab images-->
-            <div class="tab-pane fade" id="images">
-                <app-tab-images></app-tab-images>
-            </div>
-
-
-            <!--body card tab pdf-->
-            <div class="tab-pane fade" id="pdf">
-                <app-tab-pdf></app-tab-pdf>
-            </div>
-
-        </div>
-
+  <div class="card text-center">
+    <div class="card-header" #tabs>
+      <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+          <a ngbNavLink>Users</a>
+          <ng-template ngbNavContent
+            ><app-tab-users></app-tab-users
+          ></ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Templates</a>
+          <ng-template ngbNavContent
+            ><app-tab-templates></app-tab-templates
+          ></ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Images</a>
+          <ng-template ngbNavContent
+            ><app-tab-images></app-tab-images
+          ></ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Pdfs</a>
+          <ng-template ngbNavContent><app-tab-pdf></app-tab-pdf></ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav"></div>
     </div>
-    <br> <br>
-
+  </div>
 </div>
