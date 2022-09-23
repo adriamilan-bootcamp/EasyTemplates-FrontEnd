@@ -29,6 +29,7 @@ import { PdfUserComponent } from './pdf-user/pdf-user.component';
 import { ImgUserComponent } from './img-user/img-user.component';
 import { NewTemplateComponent } from './new-template/new-template.component';
 import { UseTemplateComponent } from './use-template/use-template.component';
+import { PdfConstructorComponent } from './pdf-constructor/pdf-constructor.component';
 
 import { AuthInterceptor } from './_security/security-interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,6 +41,7 @@ import { TabUsersComponent } from './tab-users/tab-users.component';
 import { TabTemplatesComponent } from './tab-templates/tab-templates.component';
 import { TabImagesComponent } from './tab-images/tab-images.component';
 import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla-constructor.component';
+import { PdfConstructorComponent } from './pdf-constructor/pdf-constructor.component';
 
 
 @NgModule({
@@ -75,7 +77,8 @@ import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla
     TabUsersComponent,
     TabTemplatesComponent,
     TabImagesComponent,
-    PlantillaConstructorComponent
+    PlantillaConstructorComponent,
+    PdfConstructorComponent
   ],
   imports: [
     BrowserModule,
