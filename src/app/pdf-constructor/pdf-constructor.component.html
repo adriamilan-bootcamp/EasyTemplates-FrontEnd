@@ -1,26 +1,54 @@
 <div class="container mt-5 mb-5 w-50 m-0-auto">
     <div *ngFor="let item of items">
-        <div class="m-0-auto">
-            <div class="row btn-item mt-3 p-3 border-item rounded border-w-3 border-dotted">
+        <div class="m-0-auto" *ngIf="!preview">
+            <div class="row btn-item mt-3 p-3 border-item rounded border-w-3 border-dotted {{item.type}}">
                 <div class="col-md-9 " style="align-items: center;">
+                    <hr *ngIf="item.type == 'linea'">
+                    <img *ngIf="item.type == 'img'" src="{{item.content}}" class="w-100">
+                    <div *ngIf="item.type == 'enlace'">
+                        <p class="h4 mb-0">{{item.text}}</p>
+                        <p class="mt-0 text-lightgrey">{{item.content}}</p>
+                        <div class="input-group">
+                            <input id="content{{item.id}}" type="text" class="form-control" placeholder="Contenido">
+                            <input id="enlace{{item.id}}" type="text" class="form-control" placeholder="Enlace">
+                        </div>
+                    </div>
+                    <img *ngIf="item.type == 'firma'" src="../../assets/img/firmar.jpg">
                     <div *ngIf="(item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4')">
                         <p *ngIf="item.content != ''" class="{{item.type}}">{{item.content}}</p>
                         <p *ngIf="item.content == ''" class="{{item.type}}">{{item.text}}</p>
                         <div class="input-group">
-                            <input *ngIf="item.type != 'h4'" type="text" class="form-control w-100">
-                            <textarea *ngIf="item.type == 'h4'" class="form-control w-100" cols="30" rows="5"></textarea>
+                            <input id="content{{item.id}}" *ngIf="item.type != 'h4'" type="text" class="form-control w-100">
+                            <textarea id="content{{item.id}}" *ngIf="item.type == 'h4'" class="form-control w-100" cols="30" rows="5"></textarea>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-flex" style="align-items: center; justify-content: flex-end">
+                <div class="col-md-3 d-flex" style="align-items: center; justify-content: flex-end" *ngIf="item.type != 'espacio' && item.type != 'linea'">
                     <div class="d-grid">
-                        <button class="btn btn-success btn-block">Editar <i class="bi bi-pencil-square"></i></button>
+                        <button (click)="editarItem(item.id)" class="btn btn-success btn-block">Editar <i class="bi bi-pencil-square"></i></button>
                     </div>
                 </div>
             </div>
         </div>
+        <div *ngIf="preview">
+            <p *ngIf="item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4'" class="{{item.type}}">{{item.text}}</p>
+            <img *ngIf="item.type == 'img'" src="{{item.content}}" class="w-100">
+            <a *ngIf="item.type == 'enlace'" href="{{item.content}}">{{item.text}}</a>
+            <div class="item-height" *ngIf="item.type == 'espacio' || item.type == 'linea'">
+                <hr *ngIf="item.type == 'linea'">
+            </div>
+        </div>
     </div>
-    <div class="d-grid mt-3">
-        <button class="btn btn-success btn-block">Generar PDF <i class="bi bi-filetype-pdf"></i></button>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="d-grid mt-3">
+                <button (click)="previewPDF()" class="btn btn-primary btn-block"><span *ngIf="!preview">Previsualizar PDF <i class="bi bi-eye"></i></span><span *ngIf="preview">Editar PDF <i class="bi bi-eye-slash"></i></span></button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="d-grid mt-3">
+                <button (click)="generarPDF()" class="btn btn-success btn-block">Generar PDF <i class="bi bi-filetype-pdf"></i></button>
+            </div>
+        </div>
     </div>
 </div>

@@ -28,6 +28,10 @@ export class TemplatesService {
     return this.http.get<Template[]>(url + "api/usuarios_plantillas/" + title);
   }
 
+  getS3TemplateById(id: any) {
+    return this.http.get(url + "api/plantilla/s3/" + id);
+  }
+
   createTemplate(titulo: any, template: any) {
 
     let utc = new Date().toISOString().slice(0, 19)

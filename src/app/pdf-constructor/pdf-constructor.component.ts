@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import {TemplatesService} from '../_services/templates.service'
 
 @Component({
   selector: 'app-pdf-constructor',
@@ -7,11 +10,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PdfConstructorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router, private tmservice: TemplatesService) { }
 
-  items:any = [{"id":0,"editvisible":true,"type":"h1","text":"test","content":"test"},{"id":1,"editvisible":false,"type":"img","text":"Imagen","content":"../../assets/img/image-pl.png"},{"id":2,"editvisible":false,"type":"h2","text":"test","content":"test"},{"id":3,"editvisible":false,"type":"h3","text":"Subtitulo 2","content":""},{"id":4,"editvisible":false,"type":"h4","text":"Texto","content":""},{"id":5,"editvisible":false,"type":"espacio","text":"Espacio en Blanco","content":""},{"id":6,"editvisible":false,"type":"linea","text":"Espacio con Linea","content":""},{"id":7,"editvisible":false,"type":"img","text":"Imagen","content":"../../assets/img/image-pl.png"},{"id":8,"editvisible":false,"type":"enlace","text":"Enlace","content":""},{"id":9,"editvisible":true,"type":"firma","text":"Firma","content":""}];
+  preview: boolean = false
+
+  idParam:any;
+
+  items:any;
 
   ngOnInit(): void {
+    this.idParam = this.route.snapshot.paramMap.get('id');
+    this.tmservice.getS3TemplateById(this.idParam).subscribe(
+      data => {
+        this.items = data
+        console.log(data);
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
+  editarItem(id: number) {
+    this.items[id]["content"] = (<HTMLInputElement>document.getElementById("content" + id)).value
+    this.items[id]["text"] = (<HTMLInputElement>document.getElementById("content" + id)).value
+
+    if ((<HTMLInputElement>document.getElementById("enlace" + id))) {
+      this.items[id]["content"] = (<HTMLInputElement>document.getElementById("enlace" + id)).value
+    }
+  }
+
+  generarPDF() {
+    this.preview == true;
+
+
+  }
+
+  previewPDF() {
+    if (this.preview) {
+      this.preview = false
+    } else {
+      this.preview = true
+    }
+  }
 }

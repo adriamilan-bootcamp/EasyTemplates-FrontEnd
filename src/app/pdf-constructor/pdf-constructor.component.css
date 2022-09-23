@@ -19,3 +19,17 @@
 .btn-item:hover {
     background-color: #fafbfc;
 }
+
+.linea, .espacio {
+    height: 75px;
+}
+
+.text-lightgrey {
+    color: lightgray;
+}
+
+.h4 {
+    font-weight: 500;
+    font-size: 18px;
+    text-align: justify;
+}
