@@ -28,6 +28,10 @@ export class TemplatesService {
     return this.http.get<Template[]>(url + "api/plantilla/titulo?title=" + titulo);
   }
 
+  getS3TemplateById(id: any) {
+    return this.http.get(url + "api/plantilla/s3/" + id);
+  }
+
   createTemplate(titulo: any, template: any) {
 
     let utc = new Date().toISOString().slice(0, 19)
@@ -41,7 +45,13 @@ export class TemplatesService {
     console.log(JSON.stringify(data));
     
 
-    return this.http.post(url + 'api/plantilla', JSON.stringify(data), { headers: { 'Content-Type': 'application/json'}})
+    return this.http.post(url + 'api/plantilla', JSON.stringify(data), { headers: { 'Content-Type': 'application/json'}}).subscribe(
+      data => {
+        console.log(data);
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
   updateTemplate() {

@@ -1,0 +1,35 @@
+.m-0-auto {
+    margin: 0 auto;
+}
+
+.border-w-3 {
+    border-width: 3px !important;
+}
+
+.border-item {
+    border: 3px solid lightgrey;
+    border-style: dashed;
+}
+
+.btn-item {
+    width: 100%;
+    background-color: white;
+}
+
+.btn-item:hover {
+    background-color: #fafbfc;
+}
+
+.linea, .espacio {
+    height: 75px;
+}
+
+.text-lightgrey {
+    color: lightgray;
+}
+
+.h4 {
+    font-weight: 500;
+    font-size: 18px;
+    text-align: justify;
+}

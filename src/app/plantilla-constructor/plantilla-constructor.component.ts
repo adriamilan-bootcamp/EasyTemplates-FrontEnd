@@ -185,11 +185,12 @@ export class PlantillaConstructorComponent implements OnInit {
   }
 
   saveContent(id: any) {
-    let content = (<HTMLInputElement>document.getElementById("content")).value
-    this.items[id]["text"] = content
-    this.items[id]["content"] = content
-    
-    if((<HTMLInputElement>document.getElementById("enlace")).value != null) {
+    if ((<HTMLInputElement>document.getElementById("content")).value != null) {
+      this.items[id]["text"] = (<HTMLInputElement>document.getElementById("content")).value
+      this.items[id]["content"] = (<HTMLInputElement>document.getElementById("content")).value
+    }
+
+    if(<HTMLInputElement>document.getElementById("enlace") != null) {
       this.items[id]["content"] = (<HTMLInputElement>document.getElementById("enlace")).value
     }
   }
