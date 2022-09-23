@@ -197,8 +197,10 @@ export class PlantillaConstructorComponent implements OnInit {
 
   saveTemplate() {
     console.log("Uploading");
+    //TODO CHANGE THIS TO A USERDEFINED TITLE
+    this.titulo='Test';
     let res = this.templateService.createTemplate(this.titulo, this.items)
-    console.log(res);
+    //console.log("File" + res);
   }
 
 }

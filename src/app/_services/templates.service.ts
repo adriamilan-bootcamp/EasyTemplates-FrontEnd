@@ -33,19 +33,18 @@ export class TemplatesService {
   }
 
   createTemplate(titulo: any, template: any) {
+    const fileName = 'template.json';
 
-    let utc = new Date().toISOString().slice(0, 19)
+    const object2Blob = (object: BlobPart) => new Blob([object]);
 
-    let data = {
-      fecha_creacion: utc.toString().replace("T", " "),
-      src: JSON.stringify(template),
-      titulo: titulo
-    }
-
-    console.log(JSON.stringify(data));
+    const file = new File([object2Blob(JSON.stringify(template))], fileName, { type: 'application/json' });
     
+    console.log("File: " + file)
 
-    return this.http.post(url + 'api/plantilla', JSON.stringify(data), { headers: { 'Content-Type': 'application/json'}}).subscribe(
+    var formData: any = new FormData();
+    formData.append('file', file);
+
+    return this.http.post((url + 'api/plantilla?title=' + titulo), formData).subscribe(
       data => {
         console.log(data);
       }, error => {
@@ -62,6 +61,4 @@ export class TemplatesService {
     return this.http.delete<Template>(url + "api/plantilla/" + id);
 
   }
-
-
 }
