@@ -1,0 +1,26 @@
+<div class="container mt-5 mb-5 w-50 m-0-auto">
+    <div *ngFor="let item of items">
+        <div class="m-0-auto">
+            <div class="row btn-item mt-3 p-3 border-item rounded border-w-3 border-dotted">
+                <div class="col-md-9 " style="align-items: center;">
+                    <div *ngIf="(item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4')">
+                        <p *ngIf="item.content != ''" class="{{item.type}}">{{item.content}}</p>
+                        <p *ngIf="item.content == ''" class="{{item.type}}">{{item.text}}</p>
+                        <div class="input-group">
+                            <input *ngIf="item.type != 'h4'" type="text" class="form-control w-100">
+                            <textarea *ngIf="item.type == 'h4'" class="form-control w-100" cols="30" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex" style="align-items: center; justify-content: flex-end">
+                    <div class="d-grid">
+                        <button class="btn btn-success btn-block">Editar <i class="bi bi-pencil-square"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-grid mt-3">
+        <button class="btn btn-success btn-block">Generar PDF <i class="bi bi-filetype-pdf"></i></button>
+    </div>
+</div>
