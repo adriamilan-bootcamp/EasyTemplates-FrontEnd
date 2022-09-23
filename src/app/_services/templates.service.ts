@@ -24,8 +24,8 @@ export class TemplatesService {
     return this.http.get<Template[]>(url + "api/usuarios_plantillas/" + id);
   }
 
-  getTemplateByTitle(title: any): Observable<Template[]> {
-    return this.http.get<Template[]>(url + "api/usuarios_plantillas/" + title);
+  getTemplateByTitle(titulo: any): Observable<Template[]> {
+    return this.http.get<Template[]>(url + "api/plantilla/titulo?title=" + titulo);
   }
 
   createTemplate(titulo: any, template: any) {
