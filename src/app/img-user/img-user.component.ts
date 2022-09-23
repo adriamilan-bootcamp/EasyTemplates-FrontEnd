@@ -5,6 +5,7 @@ import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Image } from '../models/image.model';
 import { ImageService } from '../_services/image.service';
+import { SecurityService } from '../_services/security.service';
 
 @Component({
   selector: 'app-img-user',
@@ -27,7 +28,7 @@ export class ImgUserComponent implements OnInit {
   public formSearch: FormGroup;
   public default = 'select';
 
-  constructor(private imgService: ImageService, private fb: FormBuilder, private router: Router) {
+  constructor(private imgService: ImageService, private fb: FormBuilder, private router: Router,private secService:SecurityService) {
     this.formSearch = this.fb.group({
       options: '',
 
@@ -35,7 +36,7 @@ export class ImgUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seeByUser(71); 
+    this.seeByUser(this.secService.getId()); 
   }
 
 
@@ -53,10 +54,10 @@ export class ImgUserComponent implements OnInit {
       .subscribe(
         data => {
           this.imgs = data;
-          console.log("templates: " + data);
+          console.log("images: " + data);
         },
         error => {
-          console.log("error listar templates: " + error);
+          console.log("error listar images: " + error);
 
         }
       );
