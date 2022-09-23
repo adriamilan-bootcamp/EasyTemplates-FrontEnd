@@ -15,7 +15,7 @@ export class TabImagesComponent implements OnInit {
   imgs?: Image[];
   img?: Image = {
     id: '',
-    date: '',
+    fechaCreacion: '',
     src: ''
 
 

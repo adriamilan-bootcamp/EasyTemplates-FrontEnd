@@ -1,3 +1,19 @@
-<app-top-admin></app-top-admin>
-<app-nav-admin></app-nav-admin>
-<app-container-admin></app-container-admin>
+
+<div *ngIf="isUnprivileged">
+    <app-top-beginning></app-top-beginning>
+    <app-nav-admin></app-nav-admin>
+    <body>
+        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+            <h3 style="text-align: center;">
+                <strong>{{ returnString }}</strong>
+            </h3>
+          </div>
+    </body>
+    
+</div>
+
+<div *ngIf="!isUnprivileged">
+    <app-top-admin></app-top-admin>
+    <app-nav-admin></app-nav-admin>
+    <app-container-admin></app-container-admin>
+</div>

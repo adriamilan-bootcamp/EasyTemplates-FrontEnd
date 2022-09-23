@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { AuthService } from '../_services/auth.service';
-import { SecurityService } from '../_services/security.service';
+import { AuthService } from "../_services/auth.service";
+import { SecurityService } from "../_services/security.service";
 
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private authService: AuthService, private tokenStorageService: SecurityService,
-    public router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private tokenStorageService: SecurityService,
+    public router: Router
+  ) {}
 
   isLoginFailed = false;
   isLoggedInView = false;
-  errorMessage = '';
+  errorMessage = "";
 
   roles: string | undefined;
 
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   form: any = {
     email: null,
-    password: null
+    password: null,
   };
 
   ngOnInit(): void {
@@ -36,57 +38,63 @@ export class LoginComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       const token = this.tokenStorageService.getToken();
-      this.usernameView = JSON.stringify(user).replace(/['"]+/g, ''); // faig un regex per treure-li les cometes
-      this.roles = this.tokenStorageService.getRoles()?.toString().replace(/['"]+/g, '');
+      this.usernameView = JSON.stringify(user).replace(/['"]+/g, ""); // faig un regex per treure-li les cometes
+      this.roles = this.tokenStorageService
+        .getRoles()
+        ?.toString()
+        .replace(/['"]+/g, "");
     }
-
   }
 
   onSubmit(): void {
     this.isLoginFailed = false;
 
     this.authService.login(this.form.email, this.form.password).subscribe(
-      data => {
+      (data) => {
         this.isLoggedInView = true;
         this.usernameView = this.form.email;
-        
-          this.tokenStorageService.saveToken(data["token"]);
-          this.tokenStorageService.saveUser(this.form.email);
 
-          setTimeout(() => 
-          {
-            this.usernameView = this.form.email;
-    
-            this.isLoginFailed = false;
-            this.isLoggedIn = true;
+        this.tokenStorageService.saveToken(data["token"]);
+        this.tokenStorageService.saveUser(this.form.email);
 
-            if (this.tokenStorageService.getRoles()?.toString().replace(/['"]+/g, '') == "ROLE_ADMIN")
-            {
-              this.router.navigate(['/admin-dashboard']);
-            }
-            else
-            {
-              this.router.navigate(['/user-dashboard']);
-            }
-            
+        this.authService.findId().subscribe(
+          (data) => {
+            console.log("ID: " + data["id"]);
+            this.tokenStorageService.saveId(data["id"]);
+
+            setTimeout(() => {
+              this.usernameView = this.form.email;
+
+              this.isLoginFailed = false;
+              this.isLoggedIn = true;
+
+              if (
+                this.tokenStorageService
+                  .getRoles()
+                  ?.toString()
+                  .replace(/['"]+/g, "") == "ROLE_ADMIN"
+              ) {
+                this.router.navigate(["/admin-dashboard"]);
+              } else {
+                this.router.navigate(["/user-dashboard"]);
+              }
+            }, 3000);
           },
-          3000);
-
-        },
-      err => {
+          (err) => {}
+        );
+      },
+      (err) => {
         switch (err.status) {
-          case 401:      //login
+          case 401: //login
             this.errorMessage = "Login failed, check credentials";
-             this.isLoginFailed = true;
+            this.isLoginFailed = true;
             break;
-          
-            default:
-              console.log("Unhandled");
-              break;
+
+          default:
+            console.log("Unhandled");
+            break;
         }
       }
-    )
+    );
   }
-  
-
 }

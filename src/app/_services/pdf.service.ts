@@ -25,7 +25,7 @@ export class PdfService {
   }
 
   getByTitle(title: any): Observable<Pdf[]> {
-    return this.http.get<Pdf[]>(url + "api/pdfs/title/" + title);
+    return this.http.get<Pdf[]>(url + "api/pdfs/titulo?title=" + title);
   }
 
   addPdf() {

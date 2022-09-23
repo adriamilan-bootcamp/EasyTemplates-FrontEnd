@@ -10,7 +10,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ContainerBeginningComponent } from './container-beginning/container-beginning.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { LenguageComponent } from './lenguage/lenguage.component';
+import { LanguageComponent } from './language/language.component';
 import { NavBeginningComponent } from './nav-beginning/nav-beginning.component';
 import { TopContactComponent } from './top-contact/top-contact.component';
 import { ContainerContactComponent } from './container-contact/container-contact.component';
@@ -41,6 +41,8 @@ import { TabTemplatesComponent } from './tab-templates/tab-templates.component';
 import { TabImagesComponent } from './tab-images/tab-images.component';
 import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla-constructor.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CreateNewTemplateComponent } from './create-new-template/create-new-template.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,7 @@ import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla
     ContainerBeginningComponent,
     RegisterComponent,
     LoginComponent,
-    LenguageComponent,
+    LanguageComponent,
     NavBeginningComponent,
     TopContactComponent,
     ContainerContactComponent,
@@ -75,13 +77,15 @@ import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla
     TabUsersComponent,
     TabTemplatesComponent,
     TabImagesComponent,
-    PlantillaConstructorComponent
+    PlantillaConstructorComponent,
+    CreateNewTemplateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgbModule,
     ReactiveFormsModule
   ],
   providers: [

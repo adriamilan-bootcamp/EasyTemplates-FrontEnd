@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../_services/auth.service';
 
-const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
-const ROLES_KEY = 'auth-roles';
+export const TOKEN_KEY = 'auth-token';
+export const USER_KEY = 'auth-user';
+export const ROLES_KEY = 'auth-roles';
+export const ID_KEY = 'auth-id';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,15 @@ export class SecurityService {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, user);
     this.setRoles();
+  }
+
+  public saveId(id: any): void {
+    window.sessionStorage.removeItem(ID_KEY);
+    window.sessionStorage.setItem(ID_KEY, id);
+  }
+
+  public getId(): any {
+    return window.sessionStorage.getItem(ID_KEY);
   }
 
   public getUser(): any {

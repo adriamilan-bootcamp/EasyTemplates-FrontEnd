@@ -1,5 +1,5 @@
 export class Image {
     id?: any;
-    date?: any;
+    fechaCreacion?: any;
     src?: any;
 }

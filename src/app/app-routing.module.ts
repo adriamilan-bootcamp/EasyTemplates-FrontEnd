@@ -2,10 +2,11 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ContactComponent } from './contact/contact.component';
+import { CreateNewTemplateComponent } from './create-new-template/create-new-template.component';
 import { DashboardBeginningComponent } from './dashboard-beginning/dashboard-beginning.component';
 import { HomeUserComponent } from './home-user/home-user.component';
 import { ImgUserComponent } from './img-user/img-user.component';
-import { LenguageComponent } from './lenguage/lenguage.component';
+import { LanguageComponent } from './language/language.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { LoginComponent } from './login/login.component';
 import { NewTemplateComponent } from './new-template/new-template.component';
@@ -40,8 +41,8 @@ const routes: Routes = [
     component:LogOutComponent
   },
   {
-    path: "lenguage",
-    component: LenguageComponent
+    path: "language",
+    component: LanguageComponent
   },
   {
     path:"admin-dashboard",
@@ -86,6 +87,10 @@ const routes: Routes = [
   {
     path: "pdf/:id",
     component: PdfConstructorComponent
+  },
+  {
+    path:"create-new-template",
+    component: CreateNewTemplateComponent
   },
   {
     path: '', redirectTo: 'home', pathMatch: 'full',
