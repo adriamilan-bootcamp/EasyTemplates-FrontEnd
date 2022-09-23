@@ -26,7 +26,7 @@
                                 <div class="col-md-8 d-flex" style="align-items: center;">
                                     <p *ngIf="item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4'"
                                         class="{{item.type}} mb-0">{{item.text}}</p>
-                                    <img class="w-100" *ngIf="item.type == 'img'" src="../../assets/img/image-pl.png">
+                                    <img class="w-100" *ngIf="item.type == 'img'" src="{{item.content}}">
                                     <div *ngIf="item.type == 'espacio' || item.type == 'linea'" class="pt-1 pb-1">
                                         <p class="h4 mb-0">{{item.text}} <i *ngIf="item.type == 'espacio'"
                                                 class="bi bi-arrow-down-up"></i><i *ngIf="item.type == 'linea'"
@@ -39,6 +39,9 @@
                                 </div>
                                 <div *ngIf="item.editvisible" class="col-md-4 d-flex text-right"
                                     style="align-items: center; justify-content: flex-end">
+                                    <div class="row">
+
+                                    </div>
                                     <button (click)="deleteItem(item.id)" class="btn btn-danger mx-1"><i
                                             class="bi bi-trash"></i></button>
                                     <button (click)="upItem(item.id)" class="btn btn-dark mx-1"><i
@@ -46,6 +49,8 @@
                                     <button (click)="downItem(item.id)" class="btn btn-dark mx-1"><i
                                             class="bi bi-arrow-down-square"></i></button>
                                 </div>
+
+
                             </div>
                             <div *ngIf="item.editvisible && item.type != 'espacio' && item.type != 'linea' && item.type != 'firma'"
                                 class="row mt-2">
@@ -59,6 +64,7 @@
                                                 rows="5"></textarea>
                                             <div *ngIf="item.type == 'img'">
                                                 temp
+
                                             </div>
                                             <div *ngIf="item.type == 'enlace'">
                                                 <div class="input-group">
@@ -73,8 +79,17 @@
                                 </div>
                                 <div class="col-md-4 d-flex" style="align-items: center; justify-content: flex-end">
                                     <div class="d-grid">
+                                        <div *ngIf="item.editvisible && item.type=='img'">
+                                            <button class="btn btn-dark mx-1" data-bs-toggle="modal"
+                                                data-bs-target="#misImagenes" (click)="myImages(); passId(item.id);"><i
+                                                    class="bi bi-images"></i></button>
+                                            <button class="btn btn-dark mx-1 modalTrigger" data-bs-toggle="modal"
+                                                data-bs-target="#subirImagen"  ><i class="bi bi-upload"></i></button>
+                                        </div>
+                                        <br>
                                         <button (click)="saveContent(item.id)" class="btn btn-success btn-block">Editar
                                             Item <i class="bi bi-pencil-square"></i></button>
+
                                     </div>
                                 </div>
                             </div>
@@ -97,91 +112,98 @@
                         </div>
 
                     </div>
-                    <div *ngIf="!addItem; else addItemView" class="d-grid mt-3">
-                        <button (click)="itemView()" type="button" class="btn btn-dark btn-block">Añadir Item <i
-                                class="bi bi-plus-circle-dotted"></i></button>
-                    </div>
-                    <div>
-                    </div>
-                    <ng-template #addItemView>
-                        <div class="d-grid mt-3">
-                            <button (click)="itemView()" type="button" class="btn btn-dark btn-block">Cancelar <i
-                                    class="bi bi-x-lg"></i></button>
+                    <div class="card">
+                        <div class="card-body">
+                            <div *ngIf="!addItem; else addItemView" class="d-grid mt-3">
+                                <button (click)="itemView()" type="button" class="btn btn-dark btn-block">Añadir Item <i
+                                        class="bi bi-plus-circle-dotted"></i></button>
+                            </div>
+                            <div>
+                            </div>
+                            <ng-template #addItemView>
+                                <div class="d-grid mt-3">
+                                    <button (click)="itemView()" type="button" class="btn btn-dark btn-block">Cancelar
+                                        <i class="bi bi-x-lg"></i></button>
+                                </div>
+                                <div class="mt-3 container border border-light border-w-3 rounded p-3">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="d-grid">
+                                                <button (click)="addTitle()" type="button"
+                                                    class="btn btn-primary btn-block h-auto">Titulo
+                                                    <i class="bi bi-type-h1"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="d-grid">
+                                                <button (click)="addSubtitle()" type="button"
+                                                    class="btn btn-primary btn-block">Subtitulo <i
+                                                        class="bi bi-type-h2"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="d-grid">
+                                                <button (click)="addSubtitle2()" type="button"
+                                                    class="btn btn-primary btn-block">Subtitulo 2
+                                                    <i class="bi bi-type-h3"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <div class="d-grid">
+                                                <button (click)="addText()" type="button"
+                                                    class="btn btn-primary btn-block">Texto <i
+                                                        class="bi bi-body-text"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="d-grid">
+                                                <button (click)="addEspacioBlanco()" type="button"
+                                                    class="btn btn-primary btn-block">Espacio
+                                                    en
+                                                    blanco <i class="bi bi-arrow-down-up"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="d-grid">
+                                                <button (click)="addEspacioLinea()" type="button"
+                                                    class="btn btn-primary btn-block">Espacio
+                                                    con
+                                                    línea <i class="bi bi-arrows-expand"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <div class="d-grid">
+                                                <button (click)="addImage()" type="button"
+                                                    class="btn btn-primary btn-block">Imagen <i
+                                                        class="bi bi-images"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="d-grid">
+                                                <button (click)="addEnlace()" type="button"
+                                                    class="btn btn-primary btn-block">Enlace <i
+                                                        class="bi bi-link"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="d-grid">
+                                                <button (click)="addFirma()" type="button"
+                                                    class="btn btn-primary btn-block">Firma <i
+                                                        class="bi bi-pencil-square"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
                         </div>
-                        <div class="mt-3 container border border-light border-w-3 rounded p-3">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="d-grid">
-                                        <button (click)="addTitle()" type="button"
-                                            class="btn btn-primary btn-block h-auto">Titulo
-                                            <i class="bi bi-type-h1"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="d-grid">
-                                        <button (click)="addSubtitle()" type="button"
-                                            class="btn btn-primary btn-block">Subtitulo <i
-                                                class="bi bi-type-h2"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="d-grid">
-                                        <button (click)="addSubtitle2()" type="button"
-                                            class="btn btn-primary btn-block">Subtitulo 2
-                                            <i class="bi bi-type-h3"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-4">
-                                    <div class="d-grid">
-                                        <button (click)="addText()" type="button"
-                                            class="btn btn-primary btn-block">Texto <i
-                                                class="bi bi-body-text"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="d-grid">
-                                        <button (click)="addEspacioBlanco()" type="button"
-                                            class="btn btn-primary btn-block">Espacio
-                                            en
-                                            blanco <i class="bi bi-arrow-down-up"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="d-grid">
-                                        <button (click)="addEspacioLinea()" type="button"
-                                            class="btn btn-primary btn-block">Espacio
-                                            con
-                                            línea <i class="bi bi-arrows-expand"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-4">
-                                    <div class="d-grid">
-                                        <button (click)="addImage()" type="button"
-                                            class="btn btn-primary btn-block">Imagen <i
-                                                class="bi bi-images"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="d-grid">
-                                        <button (click)="addEnlace()" type="button"
-                                            class="btn btn-primary btn-block">Enlace <i class="bi bi-link"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="d-grid">
-                                        <button (click)="addFirma()" type="button"
-                                            class="btn btn-primary btn-block">Firma <i
-                                                class="bi bi-pencil-square"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
+                    </div>
+
+
                 </div>
 
                 <div class="w-75 container mt-3">
@@ -197,3 +219,86 @@
     </div>
     <br><br>
 </div>
+
+<!-- Modal misImagenes-->
+<div class="modal fade" id="misImagenes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Choose Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card" style="width:100% ;height: 200px; overflow-y: scroll;">
+                    <div class="card-body">
+                        <div class="row row-cols-1 row-cols-md-4 g-4" *ngIf="imgs!=null else espera">
+                            <div class="col" *ngFor="let i of imgs">
+                                <div class="card">
+                                    <button (click)="setImage(i.src);"> <img src={{i.src}} class="card-img-top w-100"
+                                            style="width:100% ; height:50px; object-fit: contain;" alt="...">
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Use Image</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal subirImagen-->
+<div class="modal fade" id="subirImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" >Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #espera> No hay datos que mostrar por ahora....</ng-template>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="indicator"></div>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="media mb-3">
+            <img src="https://s3.amazonaws.com/creativetim_bucket/new_logo.png" class="mr-3 images" alt="...">
+            <div class="media-body">
+              <textarea class="autosize" placeholder="add..." rows="1" id="note" data-emoji="true"></textarea>
+              <div class="position-relative">
+                <input type="file" class="d-none" accept="audio/*|video/*|video/x-m4v|video/webm|video/x-ms-wmv|video/x-msvideo|video/3gpp|video/flv|video/x-flv|video/mp4|video/quicktime|video/mpeg|video/ogv|.ts|.mkv|image/*|image/heic|image/heif" onchange="previewFiles()" id="inputUp" multiple>
+                <a class="mediaUp mr-4"><i class="material-icons mr-2"  data-tippy="add (Video, Audio, Photo)" onclick="trgger('inputUp')">perm_media</i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row col-md-12 ml-auto mr-auto preview"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+          <span class="btn btn-info btn-sm" disabled>Save changes</span>
+        </div>
+      </div>
+    </div>
+  </div>
