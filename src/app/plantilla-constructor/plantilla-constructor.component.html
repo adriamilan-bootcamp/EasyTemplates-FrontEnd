@@ -14,6 +14,7 @@
 <br><br>
 <div class="container">
     <div class="card background">
+        <i class="bi bi-arrow-left-circle-fill" style="color:blue; margin:15px 0px 0px 15px; font-size: 25px;" (click)="goBackTemplates();"></i>
         <div class="card-body">
             <div class="container mt-5 mb-5 m-0-auto">
                 <div class="w-75 border-w-3 m-0-auto p-5 border border-light rounded" style="background-color: white;">
@@ -83,7 +84,7 @@
                                             <button class="btn btn-dark mx-1" data-bs-toggle="modal"
                                                 data-bs-target="#misImagenes" (click)="myImages(); passId(item.id);"><i
                                                     class="bi bi-images"></i></button>
-                               
+
                                         </div>
                                         <br>
                                         <button (click)="saveContent(item.id)" class="btn btn-success btn-block">Editar
@@ -159,13 +160,15 @@
                                         <div class="col-md-4">
                                             <div class="d-grid">
                                                 <button (click)="addEspacioBlanco()" type="button"
-                                                    class="btn btn-primary btn-block">Empty space<i class="bi bi-arrow-down-up"></i></button>
+                                                    class="btn btn-primary btn-block">Empty space<i
+                                                        class="bi bi-arrow-down-up"></i></button>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="d-grid">
                                                 <button (click)="addEspacioLinea()" type="button"
-                                                    class="btn btn-primary btn-block">Line space <i class="bi bi-arrows-expand"></i>
+                                                    class="btn btn-primary btn-block">Line space <i
+                                                        class="bi bi-arrows-expand"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -248,5 +251,3 @@
 </div>
 
 <ng-template #espera> Loading images....</ng-template>
-
- 
