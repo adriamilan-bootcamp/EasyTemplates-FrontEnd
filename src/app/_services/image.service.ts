@@ -23,7 +23,13 @@ export class ImageService {
     return this.http.get<Image[]>(url + "api/usuarios_imagenes/" + id);
   }
 
+  public uploadImage(image: File): Observable<Image> {
+    const formData = new FormData();
 
+    formData.append('file', image);
+
+    return this.http.post(url + "api/imagen", formData);
+  }
 
   addImg() {
     // post api/imagen

@@ -7,6 +7,10 @@ import { Image } from '../models/image.model';
 import { ImageService } from '../_services/image.service';
 import { SecurityService } from '../_services/security.service';
 
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
+
 @Component({
   selector: 'app-img-user',
   templateUrl: './img-user.component.html',
@@ -39,13 +43,32 @@ export class ImgUserComponent implements OnInit {
     this.seeByUser(this.secService.getId()); 
   }
 
-
+  selectedFile: ImageSnippet | undefined;
 
   onChange(f: any) {
     console.log(f.value);
     this.valuePlaceholder = f.value['options'];
   }
 
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      this.imgService.uploadImage(this.selectedFile.file).subscribe(
+        (res) => {
+          console.log("Uploaded correctly!")
+        },
+        (err) => {
+          console.log("Failed to upload!")
+        })
+    });
+
+    reader.readAsDataURL(file);
+  }
 
 
   seeByUser(id:any) {

@@ -37,43 +37,15 @@
                     <form id="contactForm">
                         <p>Click on the "Choose File" button to upload your image:</p>
                         <br>
-                        <form action="/action_page.php">
-                            <input type="file" id="myFile" name="filename">
-                            <input type="submit">
-                        </form>
+                        <input #imageInput
+                        type="file"
+                        accept="image/*"
+                        (change)="processFile(imageInput)">
 
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Modal subirImagen-->
-    <div class="modal fade" id="subirImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group mt-3">
-                        <label class="mr-2">Upload your Image:</label>
-                        <input type="file" name="image" accept="image/*" id="input" class="file-upload">
-                    </div>
-                </div>
-                <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.
-                </p>
-                <div class="image-area mt-4"><img id="imageResult" src="#" alt=""
-                        class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"  >Save
-                        changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 </div>
