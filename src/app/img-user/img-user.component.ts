@@ -91,7 +91,7 @@ export class ImgUserComponent implements OnInit {
   }
 
 
-  delete(id: any) {
+  deleteImg(id: any) {
 
 
     let c = "Are you sure you want to delete?"
@@ -99,17 +99,18 @@ export class ImgUserComponent implements OnInit {
       this.imgService.delete(id)
         .subscribe(
           response => {
-            console.log("respuesta eliminar user->" + response);
-            window.location.reload();
-            alert("User deleted");
-
+            console.log("respuesta eliminar img->" + response);
+            this.ngOnInit();
+            alert("Image deleted");
+            
+            
           }, error => {
             console.log(error);
 
           }
         );
     } else {
-      window.location.reload();
+      this.ngOnInit();
     }
 
   }

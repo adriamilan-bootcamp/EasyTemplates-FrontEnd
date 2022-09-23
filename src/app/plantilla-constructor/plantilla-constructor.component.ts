@@ -4,7 +4,8 @@ import { Image } from '../models/image.model';
 import { ImageService } from '../_services/image.service';
 import { AuthService } from '../_services/auth.service';
 import { SecurityService } from '../_services/security.service';
-import {DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Toast } from 'bootstrap';
 
 
 interface Item {
@@ -34,9 +35,9 @@ export class PlantillaConstructorComponent implements OnInit {
 
   imgs?: Image[];
 
-  idImg:any;
+  idImg: any;
 
-  constructor(private templateService: TemplatesService, private serviceImg: ImageService, private sec: SecurityService,private sanitization:DomSanitizer) { }
+  constructor(private templateService: TemplatesService, private serviceImg: ImageService, private sec: SecurityService, private sanitization: DomSanitizer) { }
 
   itemView() {
     if (this.addItem) {
@@ -54,32 +55,32 @@ export class PlantillaConstructorComponent implements OnInit {
       .subscribe(
         data => {
           this.imgs = data;
-          console.log("mis imagenes: "+data);
-          
+          console.log("mis imagenes: " + data);
+
         },
-        error=>{
+        error => {
           console.log(error);
-          
+
         }
       );
   }
 
-  setImage(src:any){
-    this.items[this.idImg]["content"]=src;
-    
+  setImage(src: any) {
+    this.items[this.idImg]["content"] = src;
+
   }
 
-  chooseImg(){
-    let src=(<HTMLInputElement>document.getElementById("input")).value;
+  chooseImg() {
+    let src = (<HTMLInputElement>document.getElementById("input")).value;
     //let i=this.sanitization.bypassSecurityTrustStyle(src);
-    this.items[this.idImg]["content"]=src;
- 
+    this.items[this.idImg]["content"] = src;
+
   }
 
-  
 
-  passId(id:any){
-    this.idImg=id;
+
+  passId(id: any) {
+    this.idImg = id;
   }
 
 
@@ -235,7 +236,7 @@ export class PlantillaConstructorComponent implements OnInit {
       this.items[id]["content"] = (<HTMLInputElement>document.getElementById("content")).value
     }
 
-    if(<HTMLInputElement>document.getElementById("enlace") != null) {
+    if (<HTMLInputElement>document.getElementById("enlace") != null) {
 
       this.items[id]["content"] = (<HTMLInputElement>document.getElementById("enlace")).value
     }
@@ -244,13 +245,15 @@ export class PlantillaConstructorComponent implements OnInit {
   saveTemplate() {
     console.log("Uploading");
     //TODO CHANGE THIS TO A USERDEFINED TITLE
-    this.titulo='Test';
+    this.titulo = 'Test';
     let res = this.templateService.createTemplate(this.titulo, this.items)
+    alert("The template has been saved successfully ");
+    
     //console.log("File" + res);
   }
 
 
 
-  
+
 
 }
