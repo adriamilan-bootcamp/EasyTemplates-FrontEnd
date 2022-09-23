@@ -1,21 +1,22 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            
+
         </div>
-        <div class="col-2"><a href="#new_image"><button class="btn btn-primary rounded-pill" data-bs-toggle="modal"
-                    data-bs-target="#new_image"> Add </button></a></div>
+        <div class="col-2"><a><button class="btn btn-primary rounded-pill" data-bs-toggle="modal"
+                    data-bs-target="#subirImagen"> Add </button></a></div>
 
     </div>
     <br>
-    <div class="card" >
-        <div class="card-body">
-            <div class="row  row-cols-1 row-cols-md-4 g-4" >
+    <div class="card" style="width:100% ;height: 350px; overflow-y: scroll;">
+        <div class="card-body background">
+            <div class="row  row-cols-1 row-cols-md-4 g-4">
                 <div class="col" *ngFor="let i of imgs">
-                    <div class="card" >
+                    <div class="card " style="width: 150px; height:150px;">
 
-                        <div class="card-body" style="background-color:#99b8cc ;">
-                            <img src="{{i.src}}" class="img-fluid rounded-start" alt="...">
+                        <div class="card-body" style="width: 150px;  display: flex; height:150px; align-items: center;
+                        justify-content: center; ">
+                            <img src="{{i.src}}" class="" alt="..." style="height:100px; width: 100px; object-fit: contain;">
                         </div>
                     </div>
                 </div>
@@ -24,27 +25,33 @@
         </div>
     </div>
 
-    <div class="modal fade" id="new_image" tabindex="-1" aria-labelledby="loginModelLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-gradient-primary-to-secondary p-4">
-                    <h5 class="modal-title font-alt text-white" id="languageModelLabel">Choose Image</h5>
-                    <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+<!-- Modal subirImagen-->
+<div class="modal fade" id="subirImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mt-3">
+                    <label class="mr-2">Upload your Image:</label>
+                    <input #imageInput
+                    type="file"
+                    accept="image/*"
+                    (change)="processFile(imageInput)">
                 </div>
-                <div class="modal-body border-0 p-4">
-                    <form id="contactForm">
-                        <p>Click on the "Choose File" button to upload your image:</p>
-                        <br>
-                        <form action="/action_page.php">
-                            <input type="file" id="myFile" name="filename">
-                            <input type="submit">
-                        </form>
-
-                    </form>
-                </div>
+            </div>
+            <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.
+            </p>
+            <div class="image-area mt-4"><img id="imageResult" src="#" alt=""
+                    class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"  >Save
+                    changes</button>
             </div>
         </div>
     </div>
-
+</div>
 </div>

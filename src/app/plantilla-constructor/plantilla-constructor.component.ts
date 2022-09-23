@@ -1,5 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TemplatesService } from '../_services/templates.service'
+import { TemplatesService } from '../_services/templates.service';
+import { Image } from '../models/image.model';
+import { ImageService } from '../_services/image.service';
+import { AuthService } from '../_services/auth.service';
+import { SecurityService } from '../_services/security.service';
+import {DomSanitizer} from '@angular/platform-browser';
+
 
 interface Item {
   type: string;
@@ -26,10 +32,14 @@ export class PlantillaConstructorComponent implements OnInit {
 
   editorView: boolean = false;
 
-  constructor(private templateService: TemplatesService) { }
+  imgs?: Image[];
+
+  idImg:any;
+
+  constructor(private templateService: TemplatesService, private serviceImg: ImageService, private sec: SecurityService,private sanitization:DomSanitizer) { }
 
   itemView() {
-    if(this.addItem) {
+    if (this.addItem) {
       this.addItem = false;
     } else {
       this.addItem = true;
@@ -38,6 +48,40 @@ export class PlantillaConstructorComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  myImages() {
+    this.serviceImg.getByUserId(this.sec.getId())
+      .subscribe(
+        data => {
+          this.imgs = data;
+          console.log("mis imagenes: "+data);
+          
+        },
+        error=>{
+          console.log(error);
+          
+        }
+      );
+  }
+
+  setImage(src:any){
+    this.items[this.idImg]["content"]=src;
+    
+  }
+
+  chooseImg(){
+    let src=(<HTMLInputElement>document.getElementById("input")).value;
+    //let i=this.sanitization.bypassSecurityTrustStyle(src);
+    this.items[this.idImg]["content"]=src;
+ 
+  }
+
+  
+
+  passId(id:any){
+    this.idImg=id;
+  }
+
 
   addTitle() {
     var item = {
@@ -91,7 +135,7 @@ export class PlantillaConstructorComponent implements OnInit {
       editvisible: false,
       type: 'img',
       text: 'Imagen',
-      content: ''
+      content: './../assets/img/image-pl.png'
     }
     this.items.push(item)
   }
@@ -140,7 +184,7 @@ export class PlantillaConstructorComponent implements OnInit {
     this.items.push(item)
   }
 
-  deleteItem(id:number) {
+  deleteItem(id: number) {
     this.items.splice(id, id)
     this.reId()
   }
@@ -151,46 +195,48 @@ export class PlantillaConstructorComponent implements OnInit {
     }
   }
 
-  upItem(id:number) {
-    if (id!==0) {
-      let tempItem = this.items[id-1]
-      this.items[id-1] = this.items[id]
-      this.items[id] = tempItem
-      this.reId()
-    } 
-  }
-
-  downItem(id: number) {
-    if(id!==this.items.length -1) {
-      let tempItem = this.items[id+1]
-      this.items[id+1] = this.items[id]
+  upItem(id: number) {
+    if (id !== 0) {
+      let tempItem = this.items[id - 1]
+      this.items[id - 1] = this.items[id]
       this.items[id] = tempItem
       this.reId()
     }
   }
 
-  showMethods(id:number) {
+  downItem(id: number) {
+    if (id !== this.items.length - 1) {
+      let tempItem = this.items[id + 1]
+      this.items[id + 1] = this.items[id]
+      this.items[id] = tempItem
+      this.reId()
+    }
+  }
+
+  showMethods(id: number) {
     if (this.items[id]["editvisible"]) {
       this.items[id]["editvisible"] = false
     } else {
       if (this.items[this.btnVisibleId]) {
         this.items[this.btnVisibleId]["editvisible"] = false
-        this.btnVisibleId = id; 
+        this.btnVisibleId = id;
         this.items[id]["editvisible"] = true
       } else {
-        this.btnVisibleId = id; 
+        this.btnVisibleId = id;
         this.items[id]["editvisible"] = true
       }
     }
   }
 
   saveContent(id: any) {
+
     if ((<HTMLInputElement>document.getElementById("content")).value != null) {
       this.items[id]["text"] = (<HTMLInputElement>document.getElementById("content")).value
       this.items[id]["content"] = (<HTMLInputElement>document.getElementById("content")).value
     }
 
     if(<HTMLInputElement>document.getElementById("enlace") != null) {
+
       this.items[id]["content"] = (<HTMLInputElement>document.getElementById("enlace")).value
     }
   }
@@ -202,5 +248,9 @@ export class PlantillaConstructorComponent implements OnInit {
     let res = this.templateService.createTemplate(this.titulo, this.items)
     //console.log("File" + res);
   }
+
+
+
+  
 
 }

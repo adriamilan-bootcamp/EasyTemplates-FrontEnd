@@ -5,6 +5,11 @@ import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Image } from '../models/image.model';
 import { ImageService } from '../_services/image.service';
+import { SecurityService } from '../_services/security.service';
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
 @Component({
   selector: 'app-img-user',
@@ -27,7 +32,7 @@ export class ImgUserComponent implements OnInit {
   public formSearch: FormGroup;
   public default = 'select';
 
-  constructor(private imgService: ImageService, private fb: FormBuilder, private router: Router) {
+  constructor(private imgService: ImageService, private fb: FormBuilder, private router: Router,private secService:SecurityService) {
     this.formSearch = this.fb.group({
       options: '',
 
@@ -35,16 +40,37 @@ export class ImgUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seeByUser(71); 
+    console.log("ID: " + this.secService.getId())
+    this.seeByUser(this.secService.getId()); 
   }
 
-
+  selectedFile: ImageSnippet | undefined;
 
   onChange(f: any) {
     console.log(f.value);
     this.valuePlaceholder = f.value['options'];
   }
 
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      this.imgService.uploadImage(this.selectedFile.file).subscribe(
+        (res) => {
+          console.log("Uploaded correctly!")
+          this.ngOnInit();
+        },
+        (err) => {
+          console.log("Failed to upload!")
+        })
+    });
+
+    reader.readAsDataURL(file);
+  }
 
 
   seeByUser(id:any) {
@@ -53,10 +79,11 @@ export class ImgUserComponent implements OnInit {
       .subscribe(
         data => {
           this.imgs = data;
-          console.log("templates: " + data);
+          console.log("Datos: " + JSON.stringify(data))
+          console.log("images: " + data);
         },
         error => {
-          console.log("error listar templates: " + error);
+          console.log("error listar images: " + error);
 
         }
       );

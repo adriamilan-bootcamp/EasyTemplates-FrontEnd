@@ -11657,3 +11657,7 @@ footer a:hover, footer a:active, footer a:focus {
     position: sticky;
     top: 15%;
 }
+.background{
+  background-image: url(../src/assets/img/b.png);
+  background-size: cover;
+}
