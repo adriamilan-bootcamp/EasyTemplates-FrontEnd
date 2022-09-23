@@ -43,6 +43,7 @@ import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateNewTemplateComponent } from './create-new-template/create-new-template.component';
+import { PdfConstructorComponent } from './pdf-constructor/pdf-constructor.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { CreateNewTemplateComponent } from './create-new-template/create-new-tem
     TabTemplatesComponent,
     TabImagesComponent,
     PlantillaConstructorComponent,
-    CreateNewTemplateComponent
+    CreateNewTemplateComponent,
+    PdfConstructorComponent
   ],
   imports: [
     BrowserModule,
