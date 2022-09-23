@@ -11,7 +11,7 @@ export class NewTemplateComponent implements OnInit {
 
   titleValueOut?: string;
 
-  messageFromParent : string | undefined;
+  messageFromParent: any | undefined;
 
   constructor() { }
 
@@ -20,19 +20,22 @@ export class NewTemplateComponent implements OnInit {
 
   title(): any {
     let titleValueIn = '';
-    //let $modal = $('#title-template');
-    //$modal.on('click', '#paramsOkay', function (e) {//si se a clicado el ok
-      //$('#title-template').hide();
-      console.log("has clicado el ok");
-      titleValueIn = (<HTMLInputElement>document.getElementById("title-tem")).value;
-      this.messageFromParent = '<h1>' + titleValueIn + '</h1>';
+    titleValueIn = (<HTMLInputElement>document.getElementById("title-tem")).value;
+    this.titleValueOut = '<h1>' + titleValueIn + '</h1';
 
-      //$modal.on("hidden.bs.modal", function () {//si se a clicado el cancel
-       // console.log("has clicado el cancel");
-      //});
-    //});
+    this.messageFromParent = this.ConvertStringToHTML(this.titleValueOut);
+    <HTMLInputElement>document.getElementById("document")?.appendChild(this.messageFromParent);
+    console.log(this.messageFromParent);
+
   }
 
-
+  ConvertStringToHTML(str: string) {
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(str, 'text/html');
+    console.log(doc.body.lastElementChild);
+   
+    
+    return doc.body.lastElementChild;
+  };
 
 }
