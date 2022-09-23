@@ -14,7 +14,7 @@ import { SecurityService } from '../_services/security.service';
   styleUrls: ['./profile-user.component.css']
 })
 export class ProfileUserComponent implements OnInit {
-  user?:Users = {
+  user?: Users = {
     id: '',
     email: '',
     firma: '',
@@ -23,6 +23,11 @@ export class ProfileUserComponent implements OnInit {
     username: ''
 
 
+  };
+  userInfo: any = {
+    name: null,
+    email: null,
+    password: null,
   };
   valuePlaceholder: any;
   public formSearch: FormGroup;
@@ -57,32 +62,48 @@ export class ProfileUserComponent implements OnInit {
 
 
   update() {
-    let userInfo = {
+    this.userInfo = {
       username: (<HTMLInputElement>document.getElementById("username")).value,
       email: (<HTMLInputElement>document.getElementById("email")).value,
       password: (<HTMLInputElement>document.getElementById("password")).value
 
-    }
-    let c="Are you sure you want to update ?"
-    if(confirm(c)==true){
-      this.usersService.updateUser(this.security.getId(), userInfo)
-      .subscribe(
-        data => {
-          console.log("usuario actualizado: " + JSON.stringify(data));
-          alert("Your data has been updated! :)");
+    };
 
-        },
-        error => {
-          console.log("error update usuario: " + JSON.stringify(error));
-      alert("Something went wrong, the data could not be updated :(");
+    if ((<HTMLInputElement>document.getElementById("username")).value != "" && (<HTMLInputElement>document.getElementById("email")).value != ""
+      && (<HTMLInputElement>document.getElementById("password")).value != "") {
+
+      if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+        .test((<HTMLInputElement>document.getElementById("email")).value)) {
+        let c = "Are you sure you want to update ?"
+        if (confirm(c) == true) {
+          this.usersService.updateUser(this.security.getId(), this.userInfo)
+            .subscribe(
+              data => {
+                console.log("usuario actualizado: " + JSON.stringify(data));
+                alert("Your data has been updated! :)");
+
+              },
+              error => {
+                console.log("error update usuario: " + JSON.stringify(error));
+                alert("Something went wrong, the data could not be updated :(");
 
 
+              }
+            );
+        } else {
+          this.ngOnInit();
         }
-      );
-    }else{
-      window.location.reload();
+      } else {
+        alert("The email format is incorrect.");
+      }
+
+
+    } else {
+      alert("Make sure all fields are filled.");
     }
-   
+
+
+
 
   }
 

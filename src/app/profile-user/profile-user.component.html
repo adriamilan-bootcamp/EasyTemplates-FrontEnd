@@ -15,12 +15,9 @@
             <!-- Email address input-->
             <label for="email" class="form-label" style="font-weight:bold ;">Email address</label>
             <div class="form-floating mb-3">
-                <input class="form-control" id="email" type="email" placeholder="name@example.com"
-                    data-sb-validations="required,email" value="{{user?.email}}" />
-
-                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.
-                </div>
-                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                <input class="form-control" name="email" id="email" type="email" placeholder="name@example.com"
+                    data-sb-validations="required,email" value="{{user?.email}}" required [(ngModel)]="userInfo.email"
+                    id="email" required #email="ngModel" />
             </div>
             <label for="rol" class="form-label" style="font-weight:bold ;">Role</label>
             <div class="form-floating mb-3">
@@ -30,21 +27,22 @@
             </div>
 
 
-            <label for="password" class="form-label" style="font-weight:bold ;">New Password</label>
+            <label for="password" class="form-label" style="font-weight:bold ;">Password</label>
             <div class="form-floating mb-3">
                 <input class="form-control" id="password" type="password" placeholder="New Password"
                     data-sb-validations="required" />
-                <div class="invalid-feedback" data-sb-feedback="password:required">A password is
+                <div class="invalid-feedback" data-sb-feedback="password:required" required minlength="4">A password is
                     required.</div>
             </div>
-
+            <!--
             <label for="password" class="form-label" style="font-weight:bold ;">Confirm Password</label>
             <div class="form-floating mb-3">
                 <input class="form-control" id="passwordConfirm" type="password" placeholder="Confirm New Password"
                     data-sb-validations="required" />
-                <div class="invalid-feedback" data-sb-feedback="password:required">A password is
+                <div class="invalid-feedback" data-sb-feedback="password:required" >A password is
                     required.</div>
             </div>
+            -->
             <br>
             <button class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#modify_profile"
                 (click)="update();">
