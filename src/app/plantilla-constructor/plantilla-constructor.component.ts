@@ -253,7 +253,9 @@ export class PlantillaConstructorComponent implements OnInit {
   }
 
 
-
+  goBackTemplates(){
+    window.location.href ='user-dashboard';
+  }
 
 
 }

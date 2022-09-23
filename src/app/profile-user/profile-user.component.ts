@@ -63,21 +63,26 @@ export class ProfileUserComponent implements OnInit {
       password: (<HTMLInputElement>document.getElementById("password")).value
 
     }
-    this.usersService.updateUser(this.security.getId(), userInfo)
+    let c="Are you sure you want to update ?"
+    if(confirm(c)==true){
+      this.usersService.updateUser(this.security.getId(), userInfo)
       .subscribe(
         data => {
           console.log("usuario actualizado: " + JSON.stringify(data));
+          alert("Your data has been updated! :)");
 
         },
         error => {
           console.log("error update usuario: " + JSON.stringify(error));
-          console.log("username: " + userInfo.username);
-          console.log("email: " + userInfo.email);
-          console.log("password: " + userInfo.password);
+      alert("Something went wrong, the data could not be updated :(");
 
 
         }
       );
+    }else{
+      window.location.reload();
+    }
+   
 
   }
 
