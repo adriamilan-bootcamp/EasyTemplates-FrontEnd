@@ -84,7 +84,7 @@
                                                 data-bs-target="#misImagenes" (click)="myImages(); passId(item.id);"><i
                                                     class="bi bi-images"></i></button>
                                             <button class="btn btn-dark mx-1 modalTrigger" data-bs-toggle="modal"
-                                                data-bs-target="#subirImagen"  ><i class="bi bi-upload"></i></button>
+                                                data-bs-target="#subirImagen" (click)="passId(item.id);" ><i class="bi bi-upload"></i></button>
                                         </div>
                                         <br>
                                         <button (click)="saveContent(item.id)" class="btn btn-success btn-block">Editar
@@ -260,45 +260,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
+                <div class="form-group mt-3">
+                    <label class="mr-2">Upload your Image:</label>
+                    <input type="file" name="image" accept="image/*" id="input"  class="file-upload">
+                  </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" >Save changes</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="chooseImg(); " >Save changes</button>
             </div>
         </div>
     </div>
 </div>
 <ng-template #espera> No hay datos que mostrar por ahora....</ng-template>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="indicator"></div>
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="media mb-3">
-            <img src="https://s3.amazonaws.com/creativetim_bucket/new_logo.png" class="mr-3 images" alt="...">
-            <div class="media-body">
-              <textarea class="autosize" placeholder="add..." rows="1" id="note" data-emoji="true"></textarea>
-              <div class="position-relative">
-                <input type="file" class="d-none" accept="audio/*|video/*|video/x-m4v|video/webm|video/x-ms-wmv|video/x-msvideo|video/3gpp|video/flv|video/x-flv|video/mp4|video/quicktime|video/mpeg|video/ogv|.ts|.mkv|image/*|image/heic|image/heif" onchange="previewFiles()" id="inputUp" multiple>
-                <a class="mediaUp mr-4"><i class="material-icons mr-2"  data-tippy="add (Video, Audio, Photo)" onclick="trgger('inputUp')">perm_media</i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row col-md-12 ml-auto mr-auto preview"></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-          <span class="btn btn-info btn-sm" disabled>Save changes</span>
-        </div>
-      </div>
-    </div>
-  </div>
+ 

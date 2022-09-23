@@ -4,6 +4,7 @@ import { Image } from '../models/image.model';
 import { ImageService } from '../_services/image.service';
 import { AuthService } from '../_services/auth.service';
 import { SecurityService } from '../_services/security.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 interface Item {
@@ -35,7 +36,7 @@ export class PlantillaConstructorComponent implements OnInit {
 
   idImg:any;
 
-  constructor(private templateService: TemplatesService, private serviceImg: ImageService, private sec: SecurityService) { }
+  constructor(private templateService: TemplatesService, private serviceImg: ImageService, private sec: SecurityService,private sanitization:DomSanitizer) { }
 
   itemView() {
     if (this.addItem) {
@@ -66,6 +67,13 @@ export class PlantillaConstructorComponent implements OnInit {
   setImage(src:any){
     this.items[this.idImg]["content"]=src;
     
+  }
+
+  chooseImg(){
+    let src=(<HTMLInputElement>document.getElementById("input")).value;
+    //let i=this.sanitization.bypassSecurityTrustStyle(src);
+    this.items[this.idImg]["content"]=src;
+ 
   }
 
   passId(id:any){
