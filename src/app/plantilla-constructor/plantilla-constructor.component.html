@@ -83,8 +83,7 @@
                                             <button class="btn btn-dark mx-1" data-bs-toggle="modal"
                                                 data-bs-target="#misImagenes" (click)="myImages(); passId(item.id);"><i
                                                     class="bi bi-images"></i></button>
-                                            <button class="btn btn-dark mx-1 modalTrigger" data-bs-toggle="modal"
-                                                data-bs-target="#subirImagen" (click)="passId(item.id);" ><i class="bi bi-upload"></i></button>
+                               
                                         </div>
                                         <br>
                                         <button (click)="saveContent(item.id)" class="btn btn-success btn-block">Editar
@@ -251,27 +250,7 @@
         </div>
     </div>
 </div>
-<!-- Modal subirImagen-->
-<div class="modal fade" id="subirImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group mt-3">
-                    <label class="mr-2">Upload your Image:</label>
-                    <input type="file" name="image" accept="image/*" id="input"  class="file-upload">
-                  </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="chooseImg(); " >Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <ng-template #espera> No hay datos que mostrar por ahora....</ng-template>
 
  
