@@ -40,6 +40,7 @@ export class ImgUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("ID: " + this.secService.getId())
     this.seeByUser(this.secService.getId()); 
   }
 
@@ -61,6 +62,7 @@ export class ImgUserComponent implements OnInit {
       this.imgService.uploadImage(this.selectedFile.file).subscribe(
         (res) => {
           console.log("Uploaded correctly!")
+          this.ngOnInit();
         },
         (err) => {
           console.log("Failed to upload!")
@@ -77,6 +79,7 @@ export class ImgUserComponent implements OnInit {
       .subscribe(
         data => {
           this.imgs = data;
+          console.log("Datos: " + JSON.stringify(data))
           console.log("images: " + data);
         },
         error => {
