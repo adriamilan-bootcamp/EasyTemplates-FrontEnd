@@ -2,58 +2,45 @@
     <div class="row">
         <div class="col">
         </div>
-        <div class="col-2"><a routerLink="/plantilla"><button class="btn btn-primary rounded-pill" > New </button></a></div>
-     
+        <div class="col-2"><a routerLink="/plantilla"><button class="btn btn-primary rounded-pill"> New </button></a>
+        </div>
+
     </div>
 
 
     <br>
     <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-title">
-                            <p>--Titulo de la plantilla--</p>
+        <div class="card-body" *ngIf="templ!=null else espera" style="overflow-x: auto;">
+            <table class="table table-striped  " id="tb">
+                <thead>
+                    <tr style="background-color: rgb(173, 205, 234);">
+                        <th scope="col">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of templ">
+                        <th scope="row" style="background-color: rgb(173, 205, 234);">{{t.id}}</th>
+                        <td>{{t.titulo}}</td>
+                        <td>{{t.fechaCreacion}}</td>
+                        <td>
+                            <button type="button" class="btn btn-success"><i class="bi bi-eye-fill"></i></button>
+                            <button type="button" class="btn btn-warning">Use</button>
+                            <button type="button" class="btn btn-danger" (click)="deleteTemplate(t.id)"><i
+                                    class="bi bi-trash3-fill"></i></button>
 
-                        </div>
-                        <div class="card-body" style="background-color:#99b8cc ;">
-                            <p>
-                                previsualización plantilla???
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-title">
-                            <p>--Titulo de la plantilla--</p>
+                        </td>
+                    </tr>
 
-                        </div>
-                        <div class="card-body" style="background-color:#99b8cc ;">
-                            <p>
-                                previsualización plantilla???
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-title">
-                            <p>--Titulo de la plantilla--</p>
 
-                        </div>
-                        <div class="card-body" style="background-color:#99b8cc ;">
-                            <p>
-                                previsualización plantilla???
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
 
 
     </div>
     <br><br>
 </div>
+<ng-template #espera>Loading Templates ....</ng-template>
