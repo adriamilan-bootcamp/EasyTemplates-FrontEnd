@@ -33,7 +33,7 @@ export class AuthService {
   register(email: string, name: string, password: string): Observable<any> {
 
     var user = {
-      "nombre": name,
+      "username": name,
       "email": email,
       "password": password
     };

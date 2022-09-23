@@ -1,5 +1,15 @@
 
+<div *ngIf="isUnprivileged">
+    <body>
+        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+            <h3 style="text-align: center;">
+                <strong>{{ returnString }}</strong>
+            </h3>
+          </div>
+    </body>
+</div>
 
+<div *ngIf="!isUnprivileged">
   <header class="masthead">
     <div class="container px-5">
         <div class="row gx-5 align-items-center">
@@ -16,5 +26,5 @@
         </div>
     </div>
   </header>
-
+</div>
 
