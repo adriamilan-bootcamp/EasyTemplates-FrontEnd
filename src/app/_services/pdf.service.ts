@@ -28,8 +28,20 @@ export class PdfService {
     return this.http.get<Pdf[]>(url + "api/pdfs/titulo?title=" + title);
   }
 
-  addPdf() {
-    // post 
+  addPdf(title: any, pdf: any) {
+
+    var formData: any = new FormData();
+    formData.append('file', pdf);
+
+    console.log("File: " + pdf)
+
+    return this.http.post((url + 'api/pdfs?titulo=' + title), formData).subscribe(
+      data => {
+        console.log(data);
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
 

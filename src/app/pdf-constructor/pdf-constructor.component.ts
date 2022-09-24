@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import {TemplatesService} from '../_services/templates.service'
+import { TemplatesService } from '../_services/templates.service'
+
+import { PdfService } from '../_services/pdf.service';
 
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
@@ -13,13 +15,13 @@ import html2canvas from 'html2canvas';
 })
 export class PdfConstructorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router, private tmservice: TemplatesService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private tmservice: TemplatesService, private pdfService: PdfService) { }
 
   preview: boolean = false
 
-  idParam:any;
+  idParam: any;
 
-  items:any;
+  items: any;
 
   ngOnInit(): void {
     this.idParam = this.route.snapshot.paramMap.get('id');
@@ -46,22 +48,24 @@ export class PdfConstructorComponent implements OnInit {
     this.preview = true
   }
 
-  exportHtmlToPDF(){
+  exportHtmlToPDF() {
     let data = document.getElementById('pdf-container') as HTMLDivElement;
     let pdfname = (<HTMLInputElement>document.getElementById("inputNamePDF")).value
 
-      html2canvas(data).then(canvas => {
-          
-          let docWidth = 208;
-          let docHeight = canvas.height * docWidth / canvas.width;
-          
-          const contentDataURL = canvas.toDataURL('image/png')
-          let doc = new jsPDF('p', 'mm', 'a4');
-          let position = 0;
-          doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
-          
-          doc.save(pdfname);
-      });
+    html2canvas(data).then(canvas => {
+
+      let docWidth = 208;
+      let docHeight = canvas.height * docWidth / canvas.width;
+
+      const contentDataURL = canvas.toDataURL('image/png')
+      let doc = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
+
+      let pdfFile = doc.save(pdfname);
+
+      this.pdfService.addPdf(pdfname, pdfFile);
+    });
   }
 
   previewPDF() {

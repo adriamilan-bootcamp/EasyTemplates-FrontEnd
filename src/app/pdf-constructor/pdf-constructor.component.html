@@ -5,6 +5,7 @@
                 <div class="col-md-9 " style="align-items: center;">
                     <hr *ngIf="item.type == 'linea'">
                     <img *ngIf="item.type == 'img'" src="{{item.content}}" class="w-100">
+                    <img *ngIf="item.type == 'firmar'" src="../../assets/img/firmar.jpg">
                     <div *ngIf="item.type == 'enlace'">
                         <p class="h4 mb-0">{{item.text}}</p>
                         <p class="mt-0 text-lightgrey">{{item.content}}</p>
@@ -26,7 +27,7 @@
                     </div>
                 </div>
                 <div class="col-md-3 d-flex" style="align-items: center; justify-content: flex-end"
-                    *ngIf="item.type != 'espacio' && item.type != 'linea'">
+                    *ngIf="item.type != 'espacio' && item.type != 'linea' && item.type != 'firma' && item.type != 'img'">
                     <div class="d-grid">
                         <button (click)="editarItem(item.id)" class="btn btn-success btn-block">Editar <i
                                 class="bi bi-pencil-square"></i></button>
@@ -39,7 +40,7 @@
                 class="{{item.type}}">{{item.text}}</p>
             <img *ngIf="item.type == 'img'" src="{{item.content}}" class="w-100">
             <a *ngIf="item.type == 'enlace'" href="{{item.content}}">{{item.text}}</a>
-            <div class="item-height" *ngIf="item.type == 'espacio' || item.type == 'linea'">
+            <div class="{{item.type}}" *ngIf="item.type == 'espacio' || item.type == 'linea'">
                 <hr *ngIf="item.type == 'linea'">
             </div>
         </div>

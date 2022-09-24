@@ -33,3 +33,8 @@
     font-size: 18px;
     text-align: justify;
 }
+
+.espacio, .linea {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
