@@ -75,4 +75,8 @@ export class PdfConstructorComponent implements OnInit {
       this.preview = true
     }
   }
+
+  goBackTemplates(){
+    window.location.href ='user-dashboard';
+  }
 }

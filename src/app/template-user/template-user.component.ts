@@ -12,6 +12,8 @@ import { SecurityService } from '../_services/security.service';
 })
 export class TemplateUserComponent implements OnInit {
   templ?: Template[];
+  preview: boolean = false
+  
   constructor(private templService: TemplatesService, private fb: FormBuilder, private router: Router, private secService: SecurityService) { }
 
   ngOnInit(): void {
@@ -55,6 +57,14 @@ export class TemplateUserComponent implements OnInit {
       this.ngOnInit();
     }
 
+  }
+
+  previewPDF() {
+    if (this.preview) {
+      this.preview = false
+    } else {
+      this.preview = true
+    }
   }
 
 }
