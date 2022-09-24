@@ -19,6 +19,7 @@ import { TemplateUserComponent } from './template-user/template-user.component';
 import { UseTemplateComponent } from './use-template/use-template.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
+
 const routes: Routes = [
   {
     path: "contact",
