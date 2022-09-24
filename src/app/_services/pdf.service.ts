@@ -3,13 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pdf } from '../models/pdf.model';
 
-const url = "http://localhost:8080/"
-  
-const httpOptions = {
-  headers: new HttpHeaders({
-   "Content-Type": "multipart/form-data" // 👈
-  })
-};
+const url = "https://easy-templates-backend.herokuapp.com/"
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +32,7 @@ export class PdfService {
 
     const object2Blob = (object: BlobPart) => new Blob([object]);
 
-    const file = new File([object2Blob(JSON.stringify(pdf))], title, { type: 'application/json' });
+    const file = new File([object2Blob(JSON.stringify(pdf))], title + '.pdf', { type: 'application/pdf' });
     
     var formData: any = new FormData();
     formData.append('file', file);
