@@ -1,4 +1,4 @@
-<div class="container mt-5 mb-5 w-50 m-0-auto" id="pdf-container">
+<div class="container w-50 m-0-auto pt-5 pb-2" id="pdf-container">
     <div *ngFor="let item of items">
         <div class="m-0-auto" *ngIf="!preview">
             <div class="row btn-item mt-3 p-3 border-item rounded border-w-3 border-dotted {{item.type}}">
@@ -18,20 +18,25 @@
                         <p *ngIf="item.content != ''" class="{{item.type}}">{{item.content}}</p>
                         <p *ngIf="item.content == ''" class="{{item.type}}">{{item.text}}</p>
                         <div class="input-group">
-                            <input id="content{{item.id}}" *ngIf="item.type != 'h4'" type="text" class="form-control w-100">
-                            <textarea id="content{{item.id}}" *ngIf="item.type == 'h4'" class="form-control w-100" cols="30" rows="5"></textarea>
+                            <input id="content{{item.id}}" *ngIf="item.type != 'h4'" type="text"
+                                class="form-control w-100">
+                            <textarea id="content{{item.id}}" *ngIf="item.type == 'h4'" class="form-control w-100"
+                                cols="30" rows="5"></textarea>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-flex" style="align-items: center; justify-content: flex-end" *ngIf="item.type != 'espacio' && item.type != 'linea'">
+                <div class="col-md-3 d-flex" style="align-items: center; justify-content: flex-end"
+                    *ngIf="item.type != 'espacio' && item.type != 'linea'">
                     <div class="d-grid">
-                        <button (click)="editarItem(item.id)" class="btn btn-success btn-block">Editar <i class="bi bi-pencil-square"></i></button>
+                        <button (click)="editarItem(item.id)" class="btn btn-success btn-block">Editar <i
+                                class="bi bi-pencil-square"></i></button>
                     </div>
                 </div>
             </div>
         </div>
         <div *ngIf="preview">
-            <p *ngIf="item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4'" class="{{item.type}}">{{item.text}}</p>
+            <p *ngIf="item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4'"
+                class="{{item.type}}">{{item.text}}</p>
             <img *ngIf="item.type == 'img'" src="{{item.content}}" class="w-100">
             <a *ngIf="item.type == 'enlace'" href="{{item.content}}">{{item.text}}</a>
             <div class="item-height" *ngIf="item.type == 'espacio' || item.type == 'linea'">
@@ -39,15 +44,45 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="container mb-5 w-50 m-0-auto">
     <div class="row">
         <div class="col-md-6">
             <div class="d-grid mt-3">
-                <button (click)="previewPDF()" class="btn btn-primary btn-block"><span *ngIf="!preview">Previsualizar PDF <i class="bi bi-eye"></i></span><span *ngIf="preview">Editar PDF <i class="bi bi-eye-slash"></i></span></button>
+                <button (click)="previewPDF()" class="btn btn-primary btn-block"><span *ngIf="!preview">Previsualizar
+                        PDF <i class="bi bi-eye"></i></span><span *ngIf="preview">Editar PDF <i
+                            class="bi bi-eye-slash"></i></span></button>
             </div>
         </div>
         <div class="col-md-6">
             <div class="d-grid mt-3">
-                <button (click)="generarPDF()" class="btn btn-success btn-block">Generar PDF <i class="bi bi-filetype-pdf"></i></button>
+                <button (click)="generarPDF()" type="button" class="btn btn-success" data-bs-toggle="modal"
+                    data-bs-target="#generatePdfModal">
+                    Generar PDF <i class="bi bi-filetype-pdf"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="generatePdfModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">PDF</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="h4">Introduce el nombre de tu pdf</p>
+                <div class="input-group">
+                    <input id="inputNamePDF" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button (click)="exportHtmlToPDF()" type="button" class="btn btn-primary">Generar PDF <i
+                        class="bi bi-filetype-pdf"></i> </button>
             </div>
         </div>
     </div>

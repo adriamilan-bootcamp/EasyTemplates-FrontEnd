@@ -43,14 +43,13 @@ export class PdfConstructorComponent implements OnInit {
   }
 
   generarPDF() {
-
     this.preview = true
-    this.exportHtmlToPDF()
   }
 
-  public exportHtmlToPDF(){
+  exportHtmlToPDF(){
     let data = document.getElementById('pdf-container') as HTMLDivElement;
-      
+    let pdfname = (<HTMLInputElement>document.getElementById("inputNamePDF")).value
+
       html2canvas(data).then(canvas => {
           
           let docWidth = 208;
@@ -61,7 +60,7 @@ export class PdfConstructorComponent implements OnInit {
           let position = 0;
           doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
           
-          doc.save('exportedPdf.pdf');
+          doc.save(pdfname);
       });
   }
 
