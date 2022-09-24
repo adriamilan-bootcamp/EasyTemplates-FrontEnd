@@ -1,58 +1,73 @@
-<div class="container w-50 m-0-auto pt-5 pb-2" id="pdf-container">
-    <div *ngFor="let item of items">
-        <div class="m-0-auto" *ngIf="!preview">
-            <div class="row btn-item mt-3 p-3 border-item rounded border-w-3 border-dotted {{item.type}}">
-                <div class="col-md-9 " style="align-items: center;">
-                    <hr *ngIf="item.type == 'linea'">
+<app-top-admin></app-top-admin>
+
+
+<br><br>
+<div class="container w-75 m-0-auto pt-5 pb-2 background" id="pdf-container">
+    <br><br><br>
+    <div class="card">
+        <i class="bi bi-arrow-left-circle-fill" style="color:blue; margin:15px 0px 0px 15px; font-size: 25px;"
+            (click)="goBackTemplates();"></i>
+
+        <div class="card-body" style="margin-left: 15px;">
+            <div *ngFor="let item of items">
+                <div class="m-0-auto" *ngIf="!preview">
+                    <div class="row btn-item mt-3 p-3 border-item rounded border-w-3 border-dotted {{item.type}}">
+                        <div class="col-md-9 " style="align-items: center;">
+                            <hr *ngIf="item.type == 'linea'">
+                            <img *ngIf="item.type == 'img'" src="{{item.content}}" class="w-100">
+                            <img *ngIf="item.type == 'firmar'" src="../../assets/img/firmar.jpg">
+                            <div *ngIf="item.type == 'enlace'">
+                                <p class="h4 mb-0">{{item.text}}</p>
+                                <p class="mt-0 text-lightgrey">{{item.content}}</p>
+                                <div class="input-group">
+                                    <input id="content{{item.id}}" type="text" class="form-control"
+                                        placeholder="Contenido">
+                                    <input id="enlace{{item.id}}" type="text" class="form-control" placeholder="Enlace">
+                                </div>
+                            </div>
+                            <img *ngIf="item.type == 'firma'" src="../../assets/img/firmar.jpg">
+                            <div
+                                *ngIf="(item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4')">
+                                <p *ngIf="item.content != ''" class="{{item.type}}">{{item.content}}</p>
+                                <p *ngIf="item.content == ''" class="{{item.type}}">{{item.text}}</p>
+                                <div class="input-group">
+                                    <input id="content{{item.id}}" *ngIf="item.type != 'h4'" type="text"
+                                        class="form-control w-100">
+                                    <textarea id="content{{item.id}}" *ngIf="item.type == 'h4'"
+                                        class="form-control w-100" cols="30" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-flex" style="align-items: center; justify-content: flex-end"
+                            *ngIf="item.type != 'espacio' && item.type != 'linea' && item.type != 'firma' && item.type != 'img'">
+                            <div class="d-grid">
+                                <button (click)="editarItem(item.id)" class="btn btn-success btn-block">Edit <i
+                                        class="bi bi-pencil-square"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="preview">
+                    <p *ngIf="item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4'"
+                        class="{{item.type}}">{{item.text}}</p>
                     <img *ngIf="item.type == 'img'" src="{{item.content}}" class="w-100">
-                    <img *ngIf="item.type == 'firmar'" src="../../assets/img/firmar.jpg">
-                    <div *ngIf="item.type == 'enlace'">
-                        <p class="h4 mb-0">{{item.text}}</p>
-                        <p class="mt-0 text-lightgrey">{{item.content}}</p>
-                        <div class="input-group">
-                            <input id="content{{item.id}}" type="text" class="form-control" placeholder="Contenido">
-                            <input id="enlace{{item.id}}" type="text" class="form-control" placeholder="Enlace">
-                        </div>
-                    </div>
-                    <img *ngIf="item.type == 'firma'" src="../../assets/img/firmar.jpg">
-                    <div *ngIf="(item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4')">
-                        <p *ngIf="item.content != ''" class="{{item.type}}">{{item.content}}</p>
-                        <p *ngIf="item.content == ''" class="{{item.type}}">{{item.text}}</p>
-                        <div class="input-group">
-                            <input id="content{{item.id}}" *ngIf="item.type != 'h4'" type="text"
-                                class="form-control w-100">
-                            <textarea id="content{{item.id}}" *ngIf="item.type == 'h4'" class="form-control w-100"
-                                cols="30" rows="5"></textarea>
-                        </div>
+                    <a *ngIf="item.type == 'enlace'" href="{{item.content}}">{{item.text}}</a>
+                    <div class="{{item.type}}" *ngIf="item.type == 'espacio' || item.type == 'linea'">
+                        <hr *ngIf="item.type == 'linea'">
                     </div>
                 </div>
-                <div class="col-md-3 d-flex" style="align-items: center; justify-content: flex-end"
-                    *ngIf="item.type != 'espacio' && item.type != 'linea' && item.type != 'firma' && item.type != 'img'">
-                    <div class="d-grid">
-                        <button (click)="editarItem(item.id)" class="btn btn-success btn-block">Editar <i
-                                class="bi bi-pencil-square"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div *ngIf="preview">
-            <p *ngIf="item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4'"
-                class="{{item.type}}">{{item.text}}</p>
-            <img *ngIf="item.type == 'img'" src="{{item.content}}" class="w-100">
-            <a *ngIf="item.type == 'enlace'" href="{{item.content}}">{{item.text}}</a>
-            <div class="{{item.type}}" *ngIf="item.type == 'espacio' || item.type == 'linea'">
-                <hr *ngIf="item.type == 'linea'">
             </div>
         </div>
     </div>
+
 </div>
 
 <div class="container mb-5 w-50 m-0-auto">
     <div class="row">
         <div class="col-md-6">
             <div class="d-grid mt-3">
-                <button (click)="previewPDF()" class="btn btn-primary btn-block"><span *ngIf="!preview">Previsualizar
-                        PDF <i class="bi bi-eye"></i></span><span *ngIf="preview">Editar PDF <i
+                <button (click)="previewPDF()" class="btn btn-primary btn-block"><span *ngIf="!preview">Preview <i
+                            class="bi bi-eye"></i></span><span *ngIf="preview">Continue Editing <i
                             class="bi bi-eye-slash"></i></span></button>
             </div>
         </div>
@@ -60,7 +75,7 @@
             <div class="d-grid mt-3">
                 <button (click)="generarPDF()" type="button" class="btn btn-success" data-bs-toggle="modal"
                     data-bs-target="#generatePdfModal">
-                    Generar PDF <i class="bi bi-filetype-pdf"></i>
+                    Generate PDF <i class="bi bi-filetype-pdf"></i>
                 </button>
             </div>
         </div>
@@ -75,14 +90,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class="h4">Introduce el nombre de tu pdf</p>
+                <p class="h4">Give your pdf a name.</p>
                 <div class="input-group">
                     <input id="inputNamePDF" type="text" class="form-control">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button (click)="exportHtmlToPDF()" type="button" class="btn btn-primary">Generar PDF <i
+                <button (click)="exportHtmlToPDF()" type="button" class="btn btn-primary">Generate PDF <i
                         class="bi bi-filetype-pdf"></i> </button>
             </div>
         </div>
