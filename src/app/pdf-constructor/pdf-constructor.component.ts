@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { TemplatesService } from '../_services/templates.service'
-
 import { PdfService } from '../_services/pdf.service';
-
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
+import { ImageService } from '../_services/image.service';
+import { Image } from '../models/image.model';
+import { SecurityService } from '../_services/security.service';
+
+
+
 
 @Component({
   selector: 'app-pdf-constructor',
@@ -15,13 +18,15 @@ import html2canvas from 'html2canvas';
 })
 export class PdfConstructorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router, private tmservice: TemplatesService, private pdfService: PdfService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private tmservice: TemplatesService, private pdfService: PdfService, private serviceImg: ImageService, private sec: SecurityService) { }
 
   preview: boolean = false
 
   idParam: any;
 
   items: any;
+  imgs?: Image[];
+  idImg: any;
 
   ngOnInit(): void {
     this.idParam = this.route.snapshot.paramMap.get('id');
@@ -46,6 +51,7 @@ export class PdfConstructorComponent implements OnInit {
 
   generarPDF() {
     this.preview = true
+
   }
 
   exportHtmlToPDF() {
@@ -76,7 +82,44 @@ export class PdfConstructorComponent implements OnInit {
     }
   }
 
-  goBackTemplates(){
-    window.location.href ='user-dashboard';
+  goBackTemplates() {
+    window.location.href = 'user-dashboard';
   }
+
+
+  myImages() {
+    this.serviceImg.getByUserId(this.sec.getId())
+      .subscribe(
+        data => {
+          this.imgs = data;
+          console.log("mis imagenes: " + data);
+
+        },
+        error => {
+          console.log(error);
+
+        }
+      );
+  }
+
+  setImage(src: any) {
+    this.items[this.idImg]["content"] = src;
+
+  }
+
+  chooseImg() {
+    let src = (<HTMLInputElement>document.getElementById("input")).value;
+    //let i=this.sanitization.bypassSecurityTrustStyle(src);
+    this.items[this.idImg]["content"] = src;
+
+  }
+
+
+
+  passId(id: any) {
+    this.idImg = id;
+  }
+
+
+
 }
