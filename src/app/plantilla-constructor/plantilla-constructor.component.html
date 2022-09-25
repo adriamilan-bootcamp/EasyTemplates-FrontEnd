@@ -28,7 +28,8 @@
                                 <div class="col-md-8 d-flex" style="align-items: center;">
                                     <p *ngIf="item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4'"
                                         class="{{item.type}} mb-0">{{item.text}}</p>
-                                    <img id="img{{item.id}}" *ngIf="item.type == 'img'" src="{{item.content}}" style="width: 100%;">
+                                    <img id="img{{item.id}}" *ngIf="item.type == 'img'" src="{{item.content}}"
+                                        style="width: 100%;">
                                     <div *ngIf="item.type == 'espacio' || item.type == 'linea'" class="pt-1 pb-1">
                                         <p class="h4 mb-0">{{item.text}} <i *ngIf="item.type == 'espacio'"
                                                 class="bi bi-arrow-down-up"></i><i *ngIf="item.type == 'linea'"
@@ -280,32 +281,43 @@
         </div>
     </div>
 </div>
+
 <!-- Modal subirImagen-->
-<div class="modal fade" id="subirImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group mt-3">
-                    <label class="mr-2">Upload your Image:</label>
-                    <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)" id="inputImg">
-                </div>
-            </div>
-            <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.
-            </p>
-            <div class="image-area mt-4"><img id="imageResult" src="#" alt=""
-                    class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save
-                    changes</button>
+<div class="modal fade" id="subirImagen" tabindex="-1"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Upload Image
+            </h5>
+            <button type="button" class="btn-close"
+                data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group mt-3">
+                <label class="mr-2">Upload your Image:</label>
+                <input #imageInput type="file" accept="image/*"
+                    (change)="processFile(imageInput)"
+                    id="inputImg">
             </div>
         </div>
+        <p class="font-italic text-white text-center">The image uploaded
+            will be rendered inside the box below.
+        </p>
+        <div class="image-area mt-4"><img id="imageResult" src="#"
+                alt=""
+                class="img-fluid rounded shadow-sm mx-auto d-block">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary"
+                data-bs-dismiss="modal">Save
+                changes</button>
+        </div>
     </div>
+</div>
 
-    <ng-template #espera>Loading images ....</ng-template>
+<ng-template #espera>Loading images ....</ng-template>
 
 </div>
