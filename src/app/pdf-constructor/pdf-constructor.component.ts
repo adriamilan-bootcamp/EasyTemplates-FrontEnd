@@ -68,9 +68,7 @@ export class PdfConstructorComponent implements OnInit {
       let position = 0;
       doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
 
-      let pdfFile = doc.save(pdfname);
-
-      this.pdfService.addPdf(pdfname, pdfFile);
+      this.pdfService.addPdf(pdfname, doc.output('blob'));
     });
   }
 
