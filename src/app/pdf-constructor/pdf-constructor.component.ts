@@ -9,7 +9,9 @@ import { Image } from '../models/image.model';
 import { SecurityService } from '../_services/security.service';
 
 
-
+class ImageSnippet {
+  constructor(public src: string, public file: File) { }
+}
 
 @Component({
   selector: 'app-pdf-constructor',
@@ -27,7 +29,7 @@ export class PdfConstructorComponent implements OnInit {
   items: any;
   imgs?: Image[];
   idImg: any;
-
+  selectedFile: ImageSnippet | undefined;
   ngOnInit(): void {
     this.idParam = this.route.snapshot.paramMap.get('id');
     this.tmservice.getS3TemplateById(this.idParam).subscribe(
@@ -118,6 +120,26 @@ export class PdfConstructorComponent implements OnInit {
     this.idImg = id;
   }
 
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      this.serviceImg.uploadImage(this.selectedFile.file).subscribe(
+        (res) => {
+          console.log("Uploaded correctly!")
+          this.ngOnInit();
+        },
+        (err) => {
+          console.log("Failed to upload!")
+        })
+    });
+
+    reader.readAsDataURL(file);
+  }
 
 
 }

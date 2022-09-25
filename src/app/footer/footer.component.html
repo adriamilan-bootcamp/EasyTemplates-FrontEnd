@@ -5,13 +5,51 @@
           <a routerLink="contact">Contact</a>
           <!-- -> COMPONENT DEL MODEL WELCOME (una página con nuestras fotos, nombres e info de  contacto)-->
           <span class="mx-1">&middot;</span>
-          <a href="#!">Cookies</a>
+          <a data-bs-toggle="modal" data-bs-target="#cookies">Cookies</a>
           <!-- -> COMPONENT DEL MODEL WELCOME (opcional ponemos una pag o lo dejamos para futras impl )-->
           <span class="mx-1">&middot;</span>
-          <a href="#!">Privacy</a>
+          <a data-bs-toggle="modal" data-bs-target="#privacy">Privacy</a>
           <!-- -> COMPONENT DEL MODEL WELCOME (opcional ponemos una pag o lo dejamos para futras impl )-->
           <span class="mx-1">&middot;</span>
-          <a href="#!">FAQ</a><!-- futuras impl-->
+          <a>FAQ</a><!-- futuras impl-->
       </div>
   </div>
 </footer>
+
+<!-- Modal cookies -->
+<div class="modal fade" id="cookies" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cookies</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <embed src="../../assets/Cookies.pdf" frameborder="0" width="100%" height="400px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal privacy -->
+<div class="modal fade" id="privacy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Privacy</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <embed src="../../assets/Privacy.pdf" frameborder="0" width="100%" height="400px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      
+      </div>
+    </div>
+  </div>
+</div>
