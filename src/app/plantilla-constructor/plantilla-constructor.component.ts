@@ -79,6 +79,7 @@ export class PlantillaConstructorComponent implements OnInit {
     (<HTMLInputElement>document.getElementById("img" + id)).style.width = width + "%"
   }
 
+ 
   chooseImg() {
     let src = (<HTMLInputElement>document.getElementById("input")).value;
     //let i=this.sanitization.bypassSecurityTrustStyle(src);
@@ -239,9 +240,9 @@ export class PlantillaConstructorComponent implements OnInit {
 
   saveContent(id: any) {
 
-    if ((<HTMLInputElement>document.getElementById("content" + id)).value != null) {
-      this.items[id]["text"] = (<HTMLInputElement>document.getElementById("content" + id)).value
-      this.items[id]["content"] = (<HTMLInputElement>document.getElementById("content" + id)).value
+    if ((<HTMLInputElement>document.getElementById("content")).value != null) {
+      this.items[id]["text"] = (<HTMLInputElement>document.getElementById("content")).value
+      this.items[id]["content"] = (<HTMLInputElement>document.getElementById("content")).value
     }
 
     if (<HTMLInputElement>document.getElementById("enlace") != null) {
@@ -276,7 +277,6 @@ export class PlantillaConstructorComponent implements OnInit {
       this.serviceImg.uploadImage(this.selectedFile.file).subscribe(
         (res) => {
           console.log("Uploaded correctly!")
-         
           this.ngOnInit();
         },
         (err) => {
