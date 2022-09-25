@@ -16,40 +16,14 @@
 
                         <div class="card col-7" (click)="resetImg(i.src);"
                             style="width: 150px; height:150px; display: flex; align-items: center; justify-content: center; margin-left: 10px;">
-
                             <div class="card-body" style="width: 130px;  display: flex; height:130px; align-items: center;
                                 justify-content: center; ">
                                 <img src="{{i.src}}" class="" alt="..." data-bs-toggle="modal" id="imagen"
                                     style="max-height:130px; max-width: 130px; object-fit: contain; width:auto; height: auto;">
-
-
                             </div>
-
                         </div>
-
-
                         <div class="col-1">
                             <i class="bi bi-trash3-fill" style="color: red;" (click)="deleteImg(i.id);"></i>
-                        </div>
-                    </div>
-
-                    <div class="modal fade" id="seeImg" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <div class="modal-body background">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                        style="float: right;"></button>
-                                    <br><br>
-                                    <div class="card">
-                                        <div class="card-body"
-                                            style="display: flex; align-items: center; justify-content: center;">
-                                            <img src="{{i.src}}" alt="...">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -88,7 +62,7 @@
         <ng-template #espera>Loading images ....</ng-template>
 
     </div>
-    <div  id="my">
+    <div id="my">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="esconder();"
             style="float:right ;"></button>
         <br>
