@@ -130,9 +130,9 @@ export class TabPdfComponent implements OnInit {
       this.pService.delete(id)
         .subscribe(
           response => {
-            console.log("respuesta eliminar template->" + response);
+            console.log("respuesta eliminar pdf->" + response);
             window.location.reload();
-            alert("Template deleted");
+            alert("Pdf deleted");
 
           }, error => {
             console.log(error);
