@@ -233,9 +233,9 @@ export class PlantillaConstructorComponent implements OnInit {
 
   saveContent(id: any) {
 
-    if ((<HTMLInputElement>document.getElementById("content")).value != null) {
-      this.items[id]["text"] = (<HTMLInputElement>document.getElementById("content")).value
-      this.items[id]["content"] = (<HTMLInputElement>document.getElementById("content")).value
+    if ((<HTMLInputElement>document.getElementById("content" + id)).value != null) {
+      this.items[id]["text"] = (<HTMLInputElement>document.getElementById("content" + id)).value
+      this.items[id]["content"] = (<HTMLInputElement>document.getElementById("content" + id)).value
     }
 
     if (<HTMLInputElement>document.getElementById("enlace") != null) {
