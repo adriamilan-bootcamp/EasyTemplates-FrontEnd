@@ -7,7 +7,9 @@ import { SecurityService } from '../_services/security.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Toast } from 'bootstrap';
 
-
+class ImageSnippet {
+  constructor(public src: string, public file: File) { }
+}
 interface Item {
   type: string;
   content: string;
@@ -37,7 +39,7 @@ export class PlantillaConstructorComponent implements OnInit {
 
   idImg: any;
 
-
+  selectedFile: ImageSnippet | undefined;
 
   constructor(private templateService: TemplatesService, private serviceImg: ImageService, private sec: SecurityService, private sanitization: DomSanitizer) { }
 
@@ -78,7 +80,6 @@ export class PlantillaConstructorComponent implements OnInit {
     this.items[this.idImg]["content"] = src;
 
   }
-
 
 
   passId(id: any) {
@@ -250,15 +251,35 @@ export class PlantillaConstructorComponent implements OnInit {
     this.titulo = (<HTMLInputElement>document.getElementById("inputNameTemplate")).value;
     let res = this.templateService.createTemplate(this.titulo, this.items)
     alert("The template has been saved successfully ");
-    
+
     //console.log("File" + res);
   }
 
 
-  goBackTemplates(){
-    window.location.href ='user-dashboard';
+  goBackTemplates() {
+    window.location.href = 'user-dashboard';
   }
 
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
 
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      this.serviceImg.uploadImage(this.selectedFile.file).subscribe(
+        (res) => {
+          console.log("Uploaded correctly!")
+         
+          this.ngOnInit();
+        },
+        (err) => {
+          console.log("Failed to upload!")
+        })
+    });
+
+    reader.readAsDataURL(file);
+  }
 
 }

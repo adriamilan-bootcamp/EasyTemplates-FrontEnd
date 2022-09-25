@@ -85,6 +85,8 @@
                                             <button class="btn btn-dark mx-1" data-bs-toggle="modal"
                                                 data-bs-target="#misImagenes" (click)="myImages(); passId(item.id);"><i
                                                     class="bi bi-images"></i></button>
+                                            <button class="btn btn-dark mx-1" data-bs-toggle="modal"
+                                                data-bs-target="#subirImagen" (click)=" passId(item.id);"><i class="bi bi-upload"></i></button>
 
                                         </div>
                                         <br>
@@ -207,7 +209,8 @@
 
                 <div class="w-75 container mt-3">
                     <div class="d-grid">
-                        <button  class="btn btn-success btn-block" data-bs-toggle="modal" data-bs-target="#createTemplateModal" >Create Template <i
+                        <button class="btn btn-success btn-block" data-bs-toggle="modal"
+                            data-bs-target="#createTemplateModal">Create Template <i
                                 class="bi bi-filetype-pdf"></i></button>
                     </div>
                 </div>
@@ -267,9 +270,38 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button (click)="saveTemplate()" type="button" class="btn btn-primary"
-                    data-bs-dismiss="modal">Create Template  </button>
+                <button (click)="saveTemplate()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Create
+                    Template </button>
             </div>
         </div>
     </div>
+</div>
+<!-- Modal subirImagen-->
+<div class="modal fade" id="subirImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mt-3">
+                    <label class="mr-2">Upload your Image:</label>
+                    <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)" id="inputImg">
+                </div>
+            </div>
+            <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.
+            </p>
+            <div class="image-area mt-4"><img id="imageResult" src="#" alt=""
+                    class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #espera>Loading images ....</ng-template>
+
 </div>
