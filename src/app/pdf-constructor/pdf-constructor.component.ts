@@ -67,8 +67,8 @@ export class PdfConstructorComponent implements OnInit {
       let doc = new jsPDF('p', 'mm', 'a4');
       let position = 0;
       doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
-
       this.pdfService.addPdf(pdfname, doc.output('blob'));
+      alert("Pdf created! You can see it in your Pdfs.")
     });
   }
 
