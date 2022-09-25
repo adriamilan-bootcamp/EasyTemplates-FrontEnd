@@ -44,6 +44,7 @@ import { PlantillaConstructorComponent } from './plantilla-constructor/plantilla
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateNewTemplateComponent } from './create-new-template/create-new-template.component';
 import { PdfConstructorComponent } from './pdf-constructor/pdf-constructor.component';
+import { TemplatePreviewComponent } from './template-preview/template-preview.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { PdfConstructorComponent } from './pdf-constructor/pdf-constructor.compo
     TabImagesComponent,
     PlantillaConstructorComponent,
     CreateNewTemplateComponent,
-    PdfConstructorComponent
+    PdfConstructorComponent,
+    TemplatePreviewComponent
   ],
   imports: [
     BrowserModule,

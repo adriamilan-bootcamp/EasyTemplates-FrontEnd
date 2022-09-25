@@ -276,7 +276,7 @@ export class PlantillaConstructorComponent implements OnInit {
       this.serviceImg.uploadImage(this.selectedFile.file).subscribe(
         (res) => {
           console.log("Uploaded correctly!")
-         
+      
           this.ngOnInit();
         },
         (err) => {

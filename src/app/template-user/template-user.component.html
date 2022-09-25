@@ -6,8 +6,6 @@
         </div>
 
     </div>
-
-
     <br>
     <div class="card">
         <div class="card-body" *ngIf="templ!=null else espera" style="overflow-x: auto;">
@@ -26,20 +24,38 @@
                         <td>{{t.titulo}}</td>
                         <td>{{t.fechaCreacion}}</td>
                         <td>
-                            <button type="button" class="btn btn-success" (click)=" previewPDF();"><i class="bi bi-eye-fill"></i></button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#itemPreview"><i
+                                    class="bi bi-eye-fill"></i></button>
                             <button type="button" class="btn btn-warning" routerLink="/pdf/{{t.id}}">Use</button>
                             <button type="button" class="btn btn-danger" (click)="deleteTemplate(t.id)"><i
                                     class="bi bi-trash3-fill"></i></button>
-
                         </td>
+
+                        <div class="modal fade" id="itemPreview" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="itemPreview">Template Preview</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <app-template-preview [id]="t.id"></app-template-preview>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </tr>
-
-
                 </tbody>
             </table>
         </div>
-
-
     </div>
     <br><br>
 </div>
