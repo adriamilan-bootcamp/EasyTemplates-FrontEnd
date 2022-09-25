@@ -28,7 +28,7 @@ export class DashboardBeginningComponent implements OnInit {
         this.router.navigate(['/user-dashboard']);
       }, 3000)
     }
-    else if (this.roles == 'ROLE_ADMIN' && this.roles != 'ROLE_USER')
+    else if (this.roles == 'ROLE_ADMIN')
     {
       this.returnString = "Admin already logged in, returning to dashboard..."
       this.isUnprivileged = true;
