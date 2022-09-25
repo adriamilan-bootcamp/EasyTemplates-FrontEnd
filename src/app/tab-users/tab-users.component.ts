@@ -372,6 +372,7 @@ seeRole:any;
             this.isRegisteredInView = true;
             this.isRegisterFailed = false;;
            alert("The user has been added successfully");
+           this.ngOnInit();
           },
           err => {
             switch (err.status) {
