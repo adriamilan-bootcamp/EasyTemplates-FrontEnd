@@ -207,7 +207,7 @@
 
                 <div class="w-75 container mt-3">
                     <div class="d-grid">
-                        <button (click)="saveTemplate()" class="btn btn-success btn-block">Create Template <i
+                        <button  class="btn btn-success btn-block" data-bs-toggle="modal" data-bs-target="#createTemplateModal" >Create Template <i
                                 class="bi bi-filetype-pdf"></i></button>
                     </div>
                 </div>
@@ -252,3 +252,24 @@
 </div>
 
 <ng-template #espera> Loading images....</ng-template>
+<div class="modal fade" id="createTemplateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Template</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="h4">Give your tempalte a name.</p>
+                <div class="input-group">
+                    <input id="inputNameTemplate" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button (click)="saveTemplate()" type="button" class="btn btn-primary"
+                    data-bs-dismiss="modal">Create Template  </button>
+            </div>
+        </div>
+    </div>
+</div>

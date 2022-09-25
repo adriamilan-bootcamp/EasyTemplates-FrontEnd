@@ -1,14 +1,11 @@
 <app-top-admin></app-top-admin>
-
-
 <br><br>
-<div class="container w-75 m-0-auto pt-5 pb-2 background" id="pdf-container">
+<div class="container w-75 m-0-auto pt-5 pb-2 background">
     <br><br><br>
+    <i class="bi bi-arrow-left-circle-fill" style="color:blue; margin:15px 0px 0px 15px; font-size: 25px;"
+        (click)="goBackTemplates();"></i>
     <div class="card">
-        <i class="bi bi-arrow-left-circle-fill" style="color:blue; margin:15px 0px 0px 15px; font-size: 25px;"
-            (click)="goBackTemplates();"></i>
-
-        <div class="card-body" style="margin-left: 15px;">
+        <div class="card-body" style="margin-left: 15px;" id="pdf-container">
             <div *ngFor="let item of items">
                 <div class="m-0-auto" *ngIf="!preview">
                     <div class="row btn-item mt-3 p-3 border-item rounded border-w-3 border-dotted {{item.type}}">

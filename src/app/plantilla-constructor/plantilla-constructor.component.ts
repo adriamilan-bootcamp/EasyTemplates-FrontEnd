@@ -21,7 +21,7 @@ interface Item {
 
 export class PlantillaConstructorComponent implements OnInit {
 
-  @Input() titulo: string = '';
+  @Input() titulo: string = 'Title Template';
 
   addItem: boolean = false;
 
@@ -247,7 +247,7 @@ export class PlantillaConstructorComponent implements OnInit {
   saveTemplate() {
     console.log("Uploading");
     //TODO CHANGE THIS TO A USERDEFINED TITLE
-    this.titulo = 'Test';
+    this.titulo = (<HTMLInputElement>document.getElementById("inputNameTemplate")).value;
     let res = this.templateService.createTemplate(this.titulo, this.items)
     alert("The template has been saved successfully ");
     

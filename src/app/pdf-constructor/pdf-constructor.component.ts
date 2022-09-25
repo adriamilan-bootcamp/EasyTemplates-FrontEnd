@@ -71,6 +71,7 @@ export class PdfConstructorComponent implements OnInit {
       let pdfFile = doc.save(pdfname);
 
       this.pdfService.addPdf(pdfname, pdfFile);
+      alert("Pdf created! You can see it in your Pdfs.")
     });
   }
 
