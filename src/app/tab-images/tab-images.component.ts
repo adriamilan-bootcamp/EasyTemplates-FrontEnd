@@ -111,9 +111,9 @@ export class TabImagesComponent implements OnInit {
       this.imgService.delete(id)
         .subscribe(
           response => {
-            console.log("respuesta eliminar user->" + response);
+            console.log("respuesta eliminar imagen->" + response);
             window.location.reload();
-            alert("User deleted");
+            alert("Image deleted");
 
           }, error => {
             console.log(error);
