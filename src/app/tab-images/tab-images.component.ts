@@ -35,6 +35,7 @@ export class TabImagesComponent implements OnInit {
 
   ngOnInit(): void {
  this.seeAllImg();
+ (<HTMLInputElement>document.getElementById("my")).style.display='none';
 
   }
 
@@ -124,6 +125,18 @@ export class TabImagesComponent implements OnInit {
       window.location.reload();
     }
 
+  }
+
+  resetImg(src: any) {
+    (<HTMLInputElement>document.getElementById("my")).style.display='block';
+    (<HTMLInputElement>document.getElementById("grande")).src = src;
+    (<HTMLInputElement>document.getElementById("cardGeneral")).style.display = 'none';
+  }
+
+  esconder() {
+    (<HTMLInputElement>document.getElementById("my")).style.display='none';
+    (<HTMLInputElement>document.getElementById("cardGeneral")).style.display='block';
+    this.ngOnInit();
   }
 
 }
