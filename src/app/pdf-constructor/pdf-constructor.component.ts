@@ -58,13 +58,18 @@ export class PdfConstructorComponent implements OnInit {
 
   exportHtmlToPDF() {
     let data = document.getElementById('pdf-container') as HTMLDivElement;
+    
     let pdfname = (<HTMLInputElement>document.getElementById("inputNamePDF")).value
 
-    html2canvas(data).then(canvas => {
+    html2canvas(data, {
+      logging: true, 
+      useCORS: true,
+      allowTaint : true
+    }).then(canvas => {
 
       let docWidth = 208;
       let docHeight = canvas.height * docWidth / canvas.width;
-
+      
       const contentDataURL = canvas.toDataURL('image/png')
       let doc = new jsPDF('p', 'mm', 'a4');
       let position = 0;
