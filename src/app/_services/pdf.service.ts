@@ -30,11 +30,12 @@ export class PdfService {
 
   addPdf(title: any, pdf: any) {
 
-    const object2Blob = (object: BlobPart) => new Blob([object]);
+    var blobPDF =  new Blob([ pdf ], { type : 'application/pdf'});
 
-    const file = new File([object2Blob(JSON.stringify(pdf))], title + '.pdf', { type: 'application/pdf' });
+    const file = new File([ blobPDF ], title + '.pdf', { type: 'application/pdf' });
     
     var formData: any = new FormData();
+
     formData.append('file', file);
 
     console.log("Data: " + JSON.stringify(formData));
