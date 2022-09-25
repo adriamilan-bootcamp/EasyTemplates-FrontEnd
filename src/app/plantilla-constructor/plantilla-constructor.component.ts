@@ -74,6 +74,11 @@ export class PlantillaConstructorComponent implements OnInit {
 
   }
 
+  imageSizer(id: any) {
+    let width = (<HTMLInputElement>document.getElementById("range" + id)).value;
+    (<HTMLInputElement>document.getElementById("img" + id)).style.width = width + "%"
+  }
+
   chooseImg() {
     let src = (<HTMLInputElement>document.getElementById("input")).value;
     //let i=this.sanitization.bypassSecurityTrustStyle(src);
