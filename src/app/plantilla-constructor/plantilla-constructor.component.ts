@@ -194,7 +194,7 @@ export class PlantillaConstructorComponent implements OnInit {
   }
 
   deleteItem(id: number) {
-    this.items.splice(id, id)
+    this.items.splice(id, 1)
     this.reId()
   }
 
