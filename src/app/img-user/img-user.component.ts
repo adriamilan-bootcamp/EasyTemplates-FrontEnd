@@ -8,7 +8,7 @@ import { ImageService } from '../_services/image.service';
 import { SecurityService } from '../_services/security.service';
 
 class ImageSnippet {
-  constructor(public src: string, public file: File) {}
+  constructor(public src: string, public file: File) { }
 }
 
 @Component({
@@ -32,7 +32,7 @@ export class ImgUserComponent implements OnInit {
   public formSearch: FormGroup;
   public default = 'select';
 
-  constructor(private imgService: ImageService, private fb: FormBuilder, private router: Router,private secService:SecurityService) {
+  constructor(private imgService: ImageService, private fb: FormBuilder, private router: Router, private secService: SecurityService) {
     this.formSearch = this.fb.group({
       options: '',
 
@@ -41,7 +41,8 @@ export class ImgUserComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("ID: " + this.secService.getId())
-    this.seeByUser(this.secService.getId()); 
+    this.seeByUser(this.secService.getId());
+    (<HTMLInputElement>document.getElementById("my")).style.display='none';
   }
 
   selectedFile: ImageSnippet | undefined;
@@ -73,8 +74,8 @@ export class ImgUserComponent implements OnInit {
   }
 
 
-  seeByUser(id:any) {
- 
+  seeByUser(id: any) {
+
     this.imgService.getByUserId(id)
       .subscribe(
         data => {
@@ -100,10 +101,10 @@ export class ImgUserComponent implements OnInit {
         .subscribe(
           response => {
             console.log("respuesta eliminar img->" + response);
-            this.ngOnInit();
+
             alert("Image deleted");
-            
-            
+            this.ngOnInit();
+
           }, error => {
             console.log(error);
 
@@ -114,5 +115,15 @@ export class ImgUserComponent implements OnInit {
     }
 
   }
+  resetImg(src: any) {
+    (<HTMLInputElement>document.getElementById("my")).style.display='block';
+    (<HTMLInputElement>document.getElementById("grande")).src = src;
+    (<HTMLInputElement>document.getElementById("cardGeneral")).style.display = 'none';
+  }
 
+  esconder() {
+    (<HTMLInputElement>document.getElementById("my")).style.display='none';
+    (<HTMLInputElement>document.getElementById("cardGeneral")).style.display='block';
+    this.ngOnInit();
+  }
 }
