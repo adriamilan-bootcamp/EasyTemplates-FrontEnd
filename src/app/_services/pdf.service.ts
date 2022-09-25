@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pdf } from '../models/pdf.model';
-
+import { jsPDF } from "jspdf";
 const url = "https://easy-templates-backend.herokuapp.com/"
 
 @Injectable({
@@ -50,7 +50,24 @@ export class PdfService {
     )
   }
 
+  viewPdf(id: any) {
 
+    return this.http.get((url + 'api/pdfs/s3/' + id), { responseType: 'blob' }).subscribe(x => {
+
+      var newBlob = new Blob([x], { type: "application/pdf" });
+
+      const data = window.URL.createObjectURL(newBlob);
+      
+      var link = document.createElement('a');
+      link.href = data;
+
+      link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+      
+    }, error => {
+      console.log(JSON.stringify(error));
+    });
+
+  }
 
   delete(id: any): Observable<Pdf> {
     return this.http.delete<Pdf>(url + "api/pdfs/" + id);
