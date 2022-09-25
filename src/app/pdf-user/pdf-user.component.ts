@@ -34,6 +34,14 @@ export class PdfUserComponent implements OnInit {
       );
   }
 
+  viewPdf(id: any) {
+    this.pdfService.viewPdf(id)
+  }
+
+  downloadPdf(id: any) {
+    this.pdfService.downloadPdf(id)
+  }
+
   deletePdf(id: any) {
     let c = "Are you sure you want to delete?"
     if (confirm(c) == true) {

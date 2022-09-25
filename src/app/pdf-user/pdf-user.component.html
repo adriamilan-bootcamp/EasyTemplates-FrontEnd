@@ -16,8 +16,8 @@
                         <td>{{p.titulo}}</td>
                         <td>{{p.fechaCreacion}}</td>
                         <td>
-                            <button type="button" class="btn btn-success"><i class="bi bi-eye-fill"></i></button>
-                            <button type="button" class="btn btn-warning"><i class="bi bi-download"></i></button>
+                            <button type="button" class="btn btn-success" (click)="viewPdf(p.id);"><i class="bi bi-eye-fill"></i></button>
+                            <button type="button" class="btn btn-warning" (click)="downloadPdf(p.id);"><i class="bi bi-download"></i></button>
                             <button type="button" class="btn btn-danger" (click)="deletePdf(p.id);"><i class="bi bi-trash3-fill"></i></button>
 
                         </td>

@@ -61,8 +61,8 @@
                                         <div class="input-group d-flex" style="align-items: center;">
                                             <input
                                                 *ngIf="item.type != 'img' && item.type != 'h4' && item.type != 'enlace'"
-                                                id="content" class="form-control" type="text">
-                                            <textarea *ngIf="item.type == 'h4'" id="content" class="w-100" cols="30"
+                                                id="content{{item.id}}" class="form-control" type="text">
+                                            <textarea *ngIf="item.type == 'h4'" id="content{{item.id}}" class="w-100" cols="30"
                                                 rows="5"></textarea>
                                             <div *ngIf="item.type == 'img'">
                                                 temp
@@ -90,8 +90,7 @@
 
                                         </div>
                                         <br>
-                                        <button (click)="saveContent(item.id)" class="btn btn-success btn-block">Editar
-                                            Item <i class="bi bi-pencil-square"></i></button>
+                                        <button *ngIf="item.type != 'img'" (click)="saveContent(item.id)" class="btn btn-success btn-block">Edit<i class="bi bi-pencil-square"></i></button>
 
                                     </div>
                                 </div>

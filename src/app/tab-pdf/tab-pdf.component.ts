@@ -143,4 +143,12 @@ export class TabPdfComponent implements OnInit {
       window.location.reload();
     }
   }
+
+  view(id: any) {
+    this.pService.viewPdf(id)
+  }
+
+  download(id: any) {
+    this.pService.downloadPdf(id)
+  }
 }
