@@ -37,7 +37,7 @@ export class PlantillaConstructorComponent implements OnInit {
 
   idImg: any;
 
-  preview: boolean = false
+
 
   constructor(private templateService: TemplatesService, private serviceImg: ImageService, private sec: SecurityService, private sanitization: DomSanitizer) { }
 
@@ -259,12 +259,6 @@ export class PlantillaConstructorComponent implements OnInit {
     window.location.href ='user-dashboard';
   }
 
-  previewPDF() {
-    if (this.preview) {
-      this.preview = false
-    } else {
-      this.preview = true
-    }
-  }
+
 
 }

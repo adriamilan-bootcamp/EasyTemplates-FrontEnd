@@ -1,7 +1,14 @@
 <div class="card-body">
-    <h5 class="card-title">Users</h5>
-    <br><br>
+    <!--
+    <div style="display:flex; float:right ;">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUser">Add User</button>
 
+    </div>
+     
+    -->
+    <br>
+    <h5 class="card-title">Users</h5>
+    <br>
     <div>
 
 
@@ -56,16 +63,144 @@
                             <table>
                                 <th> <button type="button" class="btn btn-danger" scope="col" (click)="delete(u.id);"><i
                                             class="bi bi-trash-fill"></i></button></th>
-                                <th> <button type="button" class="btn btn-warning" scope="col"><i
+                                <th> <button type="button" class="btn btn-warning" scope="col" data-bs-toggle="modal"
+                                        data-bs-target="#modifyInfo1" (click)="seeUser(u.id);"><i
                                             class="bi bi-pencil-square"></i></button>
                                 </th>
-                                <th> <button type="button" class="btn btn-success" scope="col"><i
-                                            class="bi bi-eye-fill"></i></button>
+                                <th> <button type="button" class="btn btn-success" scope="col" data-bs-toggle="modal"
+                                        data-bs-target="#seeInfo1"><i class="bi bi-eye-fill"
+                                            (click)="seeUser(u.id);"></i></button>
                                 </th>
 
                             </table>
 
                         </td>
+                        <!-- Modal seeInfo-->
+                        <div class="modal fade" id="seeInfo1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-gradient-primary-to-secondary">
+                                        <h5 class="modal-title" id="exampleModalLabel">Info User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Name input-->
+                                        <label for="name" class="form-label" style="font-weight:bold ;">Username</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="username" type="text" value="{{seeName}}"
+                                                readonly />
+
+
+                                        </div>
+                                        <!-- Email address input-->
+                                        <label for="email" class="form-label" style="font-weight:bold ;">Email
+                                            address</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" name="email" id="email" type="email"
+                                                value="{{seeEamil}}" id="email" readonly />
+                                        </div>
+                                        <label for="rol" class="form-label" style="font-weight:bold ;">Role</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="rol" type="text" value="{{seeRole}}"
+                                                readonly />
+
+                                        </div>
+
+
+                                        <label for="password" class="form-label"
+                                            style="font-weight:bold ;">Password</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="password" type="password" readonly
+                                                value={{seePassword}} />
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal modifyInfo-->
+                        <div class="modal fade" id="modifyInfo1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-gradient-primary-to-secondary">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modify User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <!-- Name input-->
+                                                <label for="name" class="form-label"
+                                                    style="font-weight:bold ;">Username</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="username1" type="text"
+                                                        placeholder="Enter your name..." data-sb-validations="required"
+                                                        value="{{seeName}}" />
+
+                                                    <div class="invalid-feedback" data-sb-feedback="name:required">A
+                                                        name is required.</div>
+                                                </div>
+                                                <!-- Email address input-->
+                                                <label for="email" class="form-label" style="font-weight:bold ;">Email
+                                                    address</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" name="email" id="email1" type="email"
+                                                        placeholder="name@example.com"
+                                                        data-sb-validations="required,email" value="{{seeEamil}}"
+                                                        required [(ngModel)]="userInfo.email" id="email1" required
+                                                        #email="ngModel" />
+                                                </div>
+                                                <label for="rol" class="form-label"
+                                                    style="font-weight:bold ;">Role</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="rol1" type="text"
+                                                        data-sb-validations="required" value="{{seeRole}}" readonly />
+
+                                                </div>
+
+
+                                                <label for="password" class="form-label"
+                                                    style="font-weight:bold ;">Password</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="password1" type="password"
+                                                        placeholder="New Password" data-sb-validations="required"
+                                                        value="{{seePassword}}" />
+                                                    <div class="invalid-feedback" data-sb-feedback="password1:required"
+                                                        required minlength="4">A
+                                                        password is
+                                                        required.</div>
+                                                </div>
+                                                <!--
+                        <label for="password" class="form-label" style="font-weight:bold ;">Confirm Password</label>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="passwordConfirm" type="password" placeholder="Confirm New Password"
+                                data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="password:required" >A password is
+                                required.</div>
+                        </div>
+                        -->
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" (click)="update1(seeid);"
+                                            data-bs-dismiss="modal">Save
+                                            changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
 
                 </tbody>
@@ -90,18 +225,146 @@
                         <td>{{user?.roles}}</td>
                         <td>
                             <table>
-                                <th> <button type="button" class="btn btn-danger" scope="col"><i
-                                            class="bi bi-trash-fill"></i></button></th>
-                                <th> <button type="button" class="btn btn-warning" scope="col"><i
+                                <th> <button type="button" class="btn btn-danger" scope="col"
+                                        (click)="delete(user?.id);"><i class="bi bi-trash-fill"></i></button></th>
+                                <th> <button type="button" class="btn btn-warning" scope="col" data-bs-toggle="modal"
+                                        data-bs-target="#modifyInfo2" (click)="seeUser(user?.id);"><i
                                             class="bi bi-pencil-square"></i></button>
                                 </th>
-                                <th> <button type="button" class="btn btn-success" scope="col"><i
-                                            class="bi bi-eye-fill"></i></button>
+                                <th> <button type="button" class="btn btn-success" scope="col" data-bs-toggle="modal"
+                                        data-bs-target="#seeInfo2"><i class="bi bi-eye-fill"
+                                            (click)="seeUser(user?.id);"></i></button>
                                 </th>
 
                             </table>
 
                         </td>
+                        <!-- Modal seeInfo-->
+                        <div class="modal fade" id="seeInfo2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-gradient-primary-to-secondary">
+                                        <h5 class="modal-title" id="exampleModalLabel">Info User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Name input-->
+                                        <label for="name" class="form-label" style="font-weight:bold ;">Username</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="username" type="text" value="{{seeName}}"
+                                                readonly />
+
+
+                                        </div>
+                                        <!-- Email address input-->
+                                        <label for="email" class="form-label" style="font-weight:bold ;">Email
+                                            address</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" name="email" id="email" type="email"
+                                                value="{{seeEamil}}" id="email" readonly />
+                                        </div>
+                                        <label for="rol" class="form-label" style="font-weight:bold ;">Role</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="rol" type="text" value="{{seeRole}}"
+                                                readonly />
+
+                                        </div>
+
+
+                                        <label for="password" class="form-label"
+                                            style="font-weight:bold ;">Password</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="password" type="password" readonly
+                                                value={{seePassword}} />
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal modifyInfo-->
+                        <div class="modal fade" id="modifyInfo2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-gradient-primary-to-secondary">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modify User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <!-- Name input-->
+                                                <label for="name" class="form-label"
+                                                    style="font-weight:bold ;">Username</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="username2" type="text"
+                                                        placeholder="Enter your name..." data-sb-validations="required"
+                                                        value="{{seeName}}" />
+
+                                                    <div class="invalid-feedback" data-sb-feedback="name:required">A
+                                                        name is required.</div>
+                                                </div>
+                                                <!-- Email address input-->
+                                                <label for="email" class="form-label" style="font-weight:bold ;">Email
+                                                    address</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" name="email2" id="email2" type="email"
+                                                        placeholder="name@example.com"
+                                                        data-sb-validations="required,email2" value="{{seeEamil}}"
+                                                        required [(ngModel)]="userInfo.email" id="email2" required
+                                                        #email="ngModel" />
+                                                </div>
+                                                <label for="rol" class="form-label"
+                                                    style="font-weight:bold ;">Role</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="rol2" type="text"
+                                                        data-sb-validations="required" value="{{seeRole}}" readonly />
+
+                                                </div>
+
+
+                                                <label for="password" class="form-label"
+                                                    style="font-weight:bold ;">Password</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="password2" type="password"
+                                                        placeholder="New Password" data-sb-validations="required"
+                                                        value="{{seePassword}}" />
+                                                    <div class="invalid-feedback" data-sb-feedback="password2:required"
+                                                        required minlength="4">A
+                                                        password is
+                                                        required.</div>
+                                                </div>
+                                                <!--
+                        <label for="password" class="form-label" style="font-weight:bold ;">Confirm Password</label>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="passwordConfirm" type="password" placeholder="Confirm New Password"
+                                data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="password:required" >A password is
+                                required.</div>
+                        </div>
+                        -->
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" (click)="update2(user?.id);"
+                                            data-bs-dismiss="modal">Save
+                                            changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
 
                 </tbody>
@@ -126,18 +389,147 @@
                         <td>{{u.roles}}</td>
                         <td>
                             <table>
-                                <th> <button type="button" class="btn btn-danger" scope="col"><i
+                                <th> <button type="button" class="btn btn-danger" scope="col" (click)="delete(u.id);"><i
                                             class="bi bi-trash-fill"></i></button></th>
-                                <th> <button type="button" class="btn btn-warning" scope="col"><i
+                                <th> <button type="button" class="btn btn-warning" scope="col" data-bs-toggle="modal"
+                                        data-bs-target="#modifyInfo3" (click)="seeUser(u.id);"><i
                                             class="bi bi-pencil-square"></i></button>
                                 </th>
-                                <th> <button type="button" class="btn btn-success" scope="col"><i
+                                <th> <button type="button" class="btn btn-success" scope="col" data-bs-toggle="modal"
+                                        data-bs-target="#seeInfo3" (click)="seeUser(u.id);"><i
                                             class="bi bi-eye-fill"></i></button>
                                 </th>
 
                             </table>
 
                         </td>
+                        <!-- Modal seeInfo-->
+                        <div class="modal fade" id="seeInfo3" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-gradient-primary-to-secondary">
+                                        <h5 class="modal-title" id="exampleModalLabel">Info User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Name input-->
+                                        <label for="name" class="form-label" style="font-weight:bold ;">Username</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="username" type="text" value="{{seeName}}"
+                                                readonly />
+
+
+                                        </div>
+                                        <!-- Email address input-->
+                                        <label for="email" class="form-label" style="font-weight:bold ;">Email
+                                            address</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" name="email" id="email" type="email"
+                                                value="{{seeEamil}}" id="email" readonly />
+                                        </div>
+                                        <label for="rol" class="form-label" style="font-weight:bold ;">Role</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="rol" type="text" value="{{seeRole}}"
+                                                readonly />
+
+                                        </div>
+
+
+                                        <label for="password" class="form-label"
+                                            style="font-weight:bold ;">Password</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="password" type="password" readonly
+                                                value={{seePassword}} />
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal modifyInfo-->
+                        <div class="modal fade" id="modifyInfo3" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-gradient-primary-to-secondary">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modify User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <!-- Name input-->
+                                                <label for="name" class="form-label"
+                                                    style="font-weight:bold ;">Username</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="username3" type="text"
+                                                        placeholder="Enter your name..." data-sb-validations="required"
+                                                        value="{{seeName}}" />
+
+                                                    <div class="invalid-feedback" data-sb-feedback="username3:required">
+                                                        A
+                                                        name is required.</div>
+                                                </div>
+                                                <!-- Email address input-->
+                                                <label for="email" class="form-label" style="font-weight:bold ;">Email
+                                                    address</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" name="email" id="email3" type="email"
+                                                        placeholder="name@example.com"
+                                                        data-sb-validations="required,email" value="{{seeEamil}}"
+                                                        required [(ngModel)]="userInfo.email" id="email3" required
+                                                        #email="ngModel" />
+                                                </div>
+                                                <label for="rol" class="form-label"
+                                                    style="font-weight:bold ;">Role</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="rol3" type="text"
+                                                        data-sb-validations="required" value="{{seeRole}}" readonly />
+
+                                                </div>
+
+
+                                                <label for="password" class="form-label"
+                                                    style="font-weight:bold ;">Password</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="password3" type="password"
+                                                        placeholder="New Password" data-sb-validations="required"
+                                                        value="{{seePassword}}" />
+                                                    <div class="invalid-feedback" data-sb-feedback="password3:required"
+                                                        required minlength="4">A
+                                                        password is
+                                                        required.</div>
+                                                </div>
+                                                <!--
+                        <label for="password" class="form-label" style="font-weight:bold ;">Confirm Password</label>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="passwordConfirm" type="password" placeholder="Confirm New Password"
+                                data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="password:required" >A password is
+                                required.</div>
+                        </div>
+                        -->
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" (click)="update3(u.id);"
+                                            data-bs-dismiss="modal">Save
+                                            changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
 
                 </tbody>
@@ -160,18 +552,146 @@
                         <td>{{user?.roles}}</td>
                         <td>
                             <table>
-                                <th> <button type="button" class="btn btn-danger" scope="col"><i
-                                            class="bi bi-trash-fill"></i></button></th>
-                                <th> <button type="button" class="btn btn-warning" scope="col"><i
+                                <th> <button type="button" class="btn btn-danger" scope="col"
+                                        (click)="delete(user?.id);"><i class="bi bi-trash-fill"></i></button></th>
+                                <th> <button type="button" class="btn btn-warning" scope="col" data-bs-toggle="modal"
+                                        data-bs-target="#modifyInfo4" (click)="seeUser(user?.id);"><i
                                             class="bi bi-pencil-square"></i></button>
                                 </th>
-                                <th> <button type="button" class="btn btn-success" scope="col"><i
+                                <th> <button type="button" class="btn btn-success" scope="col" data-bs-toggle="modal"
+                                        data-bs-target="#seeInfo4" (click)="seeUser(user?.id);"><i
                                             class="bi bi-eye-fill"></i></button>
                                 </th>
 
                             </table>
 
                         </td>
+                        <!-- Modal seeInfo-->
+                        <div class="modal fade" id="seeInfo4" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-gradient-primary-to-secondary">
+                                        <h5 class="modal-title" id="exampleModalLabel">Info User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Name input-->
+                                        <label for="name" class="form-label" style="font-weight:bold ;">Username</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="username" type="text" value="{{seeName}}"
+                                                readonly />
+
+
+                                        </div>
+                                        <!-- Email address input-->
+                                        <label for="email" class="form-label" style="font-weight:bold ;">Email
+                                            address</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" name="email" id="email" type="email"
+                                                value="{{seeEamil}}" id="email" readonly />
+                                        </div>
+                                        <label for="rol" class="form-label" style="font-weight:bold ;">Role</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="rol" type="text" value="{{seeRole}}"
+                                                readonly />
+
+                                        </div>
+
+
+                                        <label for="password" class="form-label"
+                                            style="font-weight:bold ;">Password</label>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="password" type="password" readonly
+                                                value={{seePassword}} />
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal modifyInfo-->
+                        <div class="modal fade" id="modifyInfo4" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-gradient-primary-to-secondary">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modify User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <!-- Name input-->
+                                                <label for="name" class="form-label"
+                                                    style="font-weight:bold ;">Username</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="username4" type="text"
+                                                        placeholder="Enter your name..." data-sb-validations="required"
+                                                        value="{{seeName}}" />
+
+                                                    <div class="invalid-feedback" data-sb-feedback="name:required">A
+                                                        name is required.</div>
+                                                </div>
+                                                <!-- Email address input-->
+                                                <label for="email" class="form-label" style="font-weight:bold ;">Email
+                                                    address</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" name="email" id="email4" type="email"
+                                                        placeholder="name@example.com"
+                                                        data-sb-validations="required,email" value="{{seeEamil}}"
+                                                        required [(ngModel)]="userInfo.email" id="email4" required
+                                                        #email="ngModel" />
+                                                </div>
+                                                <label for="rol" class="form-label"
+                                                    style="font-weight:bold ;">Role</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="rol4" type="text"
+                                                        data-sb-validations="required" value="{{seeRole}}" readonly />
+
+                                                </div>
+
+
+                                                <label for="password" class="form-label"
+                                                    style="font-weight:bold ;">Password</label>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="password4" type="password"
+                                                        placeholder="New Password" data-sb-validations="required"
+                                                        value="{{seePassword}}" />
+                                                    <div class="invalid-feedback" data-sb-feedback="password4:required"
+                                                        required minlength="4">A
+                                                        password is
+                                                        required.</div>
+                                                </div>
+                                                <!--
+                        <label for="password" class="form-label" style="font-weight:bold ;">Confirm Password</label>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="passwordConfirm" type="password" placeholder="Confirm New Password"
+                                data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="password:required" >A password is
+                                required.</div>
+                        </div>
+                        -->
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" (click)="update4(user?.id);"
+                                            data-bs-dismiss="modal">Save
+                                            changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
 
                 </tbody>
@@ -183,4 +703,73 @@
 
     <ng-template #nohaydatos>There is no data in the input</ng-template>
 
+</div>
+
+
+
+<!-- Modal addUser-->
+<div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-primary-to-secondary">
+                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form name="form" class="mb-0" (ngSubmit)="f.form.valid && addUser()" #f="ngForm" novalidate>
+                    <p class="mb-0 mt-2">Name</p>
+                    <div class="form-group">
+                        <input type="text" name="nameAddUser" class="form-control" [(ngModel)]="form.name"
+                            id="nameAddUser" required #name="ngModel"> <br>
+                        <div class="alert alert-danger" role="alert" *ngIf="name.errors && f.submitted">
+                            Name is required!
+                        </div>
+                    </div>
+                    <p class="mb-0 mt-2">Email</p>
+                    <div class="form-group">
+                        <input type="text" name="emailAddUser" class="form-control" [(ngModel)]="form.email"
+                            id="emailAddUser" required #email="ngModel"> <br>
+                        <div class="alert alert-danger" role="alert" *ngIf="email.errors && f.submitted">
+                            Email is required!
+                        </div>
+                    </div>
+                    <p class="mb-0 mt-2">Password</p>
+                    <div class="form-group">
+                        <input type="password" name="passwordAddUser" class="form-control" [(ngModel)]="form.password"
+                            id="passwordAddUser" required minlength="4" #password="ngModel"> <br>
+                        <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+                            <div *ngIf="password.errors['required']">Password is required!</div>
+                            <div *ngIf="password.errors['minlength']">Password must be at least 6 characters!</div>
+                        </div>
+                    </div>
+                    <p class="mb-0 mt-2">Repeat Password</p>
+                    <div class="form-group">
+                        <input type="password" name="repeatPasswordAddUser" id="repeatPasswordAddUser"
+                            class="form-control" [(ngModel)]="form.repeatPassword" required minlength="4"
+                            #repeatPassword="ngModel"> <br>
+                        <div class="alert alert-danger" role="alert" *ngIf="repeatPassword.errors && f.submitted">
+                            <div *ngIf="repeatPassword.errors['required']">A matching password is required!</div>
+                            <div *ngIf="repeatPassword.errors['minlength']">The matching password must be at least 6
+                                characters!</div>
+                        </div>
+                    </div>
+
+
+                    <br>
+
+                    <div class="form-group mt-3">
+                        <div class="alert alert-danger" role="alert" *ngIf="isRegisterFailed">
+                            {{ errorMessage }}
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addUser();">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
 </div>
