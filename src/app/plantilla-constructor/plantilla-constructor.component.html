@@ -28,7 +28,7 @@
                                 <div class="col-md-8 d-flex" style="align-items: center;">
                                     <p *ngIf="item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4'"
                                         class="{{item.type}} mb-0">{{item.text}}</p>
-                                    <img class="w-100" *ngIf="item.type == 'img'" src="{{item.content}}">
+                                    <img id="img{{item.id}}" *ngIf="item.type == 'img'" src="{{item.content}}" style="width: 100%;">
                                     <div *ngIf="item.type == 'espacio' || item.type == 'linea'" class="pt-1 pb-1">
                                         <p class="h4 mb-0">{{item.text}} <i *ngIf="item.type == 'espacio'"
                                                 class="bi bi-arrow-down-up"></i><i *ngIf="item.type == 'linea'"
@@ -62,11 +62,13 @@
                                             <input
                                                 *ngIf="item.type != 'img' && item.type != 'h4' && item.type != 'enlace'"
                                                 id="content{{item.id}}" class="form-control" type="text">
-                                            <textarea *ngIf="item.type == 'h4'" id="content{{item.id}}" class="w-100" cols="30"
-                                                rows="5"></textarea>
+                                            <textarea *ngIf="item.type == 'h4'" id="content{{item.id}}" class="w-100"
+                                                cols="30" rows="5"></textarea>
                                             <div *ngIf="item.type == 'img'">
-                                                temp
-
+                                                <div>
+                                                    <p class="text-left f-left">Image Sizer</p>
+                                                    <input class="form-range f-left" type="range" min="20" max="100" id="range{{item.id}}" (change)="imageSizer(item.id)">
+                                                </div>
                                             </div>
                                             <div *ngIf="item.type == 'enlace'">
                                                 <div class="input-group">
@@ -86,11 +88,14 @@
                                                 data-bs-target="#misImagenes" (click)="myImages(); passId(item.id);"><i
                                                     class="bi bi-images"></i></button>
                                             <button class="btn btn-dark mx-1" data-bs-toggle="modal"
-                                                data-bs-target="#subirImagen" (click)=" passId(item.id);"><i class="bi bi-upload"></i></button>
+                                                data-bs-target="#subirImagen" (click)=" passId(item.id);"><i
+                                                    class="bi bi-upload"></i></button>
 
                                         </div>
                                         <br>
-                                        <button *ngIf="item.type != 'img'" (click)="saveContent(item.id)" class="btn btn-success btn-block">Edit<i class="bi bi-pencil-square"></i></button>
+                                        <button *ngIf="item.type != 'img'" (click)="saveContent(item.id)"
+                                            class="btn btn-success btn-block">Edit<i
+                                                class="bi bi-pencil-square"></i></button>
 
                                     </div>
                                 </div>
