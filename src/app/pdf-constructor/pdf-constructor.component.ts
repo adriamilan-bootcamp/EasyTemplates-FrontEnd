@@ -9,6 +9,9 @@ import { Image } from '../models/image.model';
 import { SecurityService } from '../_services/security.service';
 import { NgbModal, NgbActiveModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
+import { NgSignaturePadOptions, SignaturePadComponent } from '@almothafar/angular-signature-pad';
+
+
 class ImageSnippet {
   constructor(public src: string, public file: File) { }
 }
@@ -27,6 +30,8 @@ export class PdfConstructorComponent implements OnInit {
 
   idParam: any;
 
+  imagenfirma: any;
+
   @ViewChild("content",{static:true}) content:ElementRef | undefined;
   
   finished: boolean = false;
@@ -36,6 +41,31 @@ export class PdfConstructorComponent implements OnInit {
   imgs?: Image[];
   idImg: any;
   selectedFile: ImageSnippet | undefined;
+
+    
+  @ViewChild('signature')
+  public signaturePad: SignaturePadComponent | undefined;
+  public signaturePadOptions: NgSignaturePadOptions = { // passed through to szimek/signature_pad constructor
+    minWidth: 5,
+    canvasWidth: 250,
+    canvasHeight: 150
+  };
+  ngAfterViewInit() {
+    // this.signaturePad is now available
+    this.signaturePad!.set('minWidth', 5); // set szimek/signature_pad options at runtime
+    this.signaturePad!.clear(); // invoke functions from szimek/signature_pad API
+  }
+  drawComplete(event: MouseEvent | Touch, id: any) {
+    // will be notified of szimek/signature_pad's onEnd event
+    console.log('Completed drawing', event);
+    this.items[id]["content"] = this.signaturePad!.toDataURL();
+  }
+  drawStart(event: MouseEvent | Touch) {
+    // will be notified of szimek/signature_pad's onBegin event
+    console.log('Start drawing', event);
+  }
+
+
   ngOnInit(): void {
     this.idParam = this.route.snapshot.paramMap.get('id');
     this.tmservice.getS3TemplateById(this.idParam).subscribe(

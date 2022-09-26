@@ -22,7 +22,9 @@
                                     <input id="enlace{{item.id}}" type="text" class="form-control" placeholder="Enlace">
                                 </div>
                             </div>
-                            <img *ngIf="item.type == 'firma'" src="../../assets/img/firmar.jpg">
+                            <div *ngIf="item.type == 'firma'">
+                                <signature-pad style="background: rgba(255, 255, 255, 0); display: inline-block;" #signature [options]="signaturePadOptions" (drawStart)="drawStart($event)" (drawEnd)="drawComplete($event, item.id)"></signature-pad>
+                            </div>
                             <div
                                 *ngIf="(item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4')">
                                 <p *ngIf="item.content != ''" class="{{item.type}}">{{item.content}}</p>
@@ -69,6 +71,7 @@
                     <div class="{{item.type}}" *ngIf="item.type == 'espacio' || item.type == 'linea'">
                         <hr *ngIf="item.type == 'linea'">
                     </div>
+                    <img *ngIf="item.type == 'firma'" src="{{ item.content }}">
                 </div>
             </div>
         </div>
