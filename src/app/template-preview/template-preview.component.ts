@@ -10,21 +10,9 @@ export class TemplatePreviewComponent implements OnInit {
 
   constructor(private tmService: TemplatesService) { }
 
-  @Input() id: any;
-
-  items: any;
 
   ngOnInit(): void {
-    this.tmService.getS3TemplateById(this.id).subscribe(
-      data => {
-        this.items = data;
-        console.log(this.items);
-        
-      }, error => {
-        console.log(error);
-      }
-    )
-    
+    // In disuse
   }
 
 }

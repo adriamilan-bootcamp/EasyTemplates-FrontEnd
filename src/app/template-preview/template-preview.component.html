@@ -1,10 +1,2 @@
 
-<div *ngFor="let item of items">
-    <p *ngIf="item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4'" class="{{item.type}}">
-        {{item.text}}</p>
-    <img *ngIf="item.type == 'img'" src="{{item.content}}" class="w-100">
-    <a *ngIf="item.type == 'enlace'" href="{{item.content}}">{{item.text}}</a>
-    <div class="{{item.type}}" *ngIf="item.type == 'espacio' || item.type == 'linea'">
-        <hr *ngIf="item.type == 'linea'">
-    </div>
-</div>
+<!-- In disuse -->

@@ -13,6 +13,8 @@ import { SecurityService } from '../_services/security.service';
 export class TemplateUserComponent implements OnInit {
   templ?: Template[];
   preview: boolean = false
+  idModal: any = 0;
+  items: any;
 
   constructor(private templService: TemplatesService, private fb: FormBuilder, private router: Router, private secService: SecurityService) { }
 
@@ -66,6 +68,19 @@ export class TemplateUserComponent implements OnInit {
     } else {
       this.preview = true
     }
+  }
+
+  setModalId(id: any) {
+    this.idModal = id
+    console.log(this.idModal);
+    this.templService.getS3TemplateById(this.idModal).subscribe(
+      result => {
+        this.items = result
+      }, error => {
+        console.log(error);
+      }
+    )
+    $('#itemPreview').modal('show'); 
   }
 
 }
