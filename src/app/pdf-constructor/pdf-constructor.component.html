@@ -95,7 +95,7 @@
 </div>
 
 <div class="modal fade" id="generatePdfModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">PDF</h5>
@@ -118,7 +118,7 @@
 
 <!-- Modal misImagenes-->
 <div class="modal fade" id="misImagenes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Choose Image</h5>
@@ -150,7 +150,7 @@
 <ng-template #espera> Loading images....</ng-template>
 <!-- Modal subirImagen-->
 <div class="modal fade" id="subirImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
@@ -158,7 +158,8 @@
             </div>
             <div class="modal-body">
                 <div class="form-group mt-3">
-                    <label class="mr-2">Upload your Image:</label>
+                    <label class="mr-2">Upload your image:</label>
+                    <br>
                     <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)">
                 </div>
             </div>
@@ -173,6 +174,35 @@
             </div>
         </div>
     </div>
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Amazon S3 Upload</h4>
+        </div>
+        <div class="modal-body">
+            <div *ngIf="!finished" class="d-flex flex-column align-items-center justify-content-center">
+                <div class="row">
+                    <div class="spinner-border text-warning" role="status"></div>
+                 </div>
+                 <div class="row">
+                   <strong>Uploading...</strong>
+                 </div>
+            </div>
+            <div *ngIf="finished" class="d-flex align-items-center">
+                <div class="swal2-icon swal2-success swal2-animate-success-icon">
+                    <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                      <span class="swal2-success-line-tip"></span>
+                      <span class="swal2-success-line-long"></span>
+                      <div class="swal2-success-ring"></div> 
+                      <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                      <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+                     </div>
+            </div>
+            <div *ngIf="modalError" class="d-flex align-items-center">
+                <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex;"><span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span></div>
+            </div>
+        </div>
+      </ng-template>
 
     <ng-template #espera>Loading images ....</ng-template>
 

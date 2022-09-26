@@ -32,7 +32,7 @@ export class PdfService {
     return this.http.get<Pdf[]>(url + "api/pdfs/titulo?title=" + title);
   }
 
-  addPdf(title: any, pdf: any) {
+  addPdf(title: any, pdf: any): Observable<Pdf> {
 
     var blobPDF =  new Blob([ pdf ], { type : 'application/pdf'});
 
@@ -44,14 +44,7 @@ export class PdfService {
 
     console.log("Data: " + JSON.stringify(formData));
 
-    
-    return this.http.post((url + 'api/pdfs?titulo=' + title), formData).subscribe(
-      data => {
-        console.log(JSON.stringify(data));
-      }, error => {
-        console.log(JSON.stringify(error));
-      }
-    )
+    return this.http.post((url + 'api/pdfs?titulo=' + title), formData);
   }
 
   viewPdf(id: any) {

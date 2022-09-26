@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TemplatesService } from '../_services/templates.service'
 import { PdfService } from '../_services/pdf.service';
@@ -7,7 +7,7 @@ import html2canvas from 'html2canvas';
 import { ImageService } from '../_services/image.service';
 import { Image } from '../models/image.model';
 import { SecurityService } from '../_services/security.service';
-
+import { NgbModal, NgbActiveModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) { }
@@ -20,12 +20,18 @@ class ImageSnippet {
 })
 export class PdfConstructorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router, private tmservice: TemplatesService, private pdfService: PdfService, private serviceImg: ImageService, private sec: SecurityService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private tmservice: TemplatesService, private pdfService: PdfService, private serviceImg: ImageService, private sec: SecurityService,
+    private modalService: NgbModal) { }
 
   preview: boolean = false
 
   idParam: any;
 
+  @ViewChild("content",{static:true}) content:ElementRef | undefined;
+  
+  finished: boolean = false;
+  modalError: boolean = false;
+  
   items: any;
   imgs?: Image[];
   idImg: any;
@@ -74,8 +80,31 @@ export class PdfConstructorComponent implements OnInit {
       let doc = new jsPDF('p', 'mm', 'a4');
       let position = 0;
       doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
-      this.pdfService.addPdf(pdfname, doc.output('blob'));
-      alert("Pdf created! You can see it in your Pdfs.")
+
+      let res = this.pdfService.addPdf(pdfname, doc.output('blob'));
+
+      this.modalService.open(this.content, { centered: true });
+
+      this.finished = false;
+
+      res.subscribe(
+      data => {
+        this.finished = true;
+
+        setTimeout(() => {
+          this.modalService.dismissAll(this.content);
+        }, 2000);
+      }, error => {
+        this.finished = true;
+        this.modalError = true;
+
+        setTimeout(() => {
+          this.modalService.dismissAll(this.content);
+          this.modalError = false;
+        }, 2000);
+      }
+    )
+      
     });
   }
 
