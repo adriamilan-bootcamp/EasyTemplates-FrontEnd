@@ -31,6 +31,8 @@ export class TabTemplatesComponent implements OnInit {
     })
   }
 
+  items: any;
+
   ngOnInit(): void {
     this.seeAll();
   }
@@ -137,6 +139,17 @@ export class TabTemplatesComponent implements OnInit {
     } else {
       window.location.reload();
     }
+  }
+
+  openItemModal(id: any) {
+    this.temService.getS3TemplateById(id).subscribe(
+      result => {
+        this.items = result
+      }, error => {
+        console.log(error);
+      }
+    )
+    $('#itemPreview').modal('show'); 
   }
 
 }
