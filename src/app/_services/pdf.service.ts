@@ -84,7 +84,7 @@ export class PdfService {
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
-
+        
     }, error => {
       console.log(JSON.stringify(error));
     });

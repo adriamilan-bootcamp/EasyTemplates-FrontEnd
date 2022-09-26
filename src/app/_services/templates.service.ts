@@ -32,7 +32,7 @@ export class TemplatesService {
     return this.http.get(url + "api/plantilla/s3/" + id);
   }
 
-  createTemplate(titulo: any, template: any) {
+  createTemplate(titulo: any, template: any): Observable<Template> {
     const fileName = 'template.json';
 
     const object2Blob = (object: BlobPart) => new Blob([object]);
@@ -44,13 +44,7 @@ export class TemplatesService {
     var formData: any = new FormData();
     formData.append('file', file);
 
-    return this.http.post((url + 'api/plantilla?title=' + titulo), formData).subscribe(
-      data => {
-        console.log(data);
-      }, error => {
-        console.log(error);
-      }
-    )
+    return this.http.post((url + 'api/plantilla?title=' + titulo), formData);
   }
 
   updateTemplate() {

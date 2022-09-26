@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { TemplatesService } from '../_services/templates.service';
 import { Image } from '../models/image.model';
 import { ImageService } from '../_services/image.service';
@@ -6,6 +6,7 @@ import { AuthService } from '../_services/auth.service';
 import { SecurityService } from '../_services/security.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Toast } from 'bootstrap';
+import { NgbModal, NgbActiveModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) { }
@@ -29,6 +30,9 @@ export class PlantillaConstructorComponent implements OnInit {
 
   items = new Array();
 
+  finished: boolean = false;
+  modalError: boolean = false;
+
   index: number = 0;
 
   btnVisibleId: number = 0;
@@ -41,8 +45,11 @@ export class PlantillaConstructorComponent implements OnInit {
 
   selectedFile: ImageSnippet | undefined;
 
-  constructor(private templateService: TemplatesService, private serviceImg: ImageService, private sec: SecurityService, private sanitization: DomSanitizer) { }
+  constructor(private templateService: TemplatesService, private serviceImg: ImageService, private sec: SecurityService, private sanitization: DomSanitizer,
+    private modalService: NgbModal) { }
 
+  @ViewChild("content",{static:true}) content:ElementRef | undefined;
+  
   itemView() {
     if (this.addItem) {
       this.addItem = false;
@@ -254,9 +261,31 @@ export class PlantillaConstructorComponent implements OnInit {
     console.log("Uploading");
     //TODO CHANGE THIS TO A USERDEFINED TITLE
     this.titulo = (<HTMLInputElement>document.getElementById("inputNameTemplate")).value;
-    let res = this.templateService.createTemplate(this.titulo, this.items)
-    alert("The template has been saved successfully ");
 
+    this.modalService.open(this.content, { centered: true });
+
+    let res = this.templateService.createTemplate(this.titulo, this.items)
+
+    this.finished = false;
+
+    res.subscribe(
+      data => {
+        this.finished = true;
+
+        setTimeout(() => {
+          this.modalService.dismissAll(this.content);
+        }, 2000);
+      }, error => {
+        this.finished = true;
+        this.modalError = true;
+
+        setTimeout(() => {
+          this.modalService.dismissAll(this.content);
+          this.modalError = false;
+        }, 2000);
+      }
+    )
+    
     //console.log("File" + res);
   }
 
