@@ -46,6 +46,9 @@ import { CreateNewTemplateComponent } from './create-new-template/create-new-tem
 import { PdfConstructorComponent } from './pdf-constructor/pdf-constructor.component';
 import { TemplatePreviewComponent } from './template-preview/template-preview.component';
 
+import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,7 +93,8 @@ import { TemplatePreviewComponent } from './template-preview/template-preview.co
     HttpClientModule,
     FormsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularSignaturePadModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

@@ -23,6 +23,7 @@ interface Item {
 })
 
 export class PlantillaConstructorComponent implements OnInit {
+[x: string]: any;
 
   @Input() titulo: string = 'Title Template';
 
@@ -49,7 +50,7 @@ export class PlantillaConstructorComponent implements OnInit {
     private modalService: NgbModal) { }
 
   @ViewChild("content",{static:true}) content:ElementRef | undefined;
-  
+
   itemView() {
     if (this.addItem) {
       this.addItem = false;
