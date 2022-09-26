@@ -1,3 +1,21 @@
+
+@media only screen and (max-width: 768px) {
+    .mb-w-100 {
+        width: 100% !important;
+    }
+    .mb-btn {
+        margin-top: 10px !important;
+        text-align: center !important;
+    }
+    .mb-flx-dr {
+        flex-direction: row-reverse;
+    }
+    .mb-img-btn {
+        flex-direction: row-reverse;
+        margin-top: 10px;
+    }
+}
+
 .m-0-auto {
     margin: 0 auto;
 }

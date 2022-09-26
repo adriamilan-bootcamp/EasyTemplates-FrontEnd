@@ -1,6 +1,6 @@
 <app-top-admin></app-top-admin>
 <br><br>
-<div class="container w-75 m-0-auto pt-5 pb-2 background">
+<div class="container w-75 mb-w-100 m-0-auto pt-5 pb-2 background">
     <br><br><br>
     <i class="bi bi-arrow-left-circle-fill" style="color:blue; margin:15px 0px 0px 15px; font-size: 25px;"
         (click)="goBackTemplates();"></i>
@@ -35,14 +35,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 d-flex" style="align-items: center; justify-content: flex-end"
+                        <div class="col-md-3 d-flex mb-flx-dr" style="align-items: center; justify-content: flex-end"
                             *ngIf="item.type != 'espacio' && item.type != 'linea' && item.type != 'firma' && item.type != 'img'">
                             <div class="d-grid">
-                                <button (click)="editarItem(item.id)" class="btn btn-success btn-block">Edit <i
+                                <button (click)="editarItem(item.id)" class="btn btn-success btn-block mb-btn">Edit <i
                                         class="bi bi-pencil-square"></i></button>
                             </div>
                         </div>
-                        <div class="col-md-3 d-flex" style="align-items: center; justify-content: flex-end"
+                        <div class="col-md-3 d-flex mb-img-btn" style="align-items: center; justify-content: flex-end"
                             *ngIf="item.type=='img'">
                             <div class="d-grid">
                                 <div>
