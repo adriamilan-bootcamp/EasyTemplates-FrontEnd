@@ -276,6 +276,11 @@ export class PlantillaConstructorComponent implements OnInit {
         setTimeout(() => {
           this.modalService.dismissAll(this.content);
         }, 2000);
+
+        setTimeout(() => {
+          jQuery('body').removeAttr('style');
+          
+        }, 2500);
       }, error => {
         this.finished = true;
         this.modalError = true;
@@ -284,6 +289,11 @@ export class PlantillaConstructorComponent implements OnInit {
           this.modalService.dismissAll(this.content);
           this.modalError = false;
         }, 2000);
+
+        setTimeout(() => {
+          jQuery('body').removeAttr('style');
+          
+        }, 2500);
       }
     )
     
