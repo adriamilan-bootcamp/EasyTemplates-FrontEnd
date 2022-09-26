@@ -175,5 +175,8 @@ export class PdfConstructorComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-
+  imageSizer(id: any) {
+    let width = (<HTMLInputElement>document.getElementById("range" + id)).value;
+    this.items[id]["width"] = width;
+  }
 }

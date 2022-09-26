@@ -11,7 +11,7 @@
                     <div class="row btn-item mt-3 p-3 border-item rounded border-w-3 border-dotted {{item.type}}">
                         <div class="col-md-9 " style="align-items: center;">
                             <hr *ngIf="item.type == 'linea'">
-                            <img *ngIf="item.type == 'img'" src="{{item.content}}" class="w-100">
+                            <img style="width: {{item.width}}%;" *ngIf="item.type == 'img'" src="{{item.content}}">
                             <img *ngIf="item.type == 'firmar'" src="../../assets/img/firmar.jpg">
                             <div *ngIf="item.type == 'enlace'">
                                 <p class="h4 mb-0">{{item.text}}</p>
@@ -51,7 +51,10 @@
                                 <button class="btn btn-dark mx-1" data-bs-toggle="modal" data-bs-target="#subirImagen"
                                     (click)=" passId(item.id);"><i class="bi bi-upload"></i></button>
                                 </div>
-                           
+                                <div class="mt-2">
+                                    <p class="text-left f-left">Image Sizer</p>
+                                    <input class="form-range f-left" value="{{item.width}}" type="range" min="20" max="100" id="range{{item.id}}" (change)="imageSizer(item.id)">
+                                </div>
                             </div>
                             
                         </div>
@@ -61,7 +64,7 @@
                 <div *ngIf="preview">
                     <p *ngIf="item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4'"
                         class="{{item.type}}">{{item.text}}</p>
-                    <img *ngIf="item.type == 'img'" src="{{item.content}}" class="w-100">
+                        <img *ngIf="item.type == 'img'" src="{{item.content}}" style="width: {{item.width}};">
                     <a *ngIf="item.type == 'enlace'" href="{{item.content}}">{{item.text}}</a>
                     <div class="{{item.type}}" *ngIf="item.type == 'espacio' || item.type == 'linea'">
                         <hr *ngIf="item.type == 'linea'">

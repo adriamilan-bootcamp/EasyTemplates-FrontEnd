@@ -83,7 +83,7 @@ export class PlantillaConstructorComponent implements OnInit {
 
   imageSizer(id: any) {
     let width = (<HTMLInputElement>document.getElementById("range" + id)).value;
-    (<HTMLInputElement>document.getElementById("img" + id)).style.width = width + "%"
+    this.items[id]["width"] = width;
   }
 
   chooseImg() {
@@ -151,7 +151,8 @@ export class PlantillaConstructorComponent implements OnInit {
       editvisible: false,
       type: 'img',
       text: 'Imagen',
-      content: './../assets/img/image-pl.png'
+      content: './../assets/img/image-pl.png',
+      width: '100'
     }
     this.items.push(item)
   }

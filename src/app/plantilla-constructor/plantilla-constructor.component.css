@@ -9,6 +9,17 @@
     .mb-mt {
         margin-top: 1rem;
     }
+    .mb-img-btns {
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        display: flex !important;
+    }
+    .mb-img-top {
+        margin-top: 10px;
+    }
+    .mb-sizer {
+        width: 100% !important;
+    }
 }
 
 .m-0-auto {
@@ -31,4 +42,10 @@
 
 .btn-item:hover {
     background-color: #fafbfc;
+}
+
+.h4 {
+    font-weight: 500;
+    font-size: 18px;
+    text-align: justify;
 }

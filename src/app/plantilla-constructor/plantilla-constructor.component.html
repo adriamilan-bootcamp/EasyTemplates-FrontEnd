@@ -28,8 +28,7 @@
                                 <div class="col-md-8 d-flex" style="align-items: center;">
                                     <p *ngIf="item.type == 'h1' || item.type == 'h2' || item.type == 'h3' || item.type == 'h4'"
                                         class="{{item.type}} mb-0">{{item.text}}</p>
-                                    <img id="img{{item.id}}" *ngIf="item.type == 'img'" src="{{item.content}}"
-                                        style="width: 100%;">
+                                        <img style="width: {{item.width}}%;" id="img{{item.id}}" *ngIf="item.type == 'img'" src="{{item.content}}">
                                     <div *ngIf="item.type == 'espacio' || item.type == 'linea'" class="pt-1 pb-1">
                                         <p class="h4 mb-0">{{item.text}} <i *ngIf="item.type == 'espacio'"
                                                 class="bi bi-arrow-down-up"></i><i *ngIf="item.type == 'linea'"
@@ -40,7 +39,7 @@
                                         <i *ngIf="item.type == 'enlace'" class="bi bi-link"></i>
                                     </p>
                                 </div>
-                                <div *ngIf="item.editvisible" class="col-md-4 d-flex text-right"
+                                <div *ngIf="item.editvisible" class="col-md-4 d-flex text-right mb-img-btns mb-img-top"
                                     style="align-items: center; justify-content: flex-end">
                                     <div class="row">
 
@@ -57,19 +56,19 @@
                             </div>
                             <div *ngIf="item.editvisible && item.type != 'espacio' && item.type != 'linea' && item.type != 'firma'"
                                 class="row mt-2">
-                                <div class="col-md-8">
+                                <div class="col-md-8 mb-img-btns mb-sizer">
                                     <div>
-                                        <div class="input-group d-flex" style="align-items: center;">
+                                        <div class="input-group d-flex mb-img-btns" style="align-items: center;">
                                             <input
                                                 *ngIf="item.type != 'img' && item.type != 'h4' && item.type != 'enlace'"
                                                 id="content{{item.id}}" class="form-control" type="text">
                                             <textarea *ngIf="item.type == 'h4'" id="content{{item.id}}" class="w-100"
                                                 cols="30" rows="5"></textarea>
                                             <div *ngIf="item.type == 'img'">
-                                                <!-- <div>
+                                                <div>
                                                     <p class="text-left f-left">Image Sizer</p>
-                                                    <input class="form-range f-left" type="range" min="20" max="100" id="range{{item.id}}" (change)="imageSizer(item.id)">
-                                                </div> -->
+                                                    <input class="form-range f-left" value="{{item.width}}" type="range" min="20" max="100" id="range{{item.id}}" (change)="imageSizer(item.id)">
+                                                </div>
                                             </div>
                                             <div *ngIf="item.type == 'enlace'">
                                                 <div class="input-group">
@@ -82,7 +81,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 d-flex" style="align-items: center; justify-content: flex-end">
+                                <div class="col-md-4 d-flex mb-img-btns" style="align-items: center; justify-content: flex-end">
                                     <div class="d-grid">
                                         <div *ngIf="item.editvisible && item.type=='img'">
                                             <button class="btn btn-dark mx-1" data-bs-toggle="modal"
